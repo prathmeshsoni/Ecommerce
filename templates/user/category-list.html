@@ -1,0 +1,54 @@
+{% extends 'user/index.html' %}
+{% load static %}
+{% block title %} Category List  {% endblock %}
+{% block content %}
+
+
+<!-- breadcrumb start -->
+<div class="breadcrumb-main ">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="breadcrumb-contain">
+                    <div>
+                        <h2>All Categories</h2>
+                        <ul>
+                            <li><a href="index-2.html">home</a></li>
+                            <li><i class="fa fa-angle-double-right"></i></li>
+                            <li><a href="javascript:void(0)">Categories</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb End -->
+
+<div class="content">
+    <div class="content">
+        <div class="card">
+            <div class="card-header " style="">
+                <div class="row">
+                    {% for i in cat_obj %}
+                    <div class="col-md-2 mb-5 mt-5 ">
+                        <div class="" >
+
+                            <div class="card shadow" style="" >
+                                <a href="/user/category/{{i.id}}"><img src="{{i.cat_img.url}}" class="card-img-top"/></a>
+                                
+                            </div>
+                            <div class="card shadow card-body text-center" >
+                                <h6 class="card-text"><a href="#">{{i.cat_name}}</a></h6>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

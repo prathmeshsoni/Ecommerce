@@ -1,0 +1,334 @@
+{% extends 'user/index.html' %}
+{% block title %} Checkout   {% endblock %}
+{% load static %}
+{% block content %}
+
+<!-- breadcrumb start -->
+<div class="breadcrumb-main ">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="breadcrumb-contain">
+                    <div>
+                        <h2>Checkout</h2>
+                        <ul>
+                            <li><a href="index-2.html">home</a></li>
+                            <li><i class="fa fa-angle-double-right"></i></li>
+                            <li><a href="javascript:void(0)">Checkout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb End -->
+
+<section class="section-big-py-space b-g-light">
+    <div class="custom-container">
+        <div class="checkout-page contact-page">
+            <div class="checkout-form">
+                <div class="row">
+                
+                
+                    <div class="col-lg-6 col-sm-12 col-xs-12" style="display: none;" id="add_1" >
+                        <div>
+                            <h3 class="text-center">
+                                Please Select Your Address
+                            </h3>
+                        </div>
+                        <hr>
+
+                        {% csrf_token %}
+                        <div style="padding: 0 40px; margin-top: 45px; " >
+                            <div class="form-group col-md-10 m-4">
+                                <div class="row" >
+                                    <a href="javascript:void(0)" onclick="anothor()" >
+                                        <h4 style="font-weight: 500; font-size: 20px; color: #00b9c6; " > <span style="margin-left: 22px; margin-right: 20px; " >+</span>  ADD NEW ADDRESS</h4>
+                                    </a>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="form-group col-md-10 m-4">
+                                {% for i in address_obj %}
+                                <div class="row" >
+                                    <div class="col-md-1" style="margin-right: 15px;" >
+                                        <input onclick="address1()" type="radio" class="ml-2" value="{{i.id}}" name="address" id="assss{{i.id}}"
+                                    style="cursor: pointer; margin-top: 5px; margin-left: 20px; ">
+                                    </div>
+                                    <div class="col-md-10">
+                                        <label for="assss{{i.id}}" style=" cursor: pointer !important;" >
+                                            <div style="width: 495px; color: rgba(60,60,60,.54); " >
+                                                <span style="color: black !important; text-transform: capitalize; font-size: 16px; font-weight: bold;" >{{i.first_name}} {{i.last_name}}</span><br>
+                                                <span>
+                                                    {{i.street_address}}
+                                                </span><br>
+                                                {% if i.locality == None %}
+                                                <span>
+                                                </span>
+                                                {% else %}
+                                                <span>{{i.locality}}</span><br>
+                                                {% endif %}
+                                                <span style="text-transform: uppercase;" >{{i.city}} - {{i.pincode}}</span><br>
+                                                <span style="text-transform: uppercase;"  >{{i.state}},{{i.country}}</span><br>
+                                                <span>Phone - {{i.phone_number}}</span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                                <hr>
+                                {% endfor %}
+                            </div>
+
+                        </div>
+
+                    </div>
+                        <!-- {% for i in address_obj %} -->
+
+                        
+
+                        <!-- <label for="address{{i.id}}" style="display: block !important; color: #777 !important; cursor: pointer !important;" >
+                            <div class="col-md-10 p-2 m-4" id="" style="border: 1px solid black;" >
+                                <input onclick="address1()" type="radio" class="ml-2" value="{{i.id}}" name="address" id="address{{i.id}}"
+                                style="cursor: pointer; height: 20px; width: 25px; ">
+                                
+                                <h3 class="text-center">Address {{forloop.counter}}</h3>
+                                <hr>
+                                
+                                <h5 style="display: inline-block;">Address {{forloop.counter}}:</h5><span
+                                class="ml-2"></span> {{i.street_address}}-{{i.pincode}}, {{i.city}}, {{i.state}}, {{i.country}}.
+                                
+                            </div>
+                        </label>
+                        {% endfor %}
+
+                        <button type="button" onclick="anothor()" class="btn-normal btn float_right" style="margin-top: 200px; margin-right: 90px ;" >
+                            Add Anothor Address
+                        </button> -->
+                        
+
+
+                    <div class="col-lg-6 col-sm-12 col-xs-12" style="display: none;" id="add_2" >
+                        <form method="POST" action="/user/myaccount/" >
+                            {% csrf_token %}
+                            <div>
+                                <h3 class="text-center" >
+                                    Add Address
+                                </h3>
+                            </div>
+                            <hr>
+                            <div style="margin-top: 45px;" >
+                                <button type="button"  id="cancel" onclick="cancell()" class="btn-normal btn backk" style="display: none; margin-right: 30px; " >
+                                    view saved address
+                                </button>
+                            
+                                <div class="theme-form" style="margin-top: -90px; padding-top: 65px; " >
+                                    <div class="row check-out ">
+                                        <div class="form-group col-md-12">
+                                            <div class="row" >
+
+                                                <div class="col-md-6">
+                                                    <label class="field-label">First Name</label>
+                                                    <input type="text" name="firstname" placeholder="Enter Your First name" required >
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="field-label">last Name</label>
+                                                    <input type="text" name="lastname" placeholder="Enter Your Last name" required >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <div class="row" >
+                                                <div class="col-md-12">
+                                                    <label class="field-label">Phone Number</label>
+                                                    <input type="text" name="phone_number" value="" placeholder="Enter Your Phone number" required >
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label class="field-label">Street Address</label>
+                                                    <div class="son" >
+                                                        <textarea name="Street" cols="8" rows="3" placeholder="Enter Your Street address,.." required></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label class="field-label">locality</label>
+                                                    <input type="text" name="locality" value="" placeholder="Enter Your locality" required >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <div class="row" >
+                                                <div class="col-md-6">
+                                                    <label class="field-label">City</label>
+                                                    <input type="text" name="city" placeholder="Enter Your City" required >
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="field-label">Zip/Postal Code</label>
+                                                    <input type="number" name="pincode" value="" placeholder="Enter Your Pincode" required >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <div class="row" >
+                                                <div class="col-md-6">
+                                                    <label class="field-label">State</label>
+                                                    <select class="form-control" name="state" id="state" required >
+                                                        <option value="" >---------- Select State ----------</option>
+                                                        {% for i in state_list %}
+                                                        <option value="{{i.id}}">{{i.state_name}}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="field-label">Country</label>
+                                                    <select  class="form-control" name="country" id="country" >
+                                                        <option>INDIA</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    
+                                        <div class="form-group col-md-12 mt-3 ">
+                                            <div class="row" >
+                                                <div class="col-md-6">
+                                                    <button type="button" onclick="cancell()" id="cancelll" onclick="clickclose()" style="margin-right: 10px; display: none;" class="baak">
+                                                        cancel
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <button type="submit"  class="baak2">
+                                                        SAVE
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+            
+
+                    <div class="col-lg-6 col-sm-12 col-xs-12" id="add_3" >
+                        <div>
+                            <h3 class="text-center">
+                                Checkout Details
+                            </h3>
+                            <hr>
+                        </div>
+                        <div class="checkout-details theme-form">
+                            <form method="POST">
+                                {% csrf_token %}
+                                <div class="order-box">
+                                    <div class="title-box">
+                                        <div>
+                                            Product<span>Total</span> <span>Quntity</span></div>
+                                    </div>
+                                    <ul class="qty">
+                                        {% for i in cartt %}
+                                        <input type="hidden" name="cart_id" value="{{i.id}}" >
+                                            <input type="hidden" name="hidden_product_id" value="{{i.product_id.id}}" >
+                                            <input type="hidden" name="hidden_quantity" value="{{i.quantity}}" >
+                                            <input type="hidden" name="hidden_total" value="{% widthratio i.product_id.pro_price 1 i.quantity %}" >
+                                            <li>
+                                                <img src="{{i.product_id.pro_image.url}}" style="width: 45px; height: 70px; border-radius: 25px;" alt="">
+                                                
+                                                
+                                                <span style="margin-top: 28px;" >₹ {% widthratio i.product_id.pro_price 1 i.quantity %}</span>
+                                                <span style="margin-top: 20px;" >
+                                                    <input style="width: 60px; padding: 10px 0px 10px 20px;" readonly id="subtotal-{{i.id}}" type="number" name="" value="{{i.quantity}}" id="">
+                                                </span>
+                                                    
+                                            </li>
+                                                
+                                        {% endfor %}
+                                        <!-- <li>SLim Fit Jeans × 1 <span>$555.00</span></li> -->
+                                    </ul>
+                                    <ul class="total" style="border-bottom: 1px solid #dddddd;" >
+                                        <li class="mb-4" >
+                                            Subtotal <span class="count">₹ {{subtotal}}</span></li>
+                                        <li class="mb-4" >
+                                            <input type="hidden" name="hidden_shipping" value="70" >
+                                            Shipping charges <span class="count" >₹ 70</span></li>
+                                        
+                                    </ul>
+                                    <ul class="total" >
+                                        <li>
+                                            <input type="hidden" name="hidden_address" id="hidden_address" value="0" >
+                                            <input type="hidden" name="hidden_total_ammount" value="{{total_price}}" >
+                                            <input type="hidden" name="hidden_total_quantity" value="{{total_quantity}}" >
+                                            
+                                            Total <span class="count" style="color: red !important;" >₹ {{total_price}}</span></li>
+                                    </ul>
+                                </div>
+                                <div class="payment-box">
+                                    <div class="upper-box">
+                                        <div class="payment-options">
+                                            <ul>
+                                                <li>
+                                                    <div class="radio-option">
+                                                        <input type="radio" name="payment_group" id="cod" value="COD" checked >
+                                                        <label for="cod">Cash On Delivery</label>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="radio-option paypal">
+                                                        <input type="radio" name="payment_group" value="RAZORPAY" id="RAZORPAY">
+                                                        <label for="RAZORPAY">RAZORPAY</label>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div style="height: 53px;">
+                                    <button  type="submit" id="Buynow" disabled class="buynow  btn-normal btn  float_right" >Place Order</button>
+                                </div>
+                            </form>
+                            
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div style="display: none;" >
+<input type="hidden" value="{{check_var}}" name="check_var" id="check_var" >
+{{ order_id }}
+<form action="/user/success/" method="POST">
+    {% csrf_token %}    
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"
+    data-key="rzp_test_As5y7xyrTHsCyp" data-amount="{{price}}"
+    data-currency="INR" data-order_id="{{ order_id }}"
+    data-buttontext="Pay with Razorpay" data-name="Acme Corp"
+    data-description="Test transaction"
+    data-image="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRpWzPOB8s9WRX7JXZ96x1oPESu-eoN5YUFfDKcebTKFn7piPBS&usqp=CAU"
+    {% for i in address_iid %}
+        data-prefill.name="{{i.first_name}}"
+        data-prefill.contact="{{i.phone_number}}"
+    {% endfor %}
+    {% for i in emaill%}
+        data-prefill.email="{{i.email}}"
+    {% endfor %}
+    data-theme.color="#F37254">
+    </script>
+    <input type="hidden" custom="Hidden Element" name="hidden">
+    
+</form>
+</div>
+
+{% endblock %}

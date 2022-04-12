@@ -1,0 +1,59 @@
+{% extends 'admin/masterpage/index.html' %}
+{% block title %} Order {% endblock %}
+{% block title2 %} Orders {% endblock %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="content">
+    <div class="card">
+        <table class="table datatable-button-html5-basic">
+            <thead>
+                <tr>
+                    <th>Order Id</th>
+                    <th>UserName</th>
+                    
+                    <th>Productname</th>
+                    <th>quantity</th>
+                    <th>Product Image</th>
+                    <th>Color</th>
+                    <th>Address</th>
+                    <th>Price</th>
+                    <th>PaymentMode</th>
+                    <th>Transaction Id</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in order_detailss %}
+                <tr>
+                    <td>{{i.id}}</td>
+                    <td>{{i.order_id.address_id.user_id.username}}</td>
+                    <td>{{i.product_id.productname}}</td>
+                    <td>{{i.quantity}}</td>
+                    <td><img src="{{i.product_id.pro_image.url}}" width="100px" alt=""></td>
+                    <td>{{i.product_id.pro_colour}}</td>
+                    <td>{{i.order_id.address_id.street_address}}, {{i.order_id.address_id.city}}, {{i.order_id.address_id.state}}, {{i.order_id.address_id.country}}. </td>
+                    <td>{{i.product_id.pro_price}}</td>
+                    <td>{{i.order_id.payment_mode}}</td>
+                    <td>{{i.order_id.transaction_id}}</td>
+
+                    <td>
+                    <select>
+                      <option>pending</option>
+                      <option>delivery</option>
+                      <option>Confirm Order</option>
+                      <option>order dispatched</option>
+
+                    </select>
+                  </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+
+    </div>
+</div>
+
+{% endblock %}

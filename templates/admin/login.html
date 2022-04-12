@@ -1,0 +1,93 @@
+{% if user.is_authenticated %}
+{% load static %}
+<script>
+    window.location.href = '/admin/';
+</script>
+
+{% endif %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Admin Login</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
+    <link href="{% static 'admin/assets/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="{% static 'user/folder/assets/images/avtar/music_clu.png' %}" type="image/x-icon">
+    <style>
+        * {
+            color: #fff;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        @media only screen and (max-width: 600px) {
+            body {
+                background-color: lightblue;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="row w-100" style="height: 580px;">
+        <div class="row h-100 mx-auto mt-3 login_div"
+            style="background-color: #002428; border-radius: 10px; width: 800px;">
+
+            <div class="col-md-6 my-auto" style="height: 400px; float: right;border-right: 2px solid #7F9193;">
+                <div class="col-md-8 display-block mx-auto display-flex h-100"
+                    style=" justify-content: center; display: flex; align-items: center;">
+                    <img class="" width="300px" height="215px" src="{% static 'user/folder/assets/images/avtar/music_club.png' %}" alt="">
+                </div>
+            </div>
+            <div class="col-md-6 my-auto" style="height: 400px; float: right;">
+                <div class="col-md-8 display-block mx-auto" style="height: 100%;">
+                    <h1 class="text-center" style="opacity: 0.6; font-family: 'Architects Daughter', cursive;">Welcome
+                    </h1>
+                    <p class="text-center mb-4"
+                        style="opacity: 0.5; font-family: 'Architects Daughter', cursive; letter-spacing: 1px;">please
+                        Login to Admin Dashboard</p>                    
+                    <form method="POST">
+                        
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Username</label>
+                            <input type="text" name="username" class="form-control" autofocus placeholder="Enter Username" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" name="password" class="form-control" placeholder="Enter Password" id="exampleInputPassword1">
+                            
+                        </div>
+                        
+                        <div class="col-md-12 mx-auto mt-5" style="display:flex; justify-content: center;">
+
+                            <button type="submit" class="btn font-weight-bold py-1"
+                                style="width: 200px; color: #fff; letter-spacing: 1px; font-family: 'Architects Daughter', cursive; letter-spacing: 2px; background-color: #F26821; border-radius: 8px;"
+                                value="Login">Login</button>
+                        </div>
+                        <a href="{% url 'password_reset' %}" class="mt-3 text-center"
+                            style="color: #fff ; letter-spacing: 2px; font-size: 8px; display: block;"> FORGOTTEN YOUR
+                            PASSWORD ? 
+                        </a>
+
+                        {% csrf_token %}
+                    </form>
+                    {% if messages %}
+
+                        {% for message in messages %}
+                            <div class="alert alert-info">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

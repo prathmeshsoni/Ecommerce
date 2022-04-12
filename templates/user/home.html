@@ -1,0 +1,473 @@
+{% extends 'user/index.html' %}
+{% block title %} Home   {% endblock %}
+{% load static %}
+{% block content %}
+
+<section class="theme-slider home-slide b-g-white pt-2 pb-2 " id="home-slide">
+  <div class="custom-container">
+    <div class="row">
+      <div class="col">
+        <div class="slide-1 no-arrow">
+          {% for i in obj %}
+          <div>
+            <div class="slider-banner p-center slide-banner-1">
+              <div class="slider-img" style="height: 422px;" >
+                <ul class="layout1-slide-1">
+                  <li id="img-1"><img src="{{i.slider_img.url}}" class="img-fluid" alt="slider"></li>
+                  <!-- <li id="img-2" class="slide-center"><img src="" class="img-fluid" alt="slider"></li> -->
+                </ul>
+              </div>
+             <!--  <div class="slider-banner-contain">
+                <div>
+                  <h1>mi<span>Mobile</span></h1>
+                  <h4>fast and light</h4>
+                  <h2>Pixel Perfect Deal Camera</h2>
+                  <a href="product-page(left-sidebar).html" class="btn btn-normal">
+                    Shop Now
+                  </a>
+                </div>
+              </div> -->
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!--tab product-->
+  <section class="section-pt-space   mt-0 pt-0 pb-3" style="background-color: #fff;" >
+    <div class="tab-product-main">
+      <div class="tab-prodcut-contain" style="background-color: #e3e3e3c4;"  >
+        <ul class="">
+          {% for i in pro %}
+          <li>
+            <a href="/user/category/{{i.id}}">{{i.cat_name}}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </section>
+  <!--tab product-->
+
+  <!--product start-->
+  <section class="product section-pb-space mb--5 pt-4 "  style="background-color: #e0e0da!important ;" >
+    <div class="custom-container">
+      <div class="row">
+        <div class="col pr-0">
+          <div class="product-slide-6 no-arrow">
+            {% for i in cate1 %}
+
+            <div>
+              <div class="product-box">
+                <div class="product-imgbox">
+                  <div class="product-front">
+                    <a href="/user/product/{{i.id}}">
+                      <img src="{{i.pro_image.url}}" class="img-fluid  " style="width: 228px;" alt="product">
+                    </a>
+                  </div>
+                  <div class="product-back">
+                    <a href="/user/product/{{i.id}}">
+                      <img src="{{i.pro_back_image.url}}" class="img-fluid  " alt="product">
+                    </a>
+                  </div>
+                  <!-- <div class="product-icon icon-inline">
+                    <button  onclick="openCart()" class="tooltip-top" data-tippy-content="Add to cart" >
+                      <i  data-feather="shopping-cart"></i>
+                    </button>
+                    <a href="javascript:void(0)"  class="add-to-wish tooltip-top"  data-tippy-content="Add to Wishlist" >
+                      <i  data-feather="heart"></i>
+                    </a>
+                    <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view" class="tooltip-top"  data-tippy-content="Quick View">
+                      <i  data-feather="eye"></i>
+                    </a>
+                    <a href="compare.html" class="tooltip-top" data-tippy-content="Compare">
+                      <i  data-feather="refresh-cw"></i>
+                    </a>
+                  </div> -->
+                </div>
+                <div class="product-detail detail-inline ">
+                  <div class="detail-title">
+                    <div class="detail-left">
+                      <div class="rating-star">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                      </div>
+                      <a href="/user/product/">
+                        <h6 class="price-title">
+                          {{i.productname}}
+                        </h6>
+                      </a>
+                    </div>
+                    <div class="detail-right">
+                      <div class="check-price">
+                        ₹  {{i.strike_price}}
+                      </div>
+                      <div class="price">
+                        <div class="price">
+                          ₹  {{i.pro_price}}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col pr-0">
+          <div class="product-slide-6 no-arrow">
+            {% for i in cate2 %}
+
+            <div>
+              <div class="product-box">
+                <div class="product-imgbox">
+                  <div class="product-front">
+                    <a href="/user/product/{{i.id}}">
+                      <img src="{{i.pro_image.url}}" class="img-fluid  " style="width: 228px;" alt="product">
+                    </a>
+                  </div>
+                  <div class="product-back">
+                    <a href="/user/product/{{i.id}}">
+                      <img src="{{i.pro_back_image.url}}" class="img-fluid  " alt="product">
+                    </a>
+                  </div>
+                  <!-- <div class="product-icon icon-inline">
+                    <button  onclick="openCart()" class="tooltip-top" data-tippy-content="Add to cart" >
+                      <i  data-feather="shopping-cart"></i>
+                    </button>
+                    <a href="javascript:void(0)"  class="add-to-wish tooltip-top"  data-tippy-content="Add to Wishlist" >
+                      <i  data-feather="heart"></i>
+                    </a>
+                    <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view" class="tooltip-top"  data-tippy-content="Quick View">
+                      <i  data-feather="eye"></i>
+                    </a>
+                    <a href="compare.html" class="tooltip-top" data-tippy-content="Compare">
+                      <i  data-feather="refresh-cw"></i>
+                    </a>
+                  </div> -->
+                </div>
+                <div class="product-detail detail-inline ">
+                  <div class="detail-title">
+                    <div class="detail-left">
+                      <div class="rating-star">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                      </div>
+                      <a href="/user/product/">
+                        <h6 class="price-title">
+                          {{i.productname}}
+                        </h6>
+                      </a>
+                    </div>
+                    <div class="detail-right">
+                      <div class="check-price">
+                        ₹  {{i.strike_price}}
+                      </div>
+                      <div class="price">
+                        <div class="price">
+                          ₹  {{i.pro_price}}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col pr-0">
+          <div class="product-slide-6 no-arrow">
+            {% for i in cate3 %}
+
+            <div>
+              <div class="product-box">
+                <div class="product-imgbox">
+                  <div class="product-front">
+                    <a href="/user/product/{{i.id}}">
+                      <img src="{{i.pro_image.url}}" class="img-fluid  " style="width: 228px;" alt="product">
+                    </a>
+                  </div>
+                  <div class="product-back">
+                    <a href="/user/product/{{i.id}}">
+                      <img src="{{i.pro_back_image.url}}" class="img-fluid  " alt="product">
+                    </a>
+                  </div>
+                  <!-- <div class="product-icon icon-inline">
+                    <button  onclick="openCart()" class="tooltip-top" data-tippy-content="Add to cart" >
+                      <i  data-feather="shopping-cart"></i>
+                    </button>
+                    <a href="javascript:void(0)"  class="add-to-wish tooltip-top"  data-tippy-content="Add to Wishlist" >
+                      <i  data-feather="heart"></i>
+                    </a>
+                    <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view" class="tooltip-top"  data-tippy-content="Quick View">
+                      <i  data-feather="eye"></i>
+                    </a>
+                    <a href="compare.html" class="tooltip-top" data-tippy-content="Compare">
+                      <i  data-feather="refresh-cw"></i>
+                    </a>
+                  </div> -->
+                </div>
+                <div class="product-detail detail-inline ">
+                  <div class="detail-title">
+                    <div class="detail-left">
+                      <div class="rating-star">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                      </div>
+                      <a href="/user/product/">
+                        <h6 class="price-title">
+                          {{i.productname}}
+                        </h6>
+                      </a>
+                    </div>
+                    <div class="detail-right">
+                      <div class="check-price">
+                        ₹  {{i.strike_price}}
+                      </div>
+                      <div class="price">
+                        <div class="price">
+                          ₹  {{i.pro_price}}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col pr-0">
+          <div class="product-slide-6 no-arrow">
+            {% for i in cate4 %}
+
+            <div>
+              <div class="product-box">
+                <div class="product-imgbox">
+                  <div class="product-front">
+                    <a href="/user/product/{{i.id}}">
+                      <img src="{{i.pro_image.url}}" class="img-fluid  " style="width: 228px;" alt="product">
+                    </a>
+                  </div>
+                  <div class="product-back">
+                    <a href="/user/product/{{i.id}}">
+                      <img src="{{i.pro_back_image.url}}" class="img-fluid  " alt="product">
+                    </a>
+                  </div>
+                  <!-- <div class="product-icon icon-inline">
+                    <button  onclick="openCart()" class="tooltip-top" data-tippy-content="Add to cart" >
+                      <i  data-feather="shopping-cart"></i>
+                    </button>
+                    <a href="javascript:void(0)"  class="add-to-wish tooltip-top"  data-tippy-content="Add to Wishlist" >
+                      <i  data-feather="heart"></i>
+                    </a>
+                    <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view" class="tooltip-top"  data-tippy-content="Quick View">
+                      <i  data-feather="eye"></i>
+                    </a>
+                    <a href="compare.html" class="tooltip-top" data-tippy-content="Compare">
+                      <i  data-feather="refresh-cw"></i>
+                    </a>
+                  </div> -->
+                </div>
+                <div class="product-detail detail-inline ">
+                  <div class="detail-title">
+                    <div class="detail-left">
+                      <div class="rating-star">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                      </div>
+                      <a href="/user/product/">
+                        <h6 class="price-title">
+                          {{i.productname}}
+                        </h6>
+                      </a>
+                    </div>
+                    <div class="detail-right">
+                      <div class="check-price">
+                        ₹  {{i.strike_price}}
+                      </div>
+                      <div class="price">
+                        <div class="price">
+                          ₹  {{i.pro_price}}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col pr-0">
+          <div class="product-slide-6 no-arrow">
+            {% for i in cate5 %}
+
+            <div>
+              <div class="product-box">
+                <div class="product-imgbox">
+                  <div class="product-front">
+                    <a href="/user/product/{{i.id}}">
+                      <img src="{{i.pro_image.url}}" class="img-fluid  " style="width: 228px;" alt="product">
+                    </a>
+                  </div>
+                  <div class="product-back">
+                    <a href="/user/product/{{i.id}}">
+                      <img src="{{i.pro_back_image.url}}" class="img-fluid  " alt="product">
+                    </a>
+                  </div>
+                  <!-- <div class="product-icon icon-inline">
+                    <button  onclick="openCart()" class="tooltip-top" data-tippy-content="Add to cart" >
+                      <i  data-feather="shopping-cart"></i>
+                    </button>
+                    <a href="javascript:void(0)"  class="add-to-wish tooltip-top"  data-tippy-content="Add to Wishlist" >
+                      <i  data-feather="heart"></i>
+                    </a>
+                    <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view" class="tooltip-top"  data-tippy-content="Quick View">
+                      <i  data-feather="eye"></i>
+                    </a>
+                    <a href="compare.html" class="tooltip-top" data-tippy-content="Compare">
+                      <i  data-feather="refresh-cw"></i>
+                    </a>
+                  </div> -->
+                </div>
+                <div class="product-detail detail-inline ">
+                  <div class="detail-title">
+                    <div class="detail-left">
+                      <div class="rating-star">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                      </div>
+                      <a href="/user/product/">
+                        <h6 class="price-title">
+                          {{i.productname}}
+                        </h6>
+                      </a>
+                    </div>
+                    <div class="detail-right">
+                      <div class="check-price">
+                        ₹  {{i.strike_price}}
+                      </div>
+                      <div class="price">
+                        <div class="price">
+                          ₹  {{i.pro_price}}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col pr-0">
+          <div class="product-slide-6 no-arrow">
+            {% for i in cate6 %}
+
+            <div>
+              <div class="product-box">
+                <div class="product-imgbox">
+                  <div class="product-front">
+                    <a href="/user/product/{{i.id}}">
+                      <img src="{{i.pro_image.url}}" class="img-fluid  " style="width: 228px;" alt="product">
+                    </a>
+                  </div>
+                  <div class="product-back">
+                    <a href="/user/product/{{i.id}}">
+                      <img src="{{i.pro_back_image.url}}" class="img-fluid  " alt="product">
+                    </a>
+                  </div>
+                  <!-- <div class="product-icon icon-inline">
+                    <button  onclick="openCart()" class="tooltip-top" data-tippy-content="Add to cart" >
+                      <i  data-feather="shopping-cart"></i>
+                    </button>
+                    <a href="javascript:void(0)"  class="add-to-wish tooltip-top"  data-tippy-content="Add to Wishlist" >
+                      <i  data-feather="heart"></i>
+                    </a>
+                    <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view" class="tooltip-top"  data-tippy-content="Quick View">
+                      <i  data-feather="eye"></i>
+                    </a>
+                    <a href="compare.html" class="tooltip-top" data-tippy-content="Compare">
+                      <i  data-feather="refresh-cw"></i>
+                    </a>
+                  </div> -->
+                </div>
+                <div class="product-detail detail-inline ">
+                  <div class="detail-title">
+                    <div class="detail-left">
+                      <div class="rating-star">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                      </div>
+                      <a href="/user/product/">
+                        <h6 class="price-title">
+                          {{i.productname}}
+                        </h6>
+                      </a>
+                    </div>
+                    <div class="detail-right">
+                      <div class="check-price">
+                        ₹  {{i.strike_price}}
+                      </div>
+                      <div class="price">
+                        <div class="price">
+                          ₹  {{i.pro_price}}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--product end-->
+
+  
+
+  
+  {% endblock %}

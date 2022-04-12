@@ -1,0 +1,128 @@
+{% extends 'admin/masterpage/index.html' %}
+{% load crispy_forms_tags %}
+{% block title %} Address Master {% endblock %}
+{% block title2 %} State Master {% endblock %}
+{% block content %}
+
+<div class="content">
+  <div class="content">
+    
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+            <div class="col-md-6">
+                <h5 class="card-title">Manage STATE</h5>
+            </div>
+            <div class="col-md-2" >
+                {% if messages %}
+
+                        {% for message in messages %}
+                            <!--<div class="alert alert-info">-->
+                                <p style="color: red; margin-top: 10px !important;" >    
+                                {{ message }}
+                                </p>
+                            <!--</div>-->
+                        {% endfor %}
+                
+                    {% endif %}
+            </div>
+            <div class="col-md-3">
+                <button type="button" onclick="openmodel()" class="btn btn-sm btn-light pe-1" style="margin-left: 15px; color: blue;" ><i class="icon-plus-circle2"></i> ADD State</button>
+            </div>
+            <div class="col-md-1">
+                <div class="list-icons">
+                    <a class="list-icons-item" data-action="collapse"></a>
+                    <a class="list-icons-item" data-action="reload"></a>
+                    <a class="list-icons-item" data-action="remove"></a>
+                </div>
+            </div>
+        </div>
+      </div>
+      <table class="table table-bordered datatable-button-html5-basic">
+        <thead>
+          <tr class="bgcolor text-light">
+              <th width="1" >No</th>
+              <th>State Name</th>
+              <th width="20" >Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for i in state_list %}
+          <tr>
+              <td>{{i.id}}</td>
+              <td>{{i.state_name}}</td>
+                <td>
+                  <a href="javascript:void(0)" class="mr-2" data-popup="tooltip" title="Update" data-container="body"  onclick="updateModel('{{i.id}}')"><i class="icon-pencil3"></i></a>
+                  <a href="/admin/address/state/remove_state/{{i.id}}" class="" data-popup="tooltip" title="Remove" ><i class="icon-trash"></i></a>
+                </td>
+                
+          </tr>
+          {% endfor %}
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="stateModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="stateModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">ADD STATE</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" id="addstate" enctype="multipart/form-data">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-12">
+                <input type="hidden" name="id" id="id" value="" />
+                {{form_obj|crispy}}
+              </div>
+            </div>
+          </div>
+          {% csrf_token %}
+          <div class="modal-footer">
+            <button type="button" class="btn btn-dark" data-dismiss="modal"><span class="text-light">Close</span></button>
+            <button type="submit" class="btn btn-primary ">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<script>
+    function openmodel(){
+        $('#addstate')[0].reset();
+        $('#stateModal').modal();
+    };
+
+    function updateModel(id){
+      $.ajax({
+      url: '/admin/address/state/updateState/',
+      method: 'POST',
+      data: { 'id': id, csrfmiddlewaretoken: '{{csrf_token}}' },
+      dataType: 'JSON',
+
+      success: function (data){
+        $('#id').val(data.id);
+        $('#id_state_name').val(data.state_name);
+        $('#stateModal').modal();
+      },
+
+      error:function(){
+        alert('Something is wrong')
+      }
+    });
+  }
+
+</script>
+
+
+{% endblock %}

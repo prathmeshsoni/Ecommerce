@@ -1,0 +1,1156 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Music Club | {% block title %} {% endblock %}</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="big-deal">
+  <meta name="keywords" content="big-deal">
+  <meta name="author" content="big-deal">
+  <!-- <link rel="icon" href="{% static 'user/folder/assets/images/favicon/favicon.png' %}" type="image/x-icon"> -->
+  <link rel="shortcut icon" href="{% static 'user/folder/assets/images/avtar/music_clu.png' %}" type="image/x-icon">
+
+  <!--Google font-->
+
+  {% block css %}
+  {% endblock %}
+
+  <!--icon css-->
+  <!--Slick slider css-->
+  <script src="https://use.fontawesome.com/c0fc7bc651.js"></script>
+  <link rel="stylesheet" type="text/css" href="{% static 'user/folder/assets/css/slick.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'user/folder/assets/css/slick-theme.css' %}">
+  <!-- <link href="{% static 'admin/assets/css/components.min.css' %}" rel="stylesheet" type="text/css"> -->
+
+  <!--Animate css-->
+  <link rel="stylesheet" type="text/css" href="{% static 'user/folder/assets/css/animate.css' %}">
+  <!-- Bootstrap css -->
+  <link rel="stylesheet" type="text/css" href="{% static 'user/folder/assets/css/bootstrap.css' %}">
+
+  <!-- Theme css -->
+  <link rel="stylesheet" type="text/css" href="{% static 'user/folder/assets/css/color2.css' %}" >
+  
+</head>
+
+<body>
+    <style>
+        .successd{
+            color: #2dd02d;
+        }
+        .warningd{
+            color: red;
+        }
+    </style>
+  <!-- loader start -->
+  <div class="loader-wrapper">
+    <div>
+      <img src="{% static 'user/folder/assets/images/loader.gif' %}" alt="loader">
+    </div>
+  </div>
+  <!-- loader end -->
+
+  <!--header start-->
+  
+  <!--header end-->
+
+    <header id="stickyheader">
+  <div class="mobile-fix-option"></div>
+  <div class="mobile-backk" >
+  <div class="layout-header2">
+    <div class="container">
+      <div class="col-md-12">
+        <div class="main-menu-block">
+          <div class="header-left">
+            <div class="brand-logo logo-sm-center">
+              <a href="/user/">
+                <img src="{% static 'user/folder/assets/images/avtar/music_club.png' %}" class="img-fluid" style="height: 95px;" alt="logo">
+              </a>
+            </div>
+          </div>
+          <div class="header-right">
+            <div class="icon-block">
+              <ul>
+                 <li class="mobile-wishlist">
+                    <a class="dark-menu-item" href="/user/">
+                        <i class="fa fa-home" aria-hidden="true"></i>
+                    </a>
+                 </li>
+                 
+                {% if request.session.username %}
+                <li class="mobile-user" >
+                    <a href="/user/dashboard/">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li class="mobile-search" style="right:77% !important;" >
+                    <a class="dark-menu-item" style="font-weight: 400;" href="/user/dashboard/">
+                        <span class="me-2" style="font-size: 12px; text-transform: capitalize;">hello!</span>{{request.session.username}}
+                    </a>
+                </li>
+                <li class="mobile-setting">
+                    <a class="dark-menu-item" href="/user/logout/">
+                        <i class="fa fa-sign-out" aria-hidden="true"></i>
+                    </a>
+                </li>
+                {% else %}
+                <li class="mobile-user">
+                    <a class="dark-menu-item" href="{% url 'login_attempt' %}">
+                        <i class="fa fa-sign-in" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li class="mobile-setting">
+                    <a class="dark-menu-item" href="/user/register">
+                        <i class="fa fa-user-plus" aria-hidden="true"></i>
+                    </a>
+                </li>
+                {% endif %}
+                <li class="mobile-cart item-count" onclick="openCart()">
+                  <a href="javascript:void(0)">
+                    <div class="cart-block">
+                      <div class="cart-icon">
+                        <svg  enable-background="new 0 0 512 512"  viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg"><g><path d="m497 401.667c-415.684 0-397.149.077-397.175-.139-4.556-36.483-4.373-34.149-4.076-34.193 199.47-1.037-277.492.065 368.071.065 26.896 0 47.18-20.377 47.18-47.4v-203.25c0-19.7-16.025-35.755-35.725-35.79l-124.179-.214v-31.746c0-17.645-14.355-32-32-32h-29.972c-17.64 0-31.99 14.351-31.99 31.99v31.594l-133.21-.232-9.985-54.992c-2.667-14.694-15.443-25.36-30.378-25.36h-68.561c-8.284 0-15 6.716-15 15s6.716 15 15 15c72.595 0 69.219-.399 69.422.719 16.275 89.632 5.917 26.988 49.58 306.416l-38.389.2c-18.027.069-32.06 15.893-29.81 33.899l4.252 34.016c1.883 15.06 14.748 26.417 29.925 26.417h26.62c-18.8 36.504 7.827 80.333 49.067 80.333 41.221 0 67.876-43.813 49.067-80.333h142.866c-18.801 36.504 7.827 80.333 49.067 80.333 41.22 0 67.875-43.811 49.066-80.333h31.267c8.284 0 15-6.716 15-15s-6.716-15-15-15zm-209.865-352.677c0-1.097.893-1.99 1.99-1.99h29.972c1.103 0 2 .897 2 2v111c0 8.284 6.716 15 15 15h22.276l-46.75 46.779c-4.149 4.151-10.866 4.151-15.015 0l-46.751-46.779h22.277c8.284 0 15-6.716 15-15v-111.01zm-30 61.594v34.416h-25.039c-20.126 0-30.252 24.394-16.014 38.644l59.308 59.342c15.874 15.883 41.576 15.885 57.452 0l59.307-59.342c14.229-14.237 4.13-38.644-16.013-38.644h-25.039v-34.254l124.127.214c3.186.005 5.776 2.603 5.776 5.79v203.25c0 10.407-6.904 17.4-17.18 17.4h-299.412l-35.477-227.039zm-56.302 346.249c0 13.877-11.29 25.167-25.167 25.167s-25.166-11.29-25.166-25.167 11.29-25.167 25.167-25.167 25.166 11.291 25.166 25.167zm241 0c0 13.877-11.289 25.167-25.166 25.167s-25.167-11.29-25.167-25.167 11.29-25.167 25.167-25.167 25.166 11.291 25.166 25.167z"/></g></svg>
+                      </div>
+                      <div class="cart-item">
+                        <h5>shopping</h5>
+                        <h5>cart</h5>
+                      </div>
+                    </div>
+                  </a>
+                  <div class="item-count-contain">
+                    {{cart_val}}
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="menu-nav"  >
+                <span class="toggle-nav">
+                  <i class="fa fa-bars "></i>
+                </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="category-header-2">
+    <div class="custom-container">
+      <div class="row">
+        <div class="col-12">
+          <div class="navbar-menu">
+            <div class="logo-block">
+              <div class="brand-logo logo-sm-center">
+                <a href="/user/">
+                  <img src="{% static 'user/folder/assets/images/avtar/music_club.png' %}" class="img-fluid" style="height: 95px;" alt="logo">
+                </a>
+              </div>
+            </div>
+            <div class="nav-block">
+
+              <div class="nav-left" >
+                  <a href="/user/"> 
+                <img src="{% static 'user/folder/assets/images/avtar/music_club.png' %}" class="img-fluid" style="height: 95px;" alt="logo">
+                  </a>
+              </div>
+            </div>
+            <div class="menu-block">
+              <nav id="main-nav">
+                <div class="toggle-nav"><i class="fa fa-bars sidebar-bar"></i></div>
+                <ul id="main-menu" class="sm pixelstrap sm-horizontal">
+                  <li>
+                    <div class="mobile-back text-right">Back<i class="fa fa-angle-right me-2" aria-hidden="true"></i></div>
+                  </li>
+                  <li class="mega">
+                    <a class="dark-menu-item" href="/user/">
+                        <i class="fa fa-home me-2" aria-hidden="true"></i>Home
+                    </a>
+                  </li>
+                  <li class="mega" >
+                    <a class="dark-menu-item" href="/user/category/">🎵 Category</a>
+                  </li>
+                  <li class="mega" >
+                    <a class="dark-menu-item" href="/user/product/">🎶 Product</a>
+                  </li>
+                   {% if request.session.username %}
+
+                  <li class="mega">
+                    <a class="dark-menu-item" href="/user/dashboard/">
+                    <i class="fa fa-id-card-o me-2" aria-hidden="true"></i>Dashboard</a>
+                  </li>
+                  <li class="mega">
+                    <a class="dark-menu-item" style="font-weight: 400;" href="/user/dashboard/">
+                        <i class="fa fa-user me-2" aria-hidden="true"></i>
+                      <span class="me-1" style="font-size: 13px; text-transform: capitalize; color: red;" >hello!</span>{{request.session.username}}
+                          
+                    </a>
+                  </li>
+                  <li class="mega mobile-backk">
+                    <a class="dark-menu-item" href="/user/logout/">
+                      <i class="fa fa-sign-out me-2" aria-hidden="true"></i>logout
+                    </a>
+                  </li>
+                  {% else %}
+                  <li class="mega">
+                    <a class="dark-menu-item" href="{% url 'login_attempt' %}">
+                        <i class="fa fa-sign-in me-2" aria-hidden="true"></i>Login
+                    </a>
+                  </li>
+                  <li class="mega">
+                    <a class="dark-menu-item" href="/user/register">
+                        <i class="fa fa-user-plus me-2" aria-hidden="true"></i>Sign Up
+                    </a>
+                  </li>
+                  {% endif %}
+                </ul>
+              </nav>
+            </div>
+            <div class="icon-block">
+              <ul>
+                <li class="item-count">
+                  <a href="javascript:void(0)" onclick="openCart()" >
+                    <div class="cart-block">
+                      <div class="cart-icon" style="float: left;">
+                        <svg  enable-background="new 0 0 512 512"  viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg"><g><path d="m497 401.667c-415.684 0-397.149.077-397.175-.139-4.556-36.483-4.373-34.149-4.076-34.193 199.47-1.037-277.492.065 368.071.065 26.896 0 47.18-20.377 47.18-47.4v-203.25c0-19.7-16.025-35.755-35.725-35.79l-124.179-.214v-31.746c0-17.645-14.355-32-32-32h-29.972c-17.64 0-31.99 14.351-31.99 31.99v31.594l-133.21-.232-9.985-54.992c-2.667-14.694-15.443-25.36-30.378-25.36h-68.561c-8.284 0-15 6.716-15 15s6.716 15 15 15c72.595 0 69.219-.399 69.422.719 16.275 89.632 5.917 26.988 49.58 306.416l-38.389.2c-18.027.069-32.06 15.893-29.81 33.899l4.252 34.016c1.883 15.06 14.748 26.417 29.925 26.417h26.62c-18.8 36.504 7.827 80.333 49.067 80.333 41.221 0 67.876-43.813 49.067-80.333h142.866c-18.801 36.504 7.827 80.333 49.067 80.333 41.22 0 67.875-43.811 49.066-80.333h31.267c8.284 0 15-6.716 15-15s-6.716-15-15-15zm-209.865-352.677c0-1.097.893-1.99 1.99-1.99h29.972c1.103 0 2 .897 2 2v111c0 8.284 6.716 15 15 15h22.276l-46.75 46.779c-4.149 4.151-10.866 4.151-15.015 0l-46.751-46.779h22.277c8.284 0 15-6.716 15-15v-111.01zm-30 61.594v34.416h-25.039c-20.126 0-30.252 24.394-16.014 38.644l59.308 59.342c15.874 15.883 41.576 15.885 57.452 0l59.307-59.342c14.229-14.237 4.13-38.644-16.013-38.644h-25.039v-34.254l124.127.214c3.186.005 5.776 2.603 5.776 5.79v203.25c0 10.407-6.904 17.4-17.18 17.4h-299.412l-35.477-227.039zm-56.302 346.249c0 13.877-11.29 25.167-25.167 25.167s-25.166-11.29-25.166-25.167 11.29-25.167 25.167-25.167 25.166 11.291 25.166 25.167zm241 0c0 13.877-11.289 25.167-25.166 25.167s-25.167-11.29-25.167-25.167 11.29-25.167 25.167-25.167 25.166 11.291 25.166 25.167z"/></g></svg>
+                      </div>
+                      <div class="item-count-contain" id="cart_valuee" >
+                        {{cart_val}}
+                      </div>
+                      <div class="cart-item">
+                        <h5>shopping</h5>
+                        <h5>cart</h5>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+  <!-- content start -->
+  {% block content %}
+  {% endblock %}
+  <!-- content start -->
+
+  <!-- footer start -->
+  <footer>
+    <div class="footer1">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="footer-main">
+              <div class="footer-box">
+                <div class="footer-title mobile-title">
+                  <h5>about</h5>
+                </div>
+                <div class="footer-contant">
+                  <div class="footer-logo">
+                    <a href="/user/">
+                        <img src="{% static 'user/folder/assets/images/avtar/music_club.png' %}" class="img-fluid  " alt="logo" style="height: 95px; " >
+                    </a>
+                  </div>
+                  <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC.</p>
+                  <ul class="paymant">
+                    <li><a href="javascript:void(0)"><img src="{% static 'user/folder/assets/images/layout-1/pay/2.png' %}" class="img-fluid" alt="pay"></a></li>
+                    <li><a href="javascript:void(0)"><img src="{% static 'user/folder/assets/images/layout-1/pay/1.png' %}" class="img-fluid" alt="pay"></a></li>
+                    <li><a href="javascript:void(0)"><img src="{% static 'user/folder/assets/images/layout-1/pay/3.png' %}" class="img-fluid" alt="pay"></a></li>
+                    <li><a href="javascript:void(0)"><img src="{% static 'user/folder/assets/images/layout-1/pay/4.png' %}" class="img-fluid" alt="pay"></a></li>
+                    <li><a href="javascript:void(0)"><img src="{% static 'user/folder/assets/images/layout-1/pay/5.png' %}" class="img-fluid" alt="pay"></a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="footer-box">
+                <div class="footer-title">
+                  <h5>my account</h5>
+                </div>
+                <div class="footer-contant">
+                  <ul>
+                    <li><a href="/user/aboutus/">about us</a></li>
+                    <li><a href="/user/contactus/">contact us</a></li>
+                    <li><a href="/user/terms/">terms &amp; conditions</a></li>
+                    <li><a href="/user/returns/">returns &amp; exchanges</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="footer-box">
+                <div class="footer-title">
+                  <h5>contact us</h5>
+                </div>
+                <div class="footer-contant">
+                  <ul class="contact-list">
+                    <li><i class="fa fa-map-marker"></i>Music Club store <br> india-<span>3654123</span></li>
+                    <li><i class="fa fa-phone"></i>call us: <span>123-456-7898</span></li>
+                    <li><i class="fa fa-envelope-o" style="text-transform: none !important;" ></i>email us: team.musicclub.com@gmail.com</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="footer-box">
+                <div class="footer-contant">
+                  <div class="newsletter-second">
+                    <div class="form-group ">
+                      <div class="input-group">
+                        <input type="text" class="form-control" placeholder="enter email address" >
+                        <span class="input-group-text"><i class="ti-email"></i></span>
+                      </div>
+                    </div>
+                    <div class="form-group mb-0">
+                      <a href="javascript:void(0)" class="btn btn-solid btn-sm">submit now</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="subfooter dark-footer ">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-6 col-md-8 col-sm-12">
+            <div class="footer-left">
+              <p>2019-20 Copy Right by Themeforest Powered by pixel strap</p>
+            </div>
+          </div>
+          <div class="col-xl-6 col-md-4 col-sm-12">
+            <div class="footer-right">
+              <ul class="sosiyal">
+                <li><a href="javascript:void(0)"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="javascript:void(0)"><i class="fa fa-google-plus"></i></a></li>
+                <li><a href="javascript:void(0)"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="javascript:void(0)"><i class="fa fa-instagram"></i></a></li>
+                <li><a href="javascript:void(0)"><i class="fa fa-rss"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+  </footer>
+  <!-- footer end -->
+  
+  <div id="cart_side" class="add_to_cart top " style="box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 65%) !important;" >
+    <div class="cart-inner">
+      <div class="cart_top" style="background-color: rgb(0 186 242 / 16%);" >
+        <h3 style="margin-left: 20px;" >my cart</h3>
+        <div class="close-cart">
+          <a href="javascript:void(0)" onclick="closeCart()">
+            <i class="fa fa-times" aria-hidden="true"></i>
+            <input type="hidden" id="aaa" >
+          </a>
+        </div>
+      </div>
+      {% if request.session.username %}
+        {% if cart_val == 0 %}
+        <div class="mt-4" id="emptycartlogin" >
+          <ul class="">
+            <div class="col-md-2 mb-4 ps-5" style="float: left; " >
+              
+              <img src="{% static '/user/folder/assets/images/avtar/cart.png' %}" width="165px" height="120px"  alt="">
+            </div>
+            <div class="col-md-10 mt-4 ps-5" style="float: left; " >
+              
+              <h2 class="mb-1">
+                Your Music-Club Cart is empty.
+              </h2>
+              <p>
+                Your shopping cart is waiting. Give it purpose – fill it with groceries, clothing, household supplies, electronics and more.
+                Continue shopping on the<br> <a href="/user/"> musicclub.com homepage </a> , learn about today's deals.
+              </p>
+            </div>
+            </ul>
+        </div>
+        {% elif var_11 == 'varr' %}
+        <div id="cartdetail"  >
+          <div class="cart_media" style="display: flow-root !important;" >
+            <ul class="cart_total" style="background-color: rgb(0 186 242 / 16%) !important; float: right;">
+              <li>
+                subtotal : <span class="toatl_aa" id="tatal11" >₹ {{subtotal}}.00</span>
+              </li>
+              <li>
+                shpping <span>₹ 70.00</span>
+              </li>
+              <li>
+                <div class="total">
+                  total<span class="cart_ttotal" >₹ {{total_price}}.00</span>
+                </div>
+              </li>
+              <li>
+                <div class="buttons">
+                  <a href="/user/gocart/" class="btn btn-solid btn-sm">view cart</a>
+                  <a href="/user/checkout/" class="btn btn-solid btn-sm ">checkout</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        {% else %}
+        <div id="cartdetail"  >
+          <div class="cart_media">
+            <ul class="cart_product">
+              {% for i in cartt %}
+              <li style="border:3px solid #dddddd!important;" >
+                <div class="media">
+                  <a href="/user/product/{{i.product_id.id}}">
+                    <img alt="megastore1" class="me-3" src="{{i.product_id.pro_image.url}}" >
+                  </a>
+                  <div class="media-body">
+                    <a href="/user/product/{{i.product_id.id}}">
+                      <h4> {{i.product_id.productname}} </h4>
+                      
+                    </a>
+                    <h6>
+                      ₹ {{i.product_id.pro_price}} 
+                    </h6>
+                    <div class="addit-box">
+                      <div class="qty-box">
+                        <div class="input-group">
+                          <button class="qty-minus" onclick="minus({{i.id}})" >
+                            <i class="fa fa-minus" aria-hidden="true"></i>
+                          </button>
+                          <form method="POST">
+                            {% csrf_token %}
+                              <input type="hidden" class="cartquntityss{{i.id}}" name="cartquntity" id="cartquntity-{{i.id}}" value="{{i.quantity}}" >
+                          </form>
+                          <input class="qty-adj form-control demo1{{i.id}}" style="width:50px !important;" id="qty-adj-{{i.id}}" type="number" onblur="inpp({{i.id}})" value="{{i.quantity}}"/>
+                          <button class="qty-plus" onclick="plus({{i.id}})" > 
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                          </button>
+                        </div>
+                        <div class="input-group">
+                            <input type="hidden" id="dont{{i.id}}" value="{{i.product_id.total_quantity}}" >
+                            {% if i.product_id.total_quantity < i.quantity %}
+                            <button type="button" style="padding: 7px 5px 6px 5px;color: red;background-color: #abfff8;" >
+                                    <span> {{i.product_id.total_quantity}} </span>
+                                    <h7>Avail</h7>
+                                    
+                                {% else %}
+                                    
+                            </button>
+                            {% endif %}
+                        </div>
+                      </div>
+                      <div class="pro-add">
+                        <a href="javascript:void(0)" onclick="deletee({{i.id}})">
+                          <i class="fa fa-trash-o assa" aria-hidden="true"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              {% endfor %}
+            </ul>
+            <ul class="cart_total" style="background-color: rgb(0 186 242 / 16%) !important ;">
+              <li>
+                subtotal : <span class="toatl_aa" id="tatal11" >₹ {{total_price.1}}.00</span>
+              </li>
+              <li>
+                shpping <span>₹ 70.00</span>
+              </li>
+              <li>
+                <div class="total">
+                  total<span class="cart_ttotal" >₹ {{total_price.0}}.00</span>
+                </div>
+              </li>
+              <li>
+                <div class="buttons">
+                  <a href="/user/gocart/" class="btn btn-solid btn-sm">view cart</a>
+                  <a href="/user/checkout/" class="btn btn-solid btn-sm ">checkout</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        {% endif %}
+      {% else %}
+      <div class="mt-4" id="emptycart">
+        <ul class="">
+          <div class="col-md-2 mb-4 ps-5" style="float: left; " >
+            
+            <img src="{% static '/user/folder/assets/images/avtar/cart.png' %}" width="165px" height="120px"  alt="">
+          </div>
+          <div class="col-md-4 mt-4 text-center" style="float: left; " >
+            
+            <h4 class="mb-1">
+              Missing Cart items?
+            </h4>
+            <p>
+              Login to see the items you added previously
+            </p>
+            <div class="mt-2" >
+              <a href="/user/accounts/login/" class="" style="
+                                          display: block;
+                                          margin-left: 80px;
+                                          line-height: 29px;
+                                          padding: 0 10px 0 11px;
+                                          white-space: nowrap;
+                                          width: 45%;
+                                          height: 100%;
+                                          color: #000;
+                                          background: #FFD814;
+                                          border-radius: 8px;
+                                          box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%);
+                                          float: left;" >
+                Sign in to your account</a>
+                <a href="/user/register" class="" style="
+                                          display: block;
+                                          margin-left: 10px;
+                                          line-height: 29px;
+                                          padding: 0 10px 0 11px;
+                                          white-space: nowrap;
+                                          width: 27%;
+                                          height: 100%;
+                                          float: left;
+                                          color: #000;
+                                          background: #FFD814;
+                                          border-radius: 8px;
+                                          box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%);" >
+                Sign Up now</a>
+              </div>
+          </div>
+          </ul>
+      </div>
+      {% endif %}
+      
+    </div>
+  </div>
+
+
+
+    <!-- Quick-view modal popup start-->
+<div class="modal fade bd-example-modal-lg theme-modal" id="quick-view" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content quick-view-modal">
+      <div class="modal-body">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="row">
+          <div class="col-lg-6 col-xs-12">
+            <div class="quick-view-img">
+              <img src="/hit/uploads/Admin/ProductImage/Back/download_5lvmWcf.jpg" alt="" class="img-fluid bg-img">
+            </div>
+          </div>
+          <div class="col-lg-6 rtl-text">
+            <div class="product-right">
+              <div class="pro-group">
+                <h2>
+                  Double Door Refrigerator
+                </h2>
+                <ul class="pro-price">
+                  <li>$70</li>
+                  <li><span>mrp $140</span></li>
+                </ul>
+                
+              </div>
+              <div class="pro-group">
+                <h6 class="product-title">product infomation</h6>
+                <p>Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium</p>
+              </div>
+              <div class="pro-group pb-0">
+                <h6 class="product-title size-text">select size</h6>              
+                
+                <h6 class="product-title">color</h6>
+                <div class="color-selector inline">
+                  <ul>
+                    <li>
+                      <div class="color-1 active"></div>
+                    </li>
+                  </ul>
+                </div>
+                <h6 class="product-title">quantity</h6>
+                <div class="qty-box">
+                          <div class="input-group">
+                            <button class="qty-minus" onclick="minuss()" >
+                              <i class="fa fa-minus" aria-hidden="true"></i>
+                            </button>
+                            <input type="hidden" name="ccartquntity" id="ccartquntity" value="1" >
+                            <input type="hidden" name="cartprice" id="cartprice" value="{{pdata.pro_price}}" >
+                            <input class="qty-adj form-control" id="qty-adj" onblur="ins()" type="number" value="1"/>
+                            <button class="qty-plus" onclick="pluss()" > 
+                              <i class="fa fa-plus" aria-hidden="true"></i>
+                            </button>
+                          </div>
+                        </div>
+                <div class="product-buttons">
+                  <a href="javascript:void(0)" onclick="openCart()" class="btn cart-btn btn-normal tooltip-top" data-tippy-content="Add to cart">
+                    <i class="fa fa-shopping-cart"></i>
+                    add to cart
+                  </a>
+                  <a href="product-page(left-sidebar).html" class="btn btn-normal tooltip-top"  data-tippy-content="view detail">
+                    view detail
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Quick-view modal popup end-->
+
+
+  <!-- latest jquery-->
+  <script src="{% static 'user/folder/assets/js/jquery-3.3.1.min.js' %}"></script>
+
+  <!-- slick js-->
+  <script src="{% static 'user/folder/assets/js/slick.js' %}"></script>
+
+  <!-- popper js-->
+  <script src="{% static 'user/folder/assets/js/popper.min.js' %}" ></script>
+  <script src="{% static 'user/folder/assets/js/bootstrap-notify.min.js' %}"></script>
+
+  <!-- menu js-->
+
+  <!-- timer js -->
+  <!-- <script src="{% static 'user/folder/assets/js/timer2.js' %}"></script> -->
+
+  <!-- Bootstrap js-->
+  <script src="{% static 'user/folder/assets/js/bootstrap.js' %}"></script>
+
+ 
+  <!-- father icon -->
+  <script src="{% static 'user/folder/assets/js/feather.min.js' %}"></script>
+  <script src="{% static 'user/folder/assets/js/feather-icon.js' %}"></script>
+
+  <!-- Theme js-->
+  <script src="{% static 'user/folder/assets/js/modal.js' %}"></script>
+  <script src="{% static 'user/folder/assets/js/script.js' %}"></script>
+  <script src="{% static 'admin/global_assets/js/pnotify.min.js' %}"></script>
+	
+	<script src="{% static 'admin/global_assets/js/extra_pnotify.js' %}"></script>
+
+  {% if address_obj %}
+  <script>
+    window.onload = function exampleFunction(){
+      $("#add_1").css('display', 'block');
+       var soni = $("#check_var").val()
+       if (soni == 'True'){
+        
+        $('.razorpay-payment-button').click();
+       }
+       else{
+        // alert("hellp");
+       }
+      
+    }
+    // window.onload = function haead(){
+    //    
+        
+    // }
+    
+
+  </script>
+  {% else %}
+    <script>
+     window.onload = function exampleFunction(){
+        $('#add_2').css('display', 'block');
+        var soni = $("#check_var").val()
+         if (soni == 'True'){
+          $('.razorpay-payment-button').click();
+          // alert("helo1");
+         }
+         else{
+          // alert("hellp");
+         }
+      }
+
+  </script>
+  {% endif %}
+
+  
+  <script>
+
+    
+
+    function address1(){
+      var address = $('input[name="address"]:checked').val();
+      $("#hidden_address").val(address);
+      // $('#add_3').slideDown(2500);
+      // $("#add_3").css('display', 'block');
+      $("#Buynow").attr('disabled', false);
+      $("#Buynow").removeClass('buynow');
+
+    }
+
+    function anothor(){
+      $('#add_2').css('display', 'block');
+      $("#add_1").css('display', 'none');
+      $("#cancel").css('display', 'block');
+      $("#cancelll").css('display', 'block');
+      $("#Buynow").attr('disabled', true);
+      $("#Buynow").addClass('buynow');
+      // $('#add_2').slideDown(2000);
+
+    }
+
+    function open_paymen(){
+      alert("eello");
+    }
+
+    function cancell(){
+      $('#add_2').css('display', 'none');
+      $("#add_1").css('display', 'block');
+      check_add()
+
+    }
+
+    function check_add(){
+      var address = $('#hidden_address').val();
+      if (address == '0' ){
+
+      }
+      else{
+        $("#Buynow").attr('disabled', false);
+        $("#Buynow").removeClass('buynow');
+      }
+    }
+
+
+
+    function addCart(id) {
+      update_cart = $('#update_cart').val();
+      cartprice = $('#cartprice').val();
+      ccartquntity = $('#ccartquntity').val();
+      urll = '/user/product/'+id
+      // alert(urll);
+        $.ajax({
+            url: '/user/cart/',
+            data: { 'id': id,'var':'1','ccartquntity':ccartquntity,'cartprice':cartprice,'update_cart':update_cart,'redairecturl':urll},
+            dataType: 'JSON',
+            method: 'POST',
+            success: function (data) {
+
+                if (data.status == true) {
+                  window.location.href = "/user/product/"+id;
+                }
+
+                else if (data.status == false) {
+                  let confirmAction = confirm("Need Login ");
+                  if (confirmAction){
+                    window.location.href = "/user/accounts/login/";
+                  }
+                  else{
+
+                  }
+                }
+                else if (data.status == "error") {
+                  if( data.another == 0){
+                      var chakk = $('#update_cart').val();
+                      if( chakk == 0 ){
+                        //   alert('Product Out Of stock');
+                           $.notify({
+                            //   icon: 'fa fa-check',
+                              title: 'Success!',
+                              message: 'Product Out Of stock     ',
+                            },{
+                              element: 'body',
+                              position: null,
+                              type: "success",
+                              allow_dismiss: true,
+                              newest_on_top: false,
+                              showProgressbar: true,
+                              placement: {
+                                from: "top",
+                                align: "right"
+                              },
+                              offset: 90,
+                              spacing: 10,
+                              z_index: 1031,
+                              delay: 50000,
+                              animate: {
+                                enter: 'animated fadeInDown',
+                                exit: 'animated fadeOutUp'
+                              },
+                              icon_type: 'class',
+                              template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert " style="color:#842029 !important;background-color:#f8d7da !important;border-color:#f5c2c7 !important; width: 215px !important;" role="alert">' +
+                                '<button type="button" aria-hidden="true" class="btn-close" data-notify="dismiss"></button>' +
+                                '<span style="color:#842029 !important;" data-notify="message">{2}</span>' +
+                                '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                                '</div>'
+                            });
+                      }
+                      else{
+                          alert('Product Out Of stock');
+                          window.location.href = "/user/gocart/";
+                      }
+                  }
+                  else if(data.another < 0){
+                      
+                      alert('See Available Product in Cart Page');
+                      window.location.href = "/user/gocart/";
+                  }
+                  else if(data.another > 0){
+                      $.notify({
+                        //   icon: 'fa fa-check',
+                          message: 'available only : '+data.another,
+                        },{
+                          element: 'body',
+                          position: null,
+                          type: "success",
+                          allow_dismiss: true,
+                          newest_on_top: false,
+                          showProgressbar: true,
+                          placement: {
+                            from: "top",
+                            align: "right"
+                          },
+                          offset: 90,
+                          spacing: 10,
+                          z_index: 1031,
+                          delay: 50000,
+                          animate: {
+                            enter: 'animated fadeInDown',
+                            exit: 'animated fadeOutUp'
+                          },
+                          icon_type: 'class',
+                          template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert " style="color:#842029 !important;background-color:#f8d7da !important;border-color:#f5c2c7 !important; width: 215px !important;" role="alert">' +
+                            '<button type="button" aria-hidden="true" class="btn-close" data-notify="dismiss"></button>' +
+                            '<span style="color:#842029 !important;" data-notify="message">{2}</span>' +
+                            '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                            '</div>'
+                        });
+                      $('#ccartquntity').val(data.another);
+                      $('#qty-adj').val(data.another);
+                      
+                  }
+                }
+
+            },
+            error: function () {
+
+            },
+        });
+    };
+  </script>
+
+<script>
+  gb = 1;
+  function sassa(){
+      alert("hello");
+  }
+  
+
+  function minus(id) {
+    
+      var cartquntity = $("#cartquntity-"+id).val();
+      if (cartquntity == 1 ){
+          deletee(id);
+      }
+      else{
+          var total_quantity = parseInt(cartquntity) - parseInt(gb)
+          $(".cartquntityss"+id).val(total_quantity);
+          update(id);
+
+      }
+  };
+
+  
+  function plus(id) {
+    var cartquntity = $("#cartquntity-"+id).val();
+    var total_quantity = parseInt(cartquntity) + parseInt(gb)
+    $(".cartquntityss"+id).val(total_quantity);
+    update(id);
+  };
+  
+
+  function inpp(id){
+    var qty_adj = $("#qty-adj-"+id).val();
+    $(".demo1"+id ).val(qty_adj);
+    $(".cartquntityss"+id).val(qty_adj);
+    var  default1= $("#cartquntity-"+id).val();
+    if(default1 == ''){
+      $(".cartquntityss"+id).val(1);
+      $(".demo1"+id ).val(1);
+    }
+    if(qty_adj < 1){
+      $(".cartquntityss"+id).val(1);
+      $(".demo1"+id ).val(1);
+    }
+    if(qty_adj == 0){
+      deletee(id);
+    }
+    update(id);
+  };
+  function inppp(id){
+      var qty_adj = $("#qty-adj"+id).val();
+      $(".demo1"+id ).val(qty_adj);
+      $(".cartquntityss"+id).val(qty_adj);
+      var  default1= $("#cartquntity-"+id).val();
+      if(default1 == ''){
+        $(".cartquntityss"+id).val(1);
+        $(".demo1"+id ).val(1);
+      }
+      if(qty_adj < 1){
+        $(".cartquntityss"+id).val(1);
+        $(".demo1"+id ).val(1);
+      }
+      if(qty_adj == 0){
+        deletee(id);
+      }
+      update(id);
+  };
+  
+
+  function update(id){
+      var cartquntity = $("#cartquntity-"+id).val();
+      var cartt = $('#ok'+id).val();
+      var subbtotal = parseInt(cartquntity) * parseInt(cartt)
+      // q// $("#cartquntity-"+id).val(qty_adj);
+      $.ajax({
+          url: '/user/gocart/',
+          data: {csrfmiddlewaretoken:"{{csrf_token}}", 'id': id,'var':'3','cartquntity':cartquntity},
+          dataType: 'JSON',
+          method: 'POST',
+          success: function (data) {
+
+              if (data.status == true) {
+
+                  $(".demo1"+id ).val(cartquntity);
+                  
+                  // perticular product subtotal
+                  $('.cart_subtotal-'+id).html("₹ " + subbtotal + ".00");
+                  
+                  //all cart page 
+                  $('.cart_ttotal').html("₹ " + data.amountd + ".00 ");
+                  
+                  //subtotal
+                  $('.toatl_aa').html("₹ " + data.total_amount_update + ".00 ");
+                  $('.toatl_aa').val("₹ " + data.total_amount_update + ".00 ");
+
+              }
+
+              else if (data.status == false) {
+                var kk = $('#dont'+id).val();
+                
+                if( kk == 0 ){
+                    $.notify({
+                        //   icon: 'fa fa-check',
+                          message: 'Product Out Of stock',
+                        },{
+                          element: 'body',
+                          position: null,
+                          type: "success",
+                          allow_dismiss: true,
+                          newest_on_top: false,
+                          showProgressbar: true,
+                          placement: {
+                            from: "top",
+                            align: "right"
+                          },
+                          offset: 90,
+                          spacing: 10,
+                          z_index: 1031,
+                          delay: 50000,
+                          animate: {
+                            enter: 'animated fadeInDown',
+                            exit: 'animated fadeOutUp'
+                          },
+                          icon_type: 'class',
+                          template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert " style="color:#842029 !important;background-color:#f8d7da !important;border-color:#f5c2c7 !important; width: 215px !important; z-index:99999999999999999 !important;" role="alert">' +
+                            '<button type="button" aria-hidden="true" class="btn-close" data-notify="dismiss"></button>' +
+                            '<span style="color:#842029 !important;" data-notify="message">{2}</span>' +
+                            '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                            '</div>'
+                        });
+                }
+                else{
+                    $.notify({
+                        //   icon: 'fa fa-check',
+                          message: 'available only : '+kk,
+                        },{
+                          element: 'body',
+                          position: null,
+                          type: "success",
+                          allow_dismiss: true,
+                          newest_on_top: false,
+                          showProgressbar: true,
+                          placement: {
+                            from: "top",
+                            align: "right"
+                          },
+                          offset: 90,
+                          spacing: 10,
+                          z_index: 1031,
+                          delay: 50000,
+                          animate: {
+                            enter: 'animated fadeInDown',
+                            exit: 'animated fadeOutUp'
+                          },
+                          icon_type: 'class',
+                          template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert " style="color:#842029 !important;background-color:#f8d7da !important;border-color:#f5c2c7 !important; width: 215px !important; z-index:99999999999999999;" role="alert">' +
+                            '<button type="button" aria-hidden="true" class="btn-close" data-notify="dismiss"></button>' +
+                            '<span style="color:#842029 !important;" data-notify="message">{2}</span>' +
+                            '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                            '</div>'
+                        });
+                    $(".demo1"+id ).val(kk);
+                    $(".cartquntityss"+id ).val(kk);
+                    update(id);
+                }
+
+              }
+
+          },
+          error: function () {
+
+          },
+      });
+  
+
+  };
+
+
+
+  function deletee(id){
+      let confirmAction = confirm("You want to delete Product form Cart?");
+      if (confirmAction) {
+          $.ajax({
+          url: '/user/cart/',
+          data: {'id': id,'var':'2'},
+          dataType: 'JSON',
+          method: 'POST',
+          success: function (data)
+          {
+              if (data.status == true) {
+                history.go();
+              }
+          },
+          error: function () 
+          {
+
+          },
+          });
+      } 
+      else {
+       
+      }
+
+  };
+</script>
+
+<script>
+  function rating(id){
+    if(id == 1){
+      $('#starr-1').addClass('staradd')
+      $('#starr-2').removeClass('staradd')
+      $('#starr-3').removeClass('staradd')
+      $('#starr-4').removeClass('staradd')
+      $('#starr-5').removeClass('staradd')
+    }
+    else if(id == 2){
+      $('#starr-1').addClass('staradd')
+      $('#starr-2').addClass('staradd')
+      $('#starr-3').removeClass('staradd')
+      $('#starr-4').removeClass('staradd')
+      $('#starr-5').removeClass('staradd')
+    }
+    else if(id == 3){
+      $('#starr-1').addClass('staradd')
+      $('#starr-2').addClass('staradd')
+      $('#starr-3').addClass('staradd')
+      $('#starr-4').removeClass('staradd')
+      $('#starr-5').removeClass('staradd')
+    }
+    else if(id == 4){
+      $('#starr-1').addClass('staradd')
+      $('#starr-2').addClass('staradd')
+      $('#starr-3').addClass('staradd')
+      $('#starr-4').addClass('staradd')
+      $('#starr-5').removeClass('staradd')
+    }
+    else if(id == 5){
+      $('#starr-1').addClass('staradd')
+      $('#starr-2').addClass('staradd')
+      $('#starr-3').addClass('staradd')
+      $('#starr-4').addClass('staradd')
+      $('#starr-5').addClass('staradd')
+    }
+    $('#ratingstar').val(id);
+  }
+
+     function checkrequired(){
+      if( $("#ratingstar").val() == '0' || $("#userr_name").val() == '' || $("#user_email").val() == '' || $("#review_subject").val() == '' || $("#review_disc").val() == '' ){
+        $('#rating_submit').attr('disabled', true)
+      }
+      else{
+        $('#rating_submit').attr('disabled', false)
+      }
+    }
+
+  function openForm() {
+    $.ajax({
+      url: '/user/product/rating/',
+      method: 'POST',
+      data: $('#rating_form').serialize(),
+      dataType: 'JSON',
+      success: function (data) {
+
+        // if (data.status == true) {
+        //   $('#hidden_id').val(data.id);
+        //   $('#hid').val(data.id);
+        //   $('#productModal').modal('hide');
+        //   $('#category2Model').modal('show');
+        // } else {
+        //   alert('Something is Wrong')
+        // }
+      }
+    });
+  };
+
+</script>
+
+<script>
+    gb = 1;
+
+    function minuss() {
+        
+      var qty_adj = $('#qty-adj').val();
+      var total_quantity = parseInt(qty_adj) - parseInt(gb)
+      if(total_quantity < 1){
+        // alert(total_quantity);
+        $('#qty-adj').val(1);
+        $('#ccartquntity').val(1);
+      }
+      else{
+        $('#qty-adj').val(total_quantity);
+        $('#ccartquntity').val(total_quantity);
+      }
+
+
+    };
+
+    function pluss() {
+      var qty_adj = $('#qty-adj').val();
+      var total_quantity = parseInt(qty_adj) + parseInt(gb)
+      $('#qty-adj').val(total_quantity);
+      $('#ccartquntity').val(total_quantity);
+
+    };
+
+    function ins(){
+      var qty_adj = $("#qty-adj").val();
+      // alert(qty_adj);
+      $("#ccartquntity").val(qty_adj);
+      var  default1= $("#ccartquntity").val();
+      if(default1 == ''){
+        $(".ccartquntity").val(1);
+      }
+      if(qty_adj < 1){
+        $('#qty-adj').val(1);
+        $('#ccartquntity').val(1);
+      }
+  };
+    
+</script>
+</body>
+
+</html>
