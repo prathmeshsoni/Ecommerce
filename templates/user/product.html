@@ -3,7 +3,7 @@
 {% block title %} Product   {% endblock %}
 {% block content %}
 
-
+{% if pdata.pro_image %}
 <!-- breadcrumb start -->
 <div class="breadcrumb-main ">
     <div class="container">
@@ -53,8 +53,8 @@
                       <div class="pro-group">
                         <h2>{{pdata.productname}}</h2>
                         <ul class="pro-price">
-                          <li>₹ {{pdata.pro_price}}</li>
-                          <li><span>mrp ₹ {{pdata.strike_price}}</span></li>
+                          <li><i class="fa fa-inr" aria-hidden="true"></i> {{pdata.pro_price}}.00</li>
+                          <li><span>mrp <i class="fa fa-inr" aria-hidden="true"></i> {{pdata.strike_price}}.00</span></li>
                         </ul>
                       </div>
                       <div class="pro-group ">
@@ -125,6 +125,21 @@
                             <i class="fa fa-shopping-cart"></i>
                             add to cart
                           </a>
+                          {% if cart_vall == 0 %}
+                                
+                          {% else %}
+                              {% if request.session.username %}
+                                <a href="/user/checkout/" class="btn cart-btn btn-normal tooltip-top ">
+                                    <i class="fa fa-shopping-bag"></i>
+                                    BuyNow
+                                </a>
+                              {% else %}
+                                <a href="javascript:void(0)" onclick="addCart({{pdata.id}})"  id="" class="btn cart-btn btn-normal tooltip-top ">
+                                    <i class="fa fa-shopping-bag"></i>
+                                    BuyNow
+                                </a>
+                              {% endif %}
+                          {% endif %}
                         </div>
                     </div>
                   </div>
@@ -142,15 +157,19 @@
           <div class="col-sm-12 col-lg-12">
              <div class="creative-card creative-inner">
                  <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
-                     <li class="nav-item"><a class="nav-link active" id="top-home-tab" data-bs-toggle="tab" href="#top-home" role="tab" aria-selected="true">Description</a>
+                     <li class="nav-item"><a class="nav-link active" id="top-home-tab" data-bs-toggle="tab" href="#top-home" role="tab" aria-selected="true" onclick="abcd()" >Description</a>
                          <div class="material-border"></div>
                      </li>
-                     <li class="nav-item"><a class="nav-link" id="profile-top-tab" data-bs-toggle="tab" href="#top-profile" role="tab" aria-selected="false">Details</a>
+                     <li class="nav-item"><a class="nav-link" id="profile-top-tab" data-bs-toggle="tab" href="#top-profile" role="tab" aria-selected="false" onclick="abcd()" >Details</a>
                          <div class="material-border"></div>
                      </li>
-                     <li class="nav-item"><a class="nav-link" id="review-top-tab" data-bs-toggle="tab" href="#top-review" role="tab" aria-selected="false">Write Review</a>
+                     <li class="nav-item" id="write_review" ><a class="nav-link" id="review-top-tab" data-bs-toggle="tab" href="#top-review" role="tab" aria-selected="false">Write Review</a>
                          <div class="material-border"></div>
                      </li>
+                     <li class="nav-item" id="view_review" style="display: none;" > <a class="nav-link active" id="review-top-tab" data-bs-toggle="tab" href="#top-Write" role="tab" aria-selected="true">View Review</a>
+                         <div class="material-border"></div>
+                     </li>
+                                   
                  </ul>
                  <div class="tab-content nav-material" id="top-tabContent">
                      <div class="tab-pane fade show active" id="top-home" role="tabpanel" aria-labelledby="top-home-tab">
@@ -199,58 +218,78 @@
                          </div>
                      </div>
                      <div class="tab-pane fade" id="top-review" role="tabpanel" aria-labelledby="review-top-tab">
-                         <form class="theme-form" id="rating_form" method="POST">
-                             <div class="row">
-                                 <div class="col-md-12">
+                         <form class="theme-form" id="review_form" method="POST" onsubmit="review(); return false;" >
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-md-12">
                                      <div class="media">
                                          <label>Rating</label>
                                          <div class="media-body ms-3">
                                               <div class="rating four-star">
                                                 {% for i in rating %}
-                                                  <a href="javascript:void(0)" onclick="rating({{i}}),checkrequired()" id="star-{{i}}" >
+                                                  <a href="javascript:void(0)" onclick="rating({{i}})" id="star-{{i}}" >
                                                     <i class="fa fa-star" id="starr-{{i}}" ></i>
                                                   </a>
                                                 {% endfor %}
-                                                <!-- <a href="javascript:void(0)" id="star-2" >
-                                                  <i class="fa fa-star"></i>
-                                                </a>
-                                                <a href="javascript:void(0)" id="star-3" >
-                                                  <i class="fa fa-star"></i>
-                                                </a>
-                                                <a href="javascript:void(0)" id="star-4" >
-                                                  <i class="fa fa-star"></i>
-                                                </a>
-                                                <a href="javascript:void(0)" id="star-5" >
-                                                  <i class="fa fa-star"></i>
-                                                </a> -->
                                               </div>
                                          </div>
                                      </div>
                                  </div>
-                                 <div class="col-md-6">
+                                    <div class="col-md-6">
                                      <label for="name">Name</label>
-                                     <input type="text" class="form-control" name="namee" id="userr_name" placeholder="Enter Your name" onkeyup="checkrequired()" required>
+                                     <input type="text" class="form-control" name="userr_name" id="userr_name" placeholder="Enter Your name" required>
                                 </div>
-                                <div class="col-md-6">
+                                    <div class="col-md-6">
                                     <label for="email">Email</label>
-                                    <input type="text" class="form-control" id="user_email" name="user_email" placeholder="Enter Your Email" onkeyup="checkrequired()" required>
+                                    <input type="text" class="form-control" id="user_email" name="user_email" placeholder="Enter Your Email" required>
                                 </div>
-                                <div class="col-md-12">
-                                    <label for="review">Review Title</label>
-                                    <input type="text" class="form-control" name="review_subject" id="review_subject" onkeyup="checkrequired()"  placeholder="Enter your Review Subjects" required>
+                                    <div class="col-md-12">
+                                    <label for="review">Title</label>
+                                    <input type="text" class="form-control" name="review_subject" id="review_subject" placeholder="Review Subjects" required>
                                 </div>
-                                <div class="col-md-12">
-                                    <label for="review">Review Title</label>
-                                    <textarea class="form-control" name="review_disc"  placeholder="Wrire Your Testimonial Here" onkeyup="checkrequired()" id="review_disc" rows="6"></textarea>
+                                    <div class="col-md-12">
+                                    <label for="review">Description</label>
+                                    <textarea class="form-control" name="review_disc"  placeholder="Review Description" id="review_disc" rows="6" required></textarea>
+                                    <input type="hidden" name="product__id" id="product__id" value="{{pdata.id}}" >
+                                    <input type="hidden" name="ratingstar" id="ratingstar" value="0" >
                                 </div>
-                                <input type="hidden" name="product__id" value="{{pdata.id}}" >
-                                <input type="hidden" name="ratingstar" id="ratingstar" value="0" >
-                                
-                                 <div class="col-md-12">
-                                     <button class="btn btn-normal" id="rating_submit" disabled type="button">Submit YOur Review</button>
-                                 </div>
-                             </div>
+                                    <div class="col-md-12">
+                                        <button class="btn btn-normal" id="rating_submit" type="submit">Submit Your Review</button>
+                                        
+                                        {% if recount == 0 %}
+                                        {% else %}
+                                            <button class="btn btn-normal ms-3" onclick="seereview()" type="button">View Review</button>
+                                        {% endif %}
+                                                
+                                     </div>
+                                </div>
                          </form>
+                         <div class="row" style="display: none;" id="viewvisible" >
+                            {% for i in rating_data %}
+                                <div class="col-md-4" style="height: 210px;" >
+                                    <div class="col-md-12">
+                                         <div class="media">
+                                             <h4 style="color: black;" >{{i.username}}</h4>
+                                             <div class="media-body ms-3">
+                                                  <div class="rating four-star">
+                                                      <a href="javascript:void(0)" style="background-color: #38bf83;padding: 8px;color: white !important;border-radius: 5px;" >
+                                                        {{i.ratingstar}}.0<i class="ms-2 fa fa-star" style="color: white !important;" ></i>
+                                                      </a>
+                                                  </div>
+                                             </div>
+                                         </div>
+                                     </div>
+                                    <div class="col-md-12 mt-4">
+                                        <h7 style="color: black;" >{{i.title}}</h7>
+                                        <p style="padding: 0;text-align: justify;" >{{i.description}}</p>
+                                     </div>
+                                </div>
+                            {% endfor %}
+                            <div class="col-md-12">
+                                <button class="btn btn-normal" id="rating_submit" onclick="abcd()" type="button">Write Review</button>
+                             </div>
+                         </div>
+                         
                      </div>
                  </div>
              </div>
@@ -280,66 +319,54 @@
   <div class="col pr-0">
     <div class="product-slide-6 no-arrow">
       {% for i in releteddata %}
-        {% if i.id == reletedskip %}
-        {% else %}
-          <div>
-            <div class="product-box">
-              <div class="product-imgbox">
-                <div class="product-front">
-                  <a href="/user/product/{{i.id}}">
-                    <img src="{{i.pro_image.url}}" class="img-fluid  " style="width: 228px;" alt="product">
-                  </a>
-                </div>
-                <div class="product-back">
-                  <a href="/user/product/{{i.id}}">
-                    <img src="{{i.pro_back_image.url}}" class="img-fluid  " alt="product">
-                  </a>
-                </div>
-                <!-- <div class="product-icon icon-inline">
-                  <button  onclick="openCart()" class="tooltip-top" data-tippy-content="Add to cart" >
-                    <i  data-feather="shopping-cart"></i>
-                  </button>
-                  <a href="javascript:void(0)"  class="add-to-wish tooltip-top"  data-tippy-content="Add to Wishlist" >
-                    <i  data-feather="heart"></i>
-                  </a>
-                  <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view" class="tooltip-top"  data-tippy-content="Quick View">
-                    <i  data-feather="eye"></i>
-                  </a>
-                  <a href="compare.html" class="tooltip-top" data-tippy-content="Compare">
-                    <i  data-feather="refresh-cw"></i>
-                  </a>
-                </div> -->
-              </div>
-              <div class="product-detail detail-inline ">
-                <div class="detail-title">
-                  <div class="detail-left">
-                    <div class="rating-star">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
+        {% if i.pro_image %}
+            {% if i.id == reletedskip %}
+            {% else %}
+              <div>
+                <div class="product-box">
+                  <div class="product-imgbox">
+                    <div class="product-front">
+                      <a href="/user/product/{{i.id}}">
+                        <img src="{{i.pro_image.url}}" class="img-fluid  " style="width: 228px;" alt="product">
+                      </a>
                     </div>
-                    <a href="/user/product/">
-                      <h6 class="price-title">
-                        {{i.productname}}
-                      </h6>
-                    </a>
+                    <div class="product-back">
+                      <a href="/user/product/{{i.id}}">
+                        <img src="{{i.pro_back_image.url}}" class="img-fluid  " alt="product">
+                      </a>
+                    </div>
                   </div>
-                  <div class="detail-right">
-                    <div class="check-price">
-                      ₹  {{i.strike_price}}
-                    </div>
-                    <div class="price">
-                      <div class="price">
-                        ₹  {{i.pro_price}}
+                  <div class="product-detail detail-inline ">
+                    <div class="detail-title">
+                      <div class="detail-left">
+                        <div class="rating-star">
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                        </div>
+                        <a href="/user/product/">
+                          <h6 class="price-title">
+                            {{i.productname}}
+                          </h6>
+                        </a>
+                      </div>
+                      <div class="detail-right">
+                        <div class="check-price">
+                          <i class="fa fa-inr" aria-hidden="true"></i>  {{i.strike_price}}.00
+                        </div>
+                        <div class="price">
+                          <div class="price">
+                            <i class="fa fa-inr" aria-hidden="true"></i>  {{i.pro_price}}.00
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
+            {% endif %}
         {% endif %}
       {% endfor %}
     </div>
@@ -347,7 +374,7 @@
 </div>
 </div>
 </section>
-
-
-
+{% else %}
+<input type="hidden" value="0" id="imgnotfound" />
+{% endif %}
 {% endblock %}

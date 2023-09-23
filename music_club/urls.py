@@ -16,20 +16,18 @@ Including another URLconf
 from django.urls import path,include
 from django.conf import settings
 from django.contrib import admin
-from django.conf.urls.static import static
-from . import controls
 from User.views import home
-
 from django.views.static import serve
 from django.conf.urls import url
 
 urlpatterns = [
-    
+
     path('', home ),
+    path('admin_side/', admin.site.urls),
     path('user/', include('User.urls')),
     path('admin/', include('Admin.urls')),
-    url(r'^hit/uploads/(?P<path>.*)$', serve,{'document_root':settings.MEDIA_ROOT}),
-    
+    url(r'^uploads/(?P<path>.*)$', serve,{'document_root':settings.MEDIA_ROOT}),
+
 ]
 
 # +static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

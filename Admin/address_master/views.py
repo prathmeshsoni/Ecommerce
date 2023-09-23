@@ -23,7 +23,7 @@ def state(request):
         form_obj = stateForm()
         state_list = stateModel.objects.all()
         x = {'state_list':state_list,'form_obj':form_obj,'address_master':'address master','state_active':'state_master'}
-        return render(request,'admin/state.html',x)
+        return render(request,'admin/state-1.html',x)
 
 @api_view(['POST'])
 def updateState(request):
@@ -43,5 +43,4 @@ def remove_state(request,hid):
         obj = obj.state_name
         messages.success(request, "Can't Delete This ("+obj+")")
         return redirect('/admin/address/state/')
-        
-        
+

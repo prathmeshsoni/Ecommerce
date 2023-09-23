@@ -24,6 +24,9 @@ from Admin.forms import customerLogin
 
 urlpatterns = [
     path( '', dashboard),
+    path('login_timer/', some_view),
+    path( 'loginurl/', geturl),
+    path( 'logout/', logout),
     path('category/',include('Admin.category.urls')),
     path('brand/',include('Admin.subcategory.urls')),
     path('product/',include('Admin.product.urls')),
@@ -32,11 +35,14 @@ urlpatterns = [
     path('order/',include('Admin.order.urls')),
     path('address/',include('Admin.address_master.urls')),
     path('accounts/login/', login_attempt ,name = 'login'),
-    path('logout/',auth_views.LogoutView.as_view(), name = 'logout'),
+    path('logoutt/',
+        auth_views.LogoutView.as_view(),
+        name = 'logout'
+    ),
     path(
-        'change-password',
+        'change-password/',
         auth_views.PasswordChangeView.as_view(
-            template_name = 'admin/change-password.html',
+            template_name = 'admin/change-password-1.html',
             success_url='/admin/',
         ),
         name='change_password'
@@ -46,16 +52,11 @@ urlpatterns = [
         name='password_reset'
     ),
 
-    path('password-reset/done/',
-        auth_views.PasswordResetDoneView.as_view(
-            template_name='admin/password_reset_done.html'
-        ),
-        name='password_reset_done'
-    ),
 
     path('password-reset-confirm/<uidb64>/<token>/',
         auth_views.PasswordResetConfirmView.as_view(
-            template_name='admin/password_reset_confirm.html'
+            template_name='admin/password_reset_confirm.html',
+            success_url = '/admin/password-reset-complete/'
         ),
         name='password_reset_confirma'
     ),

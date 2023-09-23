@@ -23,7 +23,7 @@ def slider(request):
         form_obj = GalleryForm()
         show_data = GalleryModel.objects.all()
         g_dict = {'form_obj':form_obj,'show_data':show_data,'slider_master':'slider master','slider_active':'slider_master'}
-        return render(request,'admin/slider.html',g_dict)
+        return render(request,'admin/slider-1.html',g_dict)
 
 
 @api_view(['POST'])
@@ -39,6 +39,5 @@ def remove_slider(request,hid):
     obj = GalleryModel.objects.get(id = hid)
     obj.delete()
     return redirect('/admin/slider/')
-    
 
-    
+

@@ -15,6 +15,7 @@
 
 	<!-- Global stylesheets -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+	<script src="https://use.fontawesome.com/c0fc7bc651.js"></script>
 	<link href="{% static 'admin/global_assets/css/icons/icomoon/styles.min.css' %}" rel="stylesheet" type="text/css">
 	<link href="{% static 'admin/assets/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
 	<link href="{% static 'admin/assets/css/bootstrap_limitless.min.css' %}" rel="stylesheet" type="text/css">
@@ -29,18 +30,18 @@
 	<script src="{% static 'admin/global_assets/js/main/jquery.min.js' %}"></script>
 	<script src="{% static 'admin/global_assets/js/main/bootstrap.bundle.min.js' %}"></script>
 	<script src="{% static 'admin/global_assets/js/plugins/loaders/blockui.min.js' %}"></script>
-	
+
 	<!-- /core JS files -->
 	<script src="{% static 'admin/assets/js/app.js' %}"></script>
 	<!-- /theme JS files -->
-	
+
 	<script src="{% static 'admin/global_assets/js/plugins/tables/datatables/datatables.min.js' %}"></script>
 	<script src="{% static 'admin/global_assets/js/plugins/forms/selects/select2.min.js' %}"></script>
 	<script src="{% static 'admin/global_assets/js/plugins/tables/datatables/extensions/jszip/jszip.min.js' %}"></script>
 	<script src="{% static 'admin/global_assets/js/plugins/tables/datatables/extensions/pdfmake/vfs_fonts.min.js' %}"></script>
 	<script src="{% static 'admin/global_assets/js/plugins/tables/datatables/extensions/buttons.min.js' %}"></script>
 	<script src="{% static 'admin/global_assets/js/demo_pages/datatables_extension_buttons_html5.js' %}"></script>
-	
+
 	<!-- for image_uploader -->
 
 	<script src="{% static 'admin/global_assets/js/demo_pages/uploader_bootstrap.js' %}"></script>
@@ -50,7 +51,7 @@
 	<!-- for Notifiacations -->
 
 	<script src="{% static 'admin/global_assets/js/pnotify.min.js' %}"></script>
-	
+
 	<script src="{% static 'admin/global_assets/js/extra_pnotify.js' %}"></script>
 
 </head>
@@ -71,7 +72,7 @@
 			</button>
 		</div>
 
-		
+
 		<div class="collapse navbar-collapse" id="navbar-mobile">
 			<ul class="navbar-nav">
 				<li class="nav-item">
@@ -122,7 +123,7 @@
 																	</div>
 							</div>
 
-							
+
 						</div>
 					</div>
 				</div>
@@ -149,76 +150,76 @@
 								<li class="nav-item"><a href="/admin/category/" class="nav-link {% if cat_active == 'cat_master' %} {{'active'}} {% endif %}"><i class="icon-copy"></i> <span>Category</span></a></li>
 								<li class="nav-item"><a href="/admin/brand/" class="nav-link {% if subcat_active == 'subcat_master' %} {{'active'}} {% endif %}"><i class="icon-copy"></i> <span>brand </span></a></li>
 								<li class="nav-item"><a href="/admin/product/" class="nav-link {% if product_active == 'product_master' %} {{'active'}} {% endif %}"><i class="icon-copy"></i> <span>Product</span></a></li>
-								
+
 							</ul>
-							
+
 						</li>
 						<li class="nav-item nav-item-submenu {% if address_master == 'address master' %} {{'nav-item-expanded nav-item-open'}} {% endif %}">
 							<a href="#" class="nav-link"><i class="icon-copy"></i> <span>Address Master</span></a>
 							<ul class="nav nav-group-sub" data-submenu-title="Layouts">
 								<li class="nav-item"><a href="/admin/address/state/" class="nav-link {% if state_active == 'state_master' %} {{'active'}} {% endif %}"><i class="icon-copy"></i> <span>State Master</span></a></li>
 							</ul>
-							
+
 						</li>
 
 						<li class="nav-item nav-item-submenu {% if order_master == 'order' %} {{'nav-item-expanded nav-item-open'}} {% endif %}">
 							<a href="#" class="nav-link"><i class="icon-copy"></i> <span>Order Master</span></a>
 							<ul class="nav nav-group-sub" data-submenu-title="Layouts">
 								<li class="nav-item"><a href="/admin/order/" class="nav-link {% if order_active == 'order_master' %} {{'active'}} {% endif %}"><i class="icon-copy"></i> <span>Order</span></a></li>
-								
-								
+
+
 							</ul>
-							
+
 						</li>
 
 						<!-- <li class="nav-item nav-item-submenu {% if employee_master == 'employee master' %} {{'nav-item-expanded nav-item-open'}} {% endif %}">
 							<a href="#" class="nav-link"><i class="icon-copy"></i> <span>Employee Master</span></a>
 							<ul class="nav nav-group-sub" data-submenu-title="Layouts">
-								<li class="nav-item"><a href="/admin/employee/" class="nav-link {% if employee_active == 'employee_master' %} {{'active'}} {% endif %}"><i class="icon-copy"></i> <span>Employee</span></a></li>	
+								<li class="nav-item"><a href="/admin/employee/" class="nav-link {% if employee_active == 'employee_master' %} {{'active'}} {% endif %}"><i class="icon-copy"></i> <span>Employee</span></a></li>
 							</ul>
-							
+
 						</li>
-						
+
 						<li class="nav-item nav-item-submenu {% if service_master == 'service master' %} {{'nav-item-expanded nav-item-open'}} {% endif %}">
 							<a href="#" class="nav-link"><i class="icon-copy"></i> <span>Service Master</span></a>
 							<ul class="nav nav-group-sub" data-submenu-title="Layouts">
-								<li class="nav-item"><a href="/admin/service/" class="nav-link {% if service_active == 'service_master' %} {{'active'}} {% endif %}"><i class="icon-copy"></i> <span>Service</span></a></li>	
+								<li class="nav-item"><a href="/admin/service/" class="nav-link {% if service_active == 'service_master' %} {{'active'}} {% endif %}"><i class="icon-copy"></i> <span>Service</span></a></li>
 							</ul>
-							
+
 						</li> -->
-						
+
 						<li class="nav-item nav-item-submenu {% if slider_master == 'slider master' %} {{'nav-item-expanded nav-item-open'}} {% endif %}">
 							<a href="#" class="nav-link"><i class="icon-copy"></i> <span>Gallery</span></a>
 							<ul class="nav nav-group-sub" data-submenu-title="Layouts">
-								<li class="nav-item"><a href="/admin/slider/" class="nav-link {% if slider_active == 'slider_master' %} {{'active'}} {% endif %}"><i class="icon-copy"></i> <span>Slider</span></a></li>	
+								<li class="nav-item"><a href="/admin/slider/" class="nav-link {% if slider_active == 'slider_master' %} {{'active'}} {% endif %}"><i class="icon-copy"></i> <span>Slider</span></a></li>
 							</ul>
-							
+
 						</li>
 
-						<li class="nav-item nav-item-submenu {% if filter_master == 'filter master' %} {{'nav-item-expanded nav-item-open'}} {% endif %}">
-							<a href="#" class="nav-link"><i class="icon-copy"></i> <span>Product Filter</span></a>
-							<ul class="nav nav-group-sub" data-submenu-title="Layouts">
+						<!--<li class="nav-item nav-item-submenu {% if filter_master == 'filter master' %} {{'nav-item-expanded nav-item-open'}} {% endif %}">-->
+						<!--	<a href="#" class="nav-link"><i class="icon-copy"></i> <span>Product Filter</span></a>-->
+						<!--	<ul class="nav nav-group-sub" data-submenu-title="Layouts">-->
 								<!-- <li class="nav-item"><a href="/admin/filter/age/" class="nav-link {% if age_active == 'age_master' %} {{'active'}} {% endif %}"><i class="icon-copy"></i> <span>Age</span></a></li> -->
-								<li class="nav-item"><a href="/admin/filter/colour/" class="nav-link {% if colour_active == 'colour_master' %} {{'active'}} {% endif %}"><i class="icon-copy"></i> <span>Colour</span></a></li>	
-							</ul>
-							
-						</li>
+						<!--		<li class="nav-item"><a href="/admin/filter/colour/" class="nav-link {% if colour_active == 'colour_master' %} {{'active'}} {% endif %}"><i class="icon-copy"></i> <span>Colour</span></a></li>	-->
+						<!--	</ul>-->
+
+						<!--</li>-->
 
 					</ul>
-					
+
 				</div>
 				<!-- /main navigation -->
 
 			</div>
 			<!-- /sidebar content -->
 
-			
+
 		</div>
 		<!-- /main sidebar -->
 		<!-- Main content -->
 		<div class="content-wrapper">
 			<div class="page-header page-header-light">
-  
+
 				<div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
 				  <div class="d-flex">
 					<div class="breadcrumb">
@@ -227,31 +228,31 @@
 					  <span class="breadcrumb-item active mr-2">{% block title2 %} {% endblock %}</span>
 
 					</div>
-			  
+
 					<a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
 				  </div>
-			  
+
 				  <div class="header-elements d-none">
 					<div class="breadcrumb justify-content-center">
 					  <a href="#" class="breadcrumb-elements-item">
 						<i class="icon-comment-discussion mr-2"></i>
 						Support
 					  </a>
-			  
+
 					  <div class="breadcrumb-elements-item dropdown p-0">
 						<a href="#" class="breadcrumb-elements-item dropdown-toggle" data-toggle="dropdown">
 						  <i class="icon-gear mr-2"></i>
 						  Settings
 						</a>
-			  
+
 						<div class="dropdown-menu dropdown-menu-right">
 						  <a href="#" class="dropdown-item"><i class="icon-user-lock"></i> Account security</a>
 						  <a href="#" class="dropdown-item"><i class="icon-statistics"></i> Analytics</a>
 						  <a href="#" class="dropdown-item"><i class="icon-accessibility"></i> Accessibility</a>
 						  <a href="{% url 'change_password' %}" class="dropdown-item"><i class="icon-profile"></i> Change Password</a>
 						  <a href="{% url 'logout' %}" class="dropdown-item"><i class="icon-accessibility"></i> LOGOUT</a>
-						  
-					
+
+
 						  <a href="#" class="dropdown-item"><i class="icon-gear"></i> All settings</a>
 						</div>
 					  </div>
@@ -259,13 +260,13 @@
 				  </div>
 				</div>
 			  </div>
-			  
+
             <!-- Content area -->
                     {% block content %}
 
                     {% endblock %}
 			<!-- Content area -->
-			
+
 			<!-- Footer -->
 			<div class="navbar navbar-expand-lg navbar-light">
 				<div class="text-center d-lg-none w-100">
@@ -303,8 +304,7 @@
 
 {% else %}
 
-<script>
-    window.location.href = "{% url 'login' %}";
-</script>
+
+
 
 {% endif %}

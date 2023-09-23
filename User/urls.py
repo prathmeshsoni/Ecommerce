@@ -5,16 +5,21 @@ from django.contrib.auth import views as auth_views
 from . import views
 
 urlpatterns = [
+
+    path('tracker/' , tracker , name='tracker'),
+    path('change-password/' , change_password , name='change_passwordd'),
     path('accounts/login/' , login_attempt , name="login_attempt"),
     path('logout/', logout , name = 'logout'),
 
-    path('register' , register_attempt , name="register_attempt"),
+    path('register/' , register_attempt , name="register_attempt"),
     path('token' , token_send , name="token_send"),
     path('verify/<auth_token>' , verify , name="verify"),
 
     path('password-reset/' , forget_passward , name="password_resett"),
 
     path('' ,  home  , name="home"),
+    path('quickview/' ,  quickview ),
+    path('quickview1/' ,  quickviesw ),
 
     path('category/<int:hid>' , category ),
     path('category/' , cat_page ),
@@ -25,37 +30,33 @@ urlpatterns = [
     path('dashboard/' , dashboard ),
 
     path( 'address/', views.address ),
+
+    path('orderrrr/' , myorderrr ),
     path('myaccount/' , myaccount ),
     path('address/updete/', updateaddress ),
-    path('address/remove/<int:hid>', remove_address ),
+    path('address/remove/', remove_address ),
 
     path('myorder/' , myorder ),
     path('order/<int:hid>/<int:sid>' , myorder1 ),
-    
+
     path('gocart/' , gocart ),
     path('cart/' , addCart ),
+    path( 'review/', review ),
 
-    path('checkout/', checkout ),
+    path('checkout/', checkouut ),
     path('success/' , payment_status , name='payment_status'),
 
-    # path('password-reset/',
-    #     auth_views.PasswordResetView.as_view(
-    #         template_name='user/password_reset_form.html',
-    #         # success_url='/login/'
+    # path('password-reset/done/',
+    #     auth_views.PasswordResetDoneView.as_view(
+    #         template_name='user/password_reset_done.html'
     #     ),
-    #     name='password_resett'
+    #     name='password_reset_done'
     # ),
-
-    path('password-reset/done/',
-        auth_views.PasswordResetDoneView.as_view(
-            template_name='user/password_reset_done.html'
-        ),
-        name='password_reset_done'
-    ),
 
     path('password-reset-confirm/<uidb64>/<token>/',
         auth_views.PasswordResetConfirmView.as_view(
-            template_name='user/password_reset_confirm.html'
+            template_name='user/password_reset_confirm.html',
+            success_url = '/user/password-reset-complete/'
         ),
         name='password_reset_confirmm'
     ),
@@ -64,9 +65,9 @@ urlpatterns = [
         auth_views.PasswordResetCompleteView.as_view(
             template_name='user/password_reset_complete.html'
         ),
-        name='password_reset_completee'
+        name='password_reset_complete'
     ),
-   
+
 ]
 
 

@@ -1,0 +1,466 @@
+{% load static %}
+
+<html lang="en" style="display: none;" id="main-html">
+
+    <head>
+      <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+       	<link rel="shortcut icon" href="{% static 'user/folder/assets/images/avtar/music_clu.png' %}" type="image/x-icon">
+
+            <title>Admin | {% block title3 %} DashBoard {% endblock %}</title>
+
+    	<!-- Bootstrap 4.0-->
+    	<link rel="stylesheet" href="{% static 'admin/folder/assets/vendor_components/bootstrap/dist/css/bootstrap.min.css' %}">
+    	<script src="https://use.fontawesome.com/c0fc7bc651.js"></script>
+    	<!-- Bootstrap extend-->
+    	<link rel="stylesheet" href="{% static 'admin/folder/css/bootstrap-extend.css' %}">
+
+    	<link rel="stylesheet" type="text/css" href="{% static 'admin/folder/assets/vendor_components/datatable/datatables.min.css' %}" />
+
+    	<!-- Theme style -->
+    	<link rel="stylesheet" href="{% static 'admin/folder/css/skins/master_style.css' %}">
+
+    	<!-- Fab Admin skins -->
+    	<link rel="stylesheet" href="{% static 'admin/folder/css/skins/_all-skins.css' %}">
+
+    	<link rel="stylesheet" href="{% static 'admin/folder/assets/vendor_components/themify-icons/themify-icons.css' %}">
+    	<link rel="stylesheet" href="{% static 'admin/folder/assets/vendor_components/linea-icons/linea.css' %}">
+    	<link rel="stylesheet" href="{% static 'admin/folder/assets/vendor_components/glyphicons/glyphicon.css' %}">
+    	<link rel="stylesheet" href="{% static 'admin/folder/assets/vendor_components/flag-icon/css/flag-icon.css' %}">
+    	<link rel="stylesheet" href="{% static 'admin/folder/assets/vendor_components/material-design-iconic-font/css/materialdesignicons.css' %}">
+    	<link rel="stylesheet" href="{% static 'admin/folder/assets/vendor_components/simple-line-icons-master/css/simple-line-icons.css' %}">
+
+    </head>
+    <body class="hold-transition skin-blue-light sidebar-mini" style="min-height: 100% !important; height: 100% !important;" >
+
+
+        <div class="wrapper">
+
+            <header class="main-header">
+                <!-- Logo -->
+                <a href="/" class="logo">
+                  <!-- mini logo -->
+            	<b class="logo-mini" style="display: none;" >
+            		  <span class="light-logo"><img src="{% static 'user/folder/assets/images/avtar/music_clu.png' %}" style="height: 60px;width: 50px;" alt="logo"></span>
+            		  <span class="dark-logo"><img src="{% static 'user/folder/assets/images/avtar/music_clu.png' %}" alt="logo"></span>
+            	  </b>
+                  <!-- logo-->
+                  <span class="logo-lg">
+            		  <img src="{% static 'user/folder/assets/images/avtar/music_club.png' %}" alt="logo" style="width: 200px;height: 60px;" class="light-logo">
+            	  </span>
+                </a>
+                <!--<a href="/" class="logo">-->
+                    <!--<img src="{% static 'user/folder/assets/images/avtar/music_club.png' %}"  alt="logo">-->
+                <!--    <b class="logo-mini">-->
+            	  	<!--    <span class="light-logo"><img src="{% static 'user/folder/assets/images/avtar/music_clu.png' %}" alt="logo"></span>-->
+            	   <!-- </b>-->
+    	           <!-- <span class="logo-lg">-->
+            		  <!--  <img src="{% static 'user/folder/assets/images/avtar/music_club.png' %}" alt="logo" class="light-logo">-->
+            	   <!-- </span>-->
+                <!--</a>-->
+                <!-- Header Navbar -->
+                <nav class="navbar navbar-static-top">
+                  <!-- Sidebar toggle button-->
+            	  <div>
+            		  <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+            			<span class="sr-only">Toggle navigation</span>
+            		  </a>
+
+            	  </div>
+
+                  <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+            		  <!-- User Account-->
+                      <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding: 20px;" >
+                            <i class="fa fa-cog " ></i>
+                          <!--<img src="{% static 'admin/folder/images/user5-128x128.jpg" class="user-image rounded-circle" alt="User Image">-->
+                        </a>
+                        <ul class="dropdown-menu scale-up" style="width: 240px; background: rgba(0, 0, 0, 0.4);" >
+                          <li class="user-body">
+                            <div class="row no-gutters">
+                            {% if private_1 == 0 %}
+                                <div class="col-12 text-left">
+                                    <a style="color: #FFF !important; background: none !important; " href="/private/logout/"><i class="fa fa-power-off"></i> Logout</a>
+                                </div>
+                            {% else %}
+                                <div class="col-12 text-left">
+                                    <a style="color: #FFF !important; background: none !important;" href="{% url 'change_password' %}"><i class="fa fa fa-vcard-o"></i> Change Password</a>
+                                </div>
+                				<div class="col-12 text-left">
+                                    <a style="color: #FFF !important; background: none !important; " href="/admin/logout/"><i class="fa fa-power-off"></i> Logout</a>
+                                </div>
+                            {% endif %}
+                            </div>
+                            <!-- /.row -->
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+        </nav>
+            </header>
+
+            <aside class="main-sidebar">
+                <!-- sidebar-->
+                <section class="sidebar">
+
+                  <!-- sidebar menu-->
+                  <ul class="sidebar-menu" data-widget="tree">
+
+                    <li class="user-profile treeview">
+                      <a href="javascript:void(0)" style="padding: 15px 10px 15px 8px !important; " >
+            			<img src="{% static 'user/folder/assets/images/avtar/user.jpg' %}" style="width: 40px !important;height: 41px !important;" class="rounded-circle" alt="">
+                        <span style="color: black;" >
+                            {% if private_1 == 0 %}
+                                {% if request.session.private_admin %} {{request.session.private_admin}} {% endif %}
+                            {% else %}
+                                {% if request.session.adminuser %} {{request.session.adminuser}} {% endif %}
+                                {% if request.session.employee %} {{request.session.employee}} {% endif %}
+                            {% endif %}
+
+                        </span>
+                      </a>
+                    </li>
+                    <li class="active" >
+                      <a href="/admin/">
+                        <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                        <span class="pull-right-container">
+                          <!--<i class="fa fa-angle-right pull-right"></i>-->
+                        </span>
+                      </a>
+                    </li>
+                    {% if private_1 != 0 %}
+                    {% if request.session.employee %}
+                    <li class="treeview {% if tracker_master == 'tracker' %} {{'menu-open'}} {% endif %}" >
+                          <a href="#">
+                            <i class="fa fa-file"></i>
+                            <span>Tracker Master</span>
+                            <span class="pull-right-container">
+                              <i class="fa fa-angle-right pull-right"></i>
+                            </span>
+                          </a>
+                          <ul class="treeview-menu {% if tracker_master == 'tracker' %} {{'res-tb-block  mt-2'}} {% else %} {{'mt-2'}} {% endif %}" >
+                            <li  {% if tracker_active == 'tracker_master' %} class="active mb-1" style="background: rgb(6 0 255 / 22%); border-radius: 5px;" {% endif %} style="background: rgb(6 0 255 / 11%);" ><a href="/admin/order/tracker/"><i class="{% if tracker_active == 'tracker_master' %} {{'fa fa-circle'}} {% else %} {{'fa fa-circle-thin'}} {% endif %}" ></i>Tracker Order</a></li>
+                         </ul>
+                    </li>
+                    {% else %}
+                    <li class="treeview {% if cat_master == 'master' %} {{'menu-open'}} {% endif %} "  >
+                      <a href="#">
+                        <i class="fa fa-file"></i>
+                        <span>Master</span>
+                        <span class="pull-right-container">
+                          <i class="fa fa-angle-right pull-right"></i>
+                        </span>
+                      </a>
+                      <ul class="treeview-menu {% if cat_master == 'master' %} {{'res-tb-block  mt-2'}} {% else %} {{'mt-2'}} {% endif %}" >
+            			<li {% if cat_active == 'cat_master' %} class="active mb-1" style="background: rgb(6 0 255 / 22%); border-radius: 5px;" {% endif %} style="background: rgb(6 0 255 / 11%);" ><a href="/admin/category/"><i class="{% if cat_active == 'cat_master' %} {{'fa fa-circle'}} {% else %} {{'fa fa-circle-thin'}} {% endif %}"></i>Category</a></li>
+                        <li {% if subcat_active == 'subcat_master' %} class="active mb-1 mt-1" style="background: rgb(6 0 255 / 22%); border-radius: 5px;" {% endif %}  style="background: rgb(6 0 255 / 11%);" ><a href="/admin/brand/"><i class="{% if subcat_active == 'subcat_master' %} {{'fa fa-circle'}} {% else %} {{'fa fa-circle-thin'}} {% endif %}"></i>Brand</a></li>
+                        <li {% if product_active == 'product_master' %} class="active mt-2" style="background: rgb(6 0 255 / 22%); border-radius: 5px;" {% endif %} style="background: rgb(6 0 255 / 11%);" ><a href="/admin/product/"><i class="{% if product_active == 'product_master' %} {{'fa fa-circle'}} {% else %} {{'fa fa-circle-thin'}} {% endif %}"></i>Product</a></li>
+                      </ul>
+                    </li>
+
+                    <li class="treeview {% if address_master == 'address master' %} {{'menu-open'}} {% endif %} ">
+                      <a href="#">
+                        <i class="fa fa-file"></i>
+                        <span>Address Master</span>
+                        <span class="pull-right-container">
+                          <i class="fa fa-angle-right pull-right"></i>
+                        </span>
+                      </a>
+                      <ul class="treeview-menu {% if address_master == 'address master' %} {{'res-tb-block'}} {% else %} {{'mt-2'}} {% endif %}" >
+                        <li {% if state_active == 'state_master' %} class="active mb-1 mt-2" style="background: rgb(6 0 255 / 22%); border-radius: 5px;" {% endif %}  style="background: rgb(6 0 255 / 11%);" ><a href="/admin/address/state/"><i class="{% if state_active == 'state_master' %} {{'fa fa-circle'}} {% else %} {{'fa fa-circle-thin'}} {% endif %}"></i>State Master</a></li>
+                      </ul>
+                    </li>
+
+                    <li class="treeview {% if slider_master == 'slider master' %} {{'menu-open'}} {% endif %} ">
+                      <a href="#">
+                        <i class="fa fa-file"></i>
+                        <span>Gallery Master</span>
+                        <span class="pull-right-container">
+                          <i class="fa fa-angle-right pull-right"></i>
+                        </span>
+                      </a>
+                      <ul class="treeview-menu {% if slider_master == 'slider master' %} {{'res-tb-block'}} {% else %} {{'mt-2'}} {% endif %}" >
+                        <li {% if slider_active == 'slider_master' %} class="active mb-1 mt-2" style="background: rgb(6 0 255 / 22%); border-radius: 5px;" {% endif %}  style="background: rgb(6 0 255 / 11%);" ><a href="/admin/slider/"><i class="{% if slider_active == 'slider_master' %} {{'fa fa-circle'}} {% else %} {{'fa fa-circle-thin'}} {% endif %}"></i>Slider</a></li>
+                      </ul>
+                    </li>
+
+                    {% endif %}
+                    <li class="treeview {% if order_master == 'order' %} {{'menu-open'}} {% endif %} ">
+                      <a href="#">
+                        <i class="fa fa-file"></i>
+                        <span>Order Master</span>
+                        <span class="pull-right-container">
+                          <i class="fa fa-angle-right pull-right"></i>
+                        </span>
+                      </a>
+                      <ul class="treeview-menu {% if order_master == 'order' %} {{'res-tb-block mt-2'}} {% else %} {{'mt-2'}} {% endif %}" >
+                        <li {% if order_active == 'order_master' %} class="active mb-1" style="background: rgb(6 0 255 / 22%); border-radius: 5px;" {% endif %}  style="background: rgb(6 0 255 / 11%);" ><a href="/admin/order/"><i class="{% if order_active == 'order_master' %} {{'fa fa-circle'}} {% else %} {{'fa fa-circle-thin'}} {% endif %}"></i>Order</a></li>
+                        {% if order_activee == 'order_masterr' %}
+                            <li {% if order_activee == 'order_masterr' %} class="active mb-1 mt-1" style="background: rgb(6 0 255 / 22%); border-radius: 5px;" {% endif %}  style="background: rgb(6 0 255 / 11%);" ><a href="javascript:void(0)"><i class="{% if order_activee == 'order_masterr' %} {{'fa fa-circle'}} {% else %} {{'fa fa-circle-thin'}} {% endif %}"></i>Order ID : {{order.id}}</a></li>
+                        {% endif %}
+                      </ul>
+                    </li>
+
+                    <li class="treeview panel is-close" id="open_pass" >
+                          <a href="#">
+                            <i class="fa fa-file"></i>
+                            <span>Password</span>
+                            <span class="pull-right-container">
+                              <i class="fa fa-angle-right pull-right"></i>
+                            </span>
+                          </a>
+                          <ul class="treeview-menu res-tb-block" >
+                            <li  class="active mb-1 mt-2" style="background: rgb(6 0 255 / 22%); border-radius: 5px;" ><a href="/admin/change-password/"><i class="fa fa-circle"></i>Change Password</a></li>
+                         </ul>
+                    </li>
+                    {% else %}
+                    <li class="treeview {% if private_master == 'master' %} {{'menu-open'}} {% endif %} ">
+                      <a href="#">
+                        <i class="fa fa-file"></i>
+                        <span>Pivate Master</span>
+                        <span class="pull-right-container">
+                          <i class="fa fa-angle-right pull-right"></i>
+                        </span>
+                      </a>
+                      <ul class="treeview-menu {% if private_master == 'master' %} {{'res-tb-block mt-2'}} {% else %} {{'mt-2'}} {% endif %}" >
+                        <li {% if private_active == 'private_master' %} class="active mb-1" style="background: rgb(6 0 255 / 22%); border-radius: 5px;" {% endif %}  style="background: rgb(6 0 255 / 11%);" ><a href="/private/view/"><i class="{% if private_active == 'private_master' %} {{'fa fa-circle'}} {% else %} {{'fa fa-circle-thin'}} {% endif %}"></i>Private Window</a></li>
+                        {% if private_activee == 'private_masterr' %}
+                            <li {% if private_activee == 'private_masterr' %} class="active mb-1 mt-1" style="background: rgb(6 0 255 / 22%); border-radius: 5px;" {% endif %}  style="background: rgb(6 0 255 / 11%);" ><a href="javascript:void(0)"><i class="{% if private_activee == 'private_masterr' %} {{'fa fa-circle'}} {% else %} {{'fa fa-circle-thin'}} {% endif %}"></i>Private ID : {{order.id}}</a></li>
+                        {% endif %}
+                      </ul>
+                    </li>
+                    {% endif %}
+                </ul>
+    </section>
+            </aside>
+
+            {% block content %}
+
+            {% endblock %}
+
+
+            <footer class="main-footer">
+                <div class="pull-right d-none d-sm-inline-block">
+                    <ul class="nav nav-primary nav-dotted nav-dot-separated justify-content-center justify-content-md-end">
+            		  <li class="nav-item">
+            			<a class="nav-link" href="javascript:void(0)">Support</a>
+            		  </li>
+            		  <li class="nav-item">
+            			<a class="nav-link" href="javascript:void(0)">Docs</a>
+            		  </li>
+            		  <li class="nav-item">
+
+            			<a class="nav-link" href="#">Purchase Now</a>
+            		  </li>
+            		</ul>
+                </div>
+            	  &copy;  2015 - 2018 <a href="#">Music Club
+
+						</a> All Rights Reserved.
+            </footer>
+            <div class="control-sidebar-bg"></div>
+
+        </div>
+
+        <script src="{% static 'admin/folder/assets/vendor_components/jquery-3.3.1/jquery-3.3.1.js' %}"></script>
+
+	    <!-- popper -->
+    	<script src="{% static 'admin/folder/assets/vendor_components/popper/dist/popper.min.js' %}"></script>
+
+    	<!-- Bootstrap 4.0-->
+    	<script src="{% static 'admin/folder/assets/vendor_components/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+
+    	<!-- SlimScroll -->
+    	<script src="{% static 'admin/folder/assets/vendor_components/jquery-slimscroll/jquery.slimscroll.min.js' %}"></script>
+
+    	<!-- FastClick -->
+    	<script src="{% static 'admin/folder/assets/vendor_components/fastclick/lib/fastclick.js' %}"></script>
+
+    	<!-- Fab Admin App -->
+    	<script src="{% static 'admin/folder/js/template.js' %}"></script>
+
+    	<!-- Fab Admin for demo purposes -->
+    	<script src="{% static 'admin/folder/js/demo.js' %}"></script>
+    	<script src="{% static 'admin/folder/js/pages/data-table.js' %}"></script>
+
+    	<script src="{% static 'admin/folder/assets/vendor_components/datatable/datatables.min.js' %}"></script>
+
+        {% if checkcon == 0 %}
+            {% if request.session.private_admin %}
+                <script>
+                     window.onload = function exampleFunction(){
+                        $("#main-html").css('display','block');
+                        var checkk = 0;
+                        {% for i in lists %}
+                            var value = "{{i.private_img.url}}";
+                            if (value.endsWith(".mp4")) {
+                              var video = document.createElement("video");
+                              var source = document.createElement("source");
+                              source.src = value;
+                              video.appendChild(source);
+                              video.setAttribute("autoplay", "");
+                              video.setAttribute("controls", "");
+                              video.setAttribute("loop", "");
+                              video.style.width = "100%";
+                              video.style.height = "120px";
+                              source.setAttribute("type","video/mp4");
+                              var myDiv = document.getElementById("check_value{{i.id}}");
+                              myDiv.appendChild(video);
+                              source.setAttribute("id", "photo-{{i.id}}");
+                              source.setAttribute("name", "video");
+                              $("#action{{i.id}}").css('display','none');
+                              $("#img-{{i.id}}").text("Video Id: {{i.id}}");
+                              checkk = 1;
+                              // Add the video element to the document wherever you want it
+                            }else {
+                              var img = document.createElement("img");
+                              img.src = value;
+                              img.style.height = "100px";
+                              img.style.margin = "20px 0px";;
+                              var myDiv = document.getElementById("check_value{{i.id}}"); // Replace "myDiv" with the ID of your <div> element
+                              myDiv.appendChild(img);
+                              img.setAttribute("id", "photo-{{i.id}}");
+                              img.setAttribute("name", "photo");
+                            }
+                            if (checkk == 1){
+                                $("#section_div").css('display','block');
+                            }
+                        {% endfor  %}
+                    }
+                </script>
+            {% else %}
+                <script>
+                     window.onload = function exampleFunction(){
+                         window.location.href = '/private/';
+                    }
+                </script>
+            {% endif %}
+        {% else %}
+            {% if user.is_authenticated %}
+                <script>
+                        window.onload = function dasda(){
+                            $.ajax({
+                              url: '/admin/login_timer/',
+                              data: {csrfmiddlewaretoken:"{{csrf_token}}"},
+                              dataType: 'JSON',
+                              method: 'POST',
+                              success: function (data)
+                              {
+                                  if (data.status == false) {
+                                    $("#main-html").css('display','block');
+                                  }
+                                  else
+                                  {
+                                    urrll = window.location.href
+                                    function subStr(str)
+                                    {
+                                        const myArray = str.split("/admin/");
+                                        return myArray[1];
+                                    }
+
+                                    uurl = subStr(urrll);
+                                    $.ajax({
+                                        url: '/admin/loginurl/',
+                                        method: 'POST',
+                                        data: { 'urll': '/' + uurl, csrfmiddlewaretoken: '{{csrf_token}}' },
+                                        dataType: 'JSON',
+
+                                        success: function (data) {
+                                            if (data.status == true) {
+                                                window.location.href = '/admin/logout/';
+                                            }
+                                            else {
+
+                                            }
+
+                                        },
+
+                                        error: function () {
+                                         alert('Something is Wrong');
+                                        }
+                                    });
+                                  }
+                              },
+                              error: function ()
+                              {
+
+                              },
+                            });
+                            var dropdown = $("#open_li").val();
+                            if ( dropdown == '0' ){
+                                $("#open_pass").addClass('menu-open');
+                                $("#open_pass").removeClass('panel');
+                                $("#open_pass").removeClass('is-close');
+                            }
+                            else{
+                            }
+                        }
+                </script>
+            {% else %}
+                <div style="background-color: #ffffff;
+                        margin: 0;
+                        height: 100vh;
+                        width: 100vw;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        position: fixed;
+                        z-index: 99;
+                        top: 0;
+                        left: 0;" id="login_loader">
+                    <img src="{% static 'user/folder/assets/images/loader.gif' %}" style="max-height: 130px;" alt="loader">
+                </div>
+                <script src="{% static 'admin/folder/assets/vendor_components/jquery-3.3.1/jquery-3.3.1.js' %}"></script>
+                <script>
+                    window.onload = function exampleFunction(){
+                        urrll = window.location.href
+                        function subStr(str)
+                        {
+                            const myArray = str.split("/admin/");
+                            return myArray[1];
+                        }
+
+                        uurl = subStr(urrll)
+
+                        $.ajax({
+
+                            url: '/admin/loginurl/',
+                            method: 'POST',
+                            data: { 'urll': '/' + uurl, csrfmiddlewaretoken: '{{csrf_token}}' },
+                            dataType: 'JSON',
+
+                            success: function (data) {
+                                if (data.status == true) {
+                                    if (uurl == '/' || uurl == '') {
+                                        window.location.href = '/admin/accounts/login/?next=/admin/';
+                                    }
+                                    else{
+                                        window.location.href = '/admin/accounts/login/?next=/'+ uurl +'';
+                                    }
+                                }
+                                else {
+
+                                }
+
+                            },
+
+                            error: function () {
+                             alert('Something is Wrong');
+                            }
+                        });
+
+                    }
+
+                </script>
+            {% endif %}
+        {% endif %}
+
+
+    </body>
+
+</html>

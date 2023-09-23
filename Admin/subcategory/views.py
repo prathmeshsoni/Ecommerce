@@ -24,7 +24,7 @@ def brand_page(request):
         n = brandForm()
         k = brandModel.objects.all()
         m = {'key':n,'key2':k,'cat_master':'master','subcat_active':'subcat_master'}
-        return render(request,"admin/brand.html",m)
+        return render(request,"admin/brand-1.html",m)
 
 @api_view(['POST'])
 def updatebrand(request):

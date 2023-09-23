@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     path('', views.cat_page),
+    path('1/', views.categoryy ),
     path('updateCat/',views.updateCat),
     path('remove_cat/<int:hid>',views.remove_cat),
 ]

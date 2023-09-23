@@ -23,7 +23,25 @@ def cat_page(request):
         d = categoryForm()
         b = categoryModel.objects.all()
         x = {'m':d,'list':b,'cat_master':'master','cat_active':'cat_master'}
+        return render(request,"admin/category-1.html",x)
+
+def categoryy(request):
+    if request.method == 'POST':
+        try:
+            id = request.POST.get('id')
+            jj = categoryModel.objects.get(id=id)
+            d = categoryForm(request.POST or None,request.FILES or None,instance=jj)
+        except:
+            d = categoryForm(request.POST or None,request.FILES or None)
+        if d.is_valid():
+            d.save()
+            return redirect('/admin/category/')
+    else:
+        d = categoryForm()
+        b = categoryModel.objects.all()
+        x = {'m':d,'list':b,'cat_master':'master','cat_active':'cat_master'}
         return render(request,"admin/category.html",x)
+
 
 
 @api_view(['POST'])

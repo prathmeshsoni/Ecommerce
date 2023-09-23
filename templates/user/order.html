@@ -10,7 +10,7 @@
             <div class="block-content" style="padding: 1px;" >
                 <div class="checkout-page contact-page">
                     <div class="checkout-form">
-                        <h1>hello</h1>
+                        <h1>No Order Found!!</h1>
                     </div>
                 </div>
             </div>
@@ -40,7 +40,21 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-5">
-                                                    <label class="field-label"><span style="font-weight: 400;"> Total Price: </span>₹ {{i.total_amount}}</label>
+                                                    <label class="field-label"><span style="font-weight: 400;"> Total Price: </span><i class="fa fa-inr" aria-hidden="true"></i> {{i.total_amount}}.00</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <div class="row" >
+                                                <div class="col-md-12">
+                                                    <div class="row" >
+                                                        <div class="col-md-5">
+                                                            <label class="field-label" style="color: black;" ><span style="font-weight: 400;"> Payment Method: </span>{{i.payment_mode}}</label>
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <label class="field-label" style="color: black;" ><span style="font-weight: 400;"> Order Status: </span>{{i.order_status}}</label>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -49,16 +63,42 @@
                             </div>
                             
                             <div class="col-md-12 pt-0 pb-3">
-                                <div class="col-md-3 pe-4" style="float: right;">
-                                    <a href="/user/order/{{i.id}}/0">
+                                 <div class="col-md-3 pe-4" style="float: right;">
+                                    <a href="/user/order/{{i.id}}/0" >
+                                        <!--onclick="orrder({{i.id}})" -->
                                         <button  type="submit" class="baak2">
                                             View order details
                                         </button>
+                                    </a>
+                                </div>
+                                {% if i.order_status == 'pending' %}
+                                    <div class="col-md-3 pe-4" style="float: right;" >
+                                        <a href="javascript:void(0)" onclick="cancel_order({{i.id}})" >
+                                            <!--onclick="orrder({{i.id}})" -->
+                                            <button type="button" class="baak2">
+                                                <span>
+                                                    Cancel order
+                                                </span>
+                                            </button>
+                                        </a>
                                     </div>
-                                </a>
+                               {% endif %}
                             </div>
                         </div>
                         <hr>
+                        <!--{% for j in order_detailss %}-->
+                        <!--<tr>-->
+                        <!--    {% if i.id == j.order_id.id  %}-->
+                            <!--<td></td>-->
+                        <!--    <td>-->
+                        <!--        {{j.id}}-->
+                        <!--    </td>-->
+                        <!--    <td>-->
+                        <!--        {{j.product_id.productname}}-->
+                        <!--    </td>-->
+                        <!--    {% endif %}-->
+                        <!--</tr>-->
+                        <!--{% endfor %}-->
                         {% endfor %}
                     </div>
                 </div>

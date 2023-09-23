@@ -12,7 +12,7 @@
                     <div>
                         <h2>dashboard</h2>
                         <ul>
-                            <li><a href="index-2.html">home</a></li>
+                            <li><a href="/">home</a></li>
                             <li><i class="fa fa-angle-double-right"></i></li>
                             <li><a href="javascript:void(0)">{% block titall %} {% endblock %}</a></li>
                         </ul>
@@ -28,7 +28,10 @@
 <section class="section-big-py-space b-g-light">
     <div class="container">
         <div class="row">
-            <div class="col-lg-3" style="margin-right: 4.333333%; margin-left: 4%;"  >
+            <div class="col-lg-3"  >
+                <div class="aaccount-sidebar" >
+                    <div class="account-sidebar"><a class="popup-btn">my account</a></div>
+                </div>
                 <div class="dashboard-left mb-2" style="box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%) !important" >
                     <div class="block-content">
                         <div class="account-sidebar"><a class="popup-btn">my account</a>
@@ -40,7 +43,8 @@
                                     <li class="{% if dashboard_active == 'dashboard_master' %} {{'active'}} {% endif %}"><a href="/user/dashboard/">Dashboard</a></li>
                                     <li class="{% if address_active == 'address_master' %} {{'active'}} {% endif %}" ><a href="/user/address/">Address Book</a></li>
                                     <li class="{% if myorder_active == 'myorder_master' %} {{'active'}} {% endif %}" ><a href="/user/myorder/">My Orders</a></li>
-                                    <li><a href="/user/logout/">Log Out</a></li>
+                                    <li class="{% if change_active == 'password_master' %} {{'active'}} {% endif %}" ><a href="/user/change-password/">Change Pssword</a></li>
+                                    <li><a href="javascript:void(0)" onclick="user_logout()" >Log Out</a></li>
                                 </ul>
                             </div>
                         </div>

@@ -11,7 +11,7 @@ from rest_framework.response import Response
 from .serializer import proSerialize
 from User.models import add_to_cart,Sub_bayModel
 from django.contrib import messages
-
+# from django.contrib.auth import user
 
 def indexc(request):
     x = {'cat_master':'master','product_active':'product_master'}
@@ -19,14 +19,14 @@ def indexc(request):
 
 def index(request):
     if request.method == 'POST':
-        
+
         try:
             catname_id = request.POST.get('catname_id')
             brandname_id = request.POST.get('brandname_id')
             productname = request.POST.get('productname')
             pro_description = request.POST.get('pro_description')
             pro_code = request.POST.get('pro_code')
-            
+
             try:
                 hid = request.POST.get('hid')
                 pro_obj = productModel.objects.get(id = hid)
@@ -40,7 +40,7 @@ def index(request):
             pro_obj.productname = productname
             pro_obj.pro_description = pro_description
             pro_obj.pro_code = pro_code
-            
+
             try:
                 gb = 1
                 pro_obj.save()
@@ -60,7 +60,7 @@ def index(request):
 
         return JsonResponse(a)
 
-    else:  
+    else:
         pro_data = productModel.objects.all()
         cat_obj = categoryModel.objects.all()
         brand_obj = brandModel.objects.all()
@@ -68,8 +68,8 @@ def index(request):
 
         m = {'cat_master':'master','product_active':'product_master','cat_obj':cat_obj,
             'brand_obj':brand_obj,'colour_obj':colour_obj,'pro_data':pro_data}
-        
-        return render(request,"admin/product.html",m)
+
+        return render(request,"admin/product-1.html",m)
 
 
 def getdata(request):
@@ -92,23 +92,23 @@ def getdata(request):
         pro_quntity  = request.POST.get('pro_quntity')
         pro_price = request.POST.get('pro_price')
         strike_price = request.POST.get('strike_price')
-        
+
         pro_colour = request.POST.get('pro_colour')
         return_product = request.POST.get('return_product')
         return_period_days = request.POST.get('return_period_days')
-        
+
         pro_height = request.POST.get('pro_height')
         pro_width = request.POST.get('pro_width')
         pro_length = request.POST.get('pro_length')
-        
-        
-        
+
+
+
         obj = productModel.objects.get(id = hid)
 
         obj.total_quantity = pro_quntity
         obj.pro_price = pro_price
         obj.strike_price = strike_price
-        
+
         try:
             obj.pro_image = pro_image
         except:
@@ -125,16 +125,16 @@ def getdata(request):
         obj.pro_colour = pro_colour
         obj.return_product = return_product
         obj.return_period_days = return_period_days
-        
+
         obj.pro_height = pro_height
         obj.pro_width = pro_width
         obj.pro_length = pro_length
-        
+
         obj.save()
-                
+
         return redirect('/admin/product/')
 
-@api_view(['POST']) 
+@api_view(['POST'])
 def updatepro(request):
     id = request.POST.get('id')
     obj = productModel.objects.get(id = id)
@@ -143,22 +143,29 @@ def updatepro(request):
 
 
 def remove_pro(request,hid):
-    try:
-        add_obj = add_to_cart.objects.get(product_id = hid)
-        add_obj_check = add_obj.id
-        
-    except:
-        add_obj_check = 0
-    sub_obj = Sub_bayModel.objects.filter(product_id = hid)
-    sub_count = sub_obj.count()
-    obj = productModel.objects.get(id = hid)
-    if(str(add_obj_check) == 0) and (int(sub_count) == 0):
-        obj.delete()
-        return redirect('/admin/product/')
+    if request.user.is_authenticated:
+        try:
+            add_obj = add_to_cart.objects.get(product_id = hid)
+            add_obj_chec = add_obj.id
+            add_obj_check = str(add_obj_chec)
+
+        except:
+            add_obj_check = int(0)
+        sub_obj = Sub_bayModel.objects.filter(product_id = hid)
+        sub_count = sub_obj.count()
+        obj = productModel.objects.get(id = hid)
+        # try:
+        if(add_obj_check == 0 and (int(sub_count) == 0)):
+            obj.delete()
+            return redirect('/admin/product/')
+        else:
+            objs = obj.productname
+            messages.success(request, "Can't Delete This ("+objs+")")
+            return redirect('/admin/product/')
     else:
-        objs = obj.productname
-        messages.success(request, "Can't Delete This ("+objs+")")
-        return redirect('/admin/product/')
-    
-    
-    
+        # messages.success(request, "Can't Delete This ("+objs+")")
+            return redirect('/admin/')
+    # except:
+    #     messages.success(request, "Can't Delete This (2)")
+    #     return redirect('/admin/product/')
+

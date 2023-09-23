@@ -36,7 +36,8 @@ class add_to_cart(models.Model):
     product_id = models.ForeignKey(productModel,on_delete=models.CASCADE,null=True )
     quantity = models.IntegerField(null=True)
 
-
+    def __str__(self):
+        return self.user.username
 
 class addressModel(models.Model):
     #after change
@@ -51,7 +52,10 @@ class addressModel(models.Model):
     city = models.CharField(max_length=30,null=True)
     country = models.CharField(max_length=30,null=True)
     pincode = models.IntegerField(null=True)
-    
+
+    def __str__(self):
+        return self.user_id.username
+
 
 class buyModel(models.Model):
     user_id = models.ForeignKey(User ,on_delete=models.CASCADE,null=True)
@@ -65,8 +69,15 @@ class buyModel(models.Model):
     transaction_id = models.CharField(max_length=30,blank=True,null=True)
     order_idd = models.IntegerField(null=True)
 
+    def __str__(self):
+        return self.user_id.username
+
+
 class Sub_bayModel(models.Model):
     order_id = models.ForeignKey(buyModel,on_delete=models.CASCADE)
     product_id = models.ForeignKey(productModel,on_delete=models.CASCADE,null=True)
     quantity = models.IntegerField(null=True)
     total = models.IntegerField(null=True)
+
+    def __str__(self):
+        return self.product_id

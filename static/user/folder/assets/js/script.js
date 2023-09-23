@@ -1321,7 +1321,18 @@ $('.feature-slide').slick({
 
     $(window).scroll(function() {
         if ($(this).scrollTop() > 300) {
-            $('header').addClass("sticky");
+            var cart = $('#cart_scroll').val();
+            var cart_sid = $('#cart_sid').val();
+            
+            if ( cart == '2') {
+                
+            }
+            else if(cart_sid == '1'){
+                
+            }
+            else{
+                $('header').addClass("sticky");
+            }
         } else {
             $('header').removeClass("sticky");
         }
@@ -1556,12 +1567,12 @@ $('.feature-slide').slick({
 
 
 
-   $('.size-box ul li').on('click', function(e) {   
-    $(".size-box ul li").removeClass("active");
-    $('#selectSize').removeClass('cartMove');
-    $(this).addClass("active");
-    $(this).parent().addClass('selected');
-});
+//   $('.size-box ul li').on('click', function(e) {   
+//     $(".size-box ul li").removeClass("active");
+//     $('#selectSize').removeClass('cartMove');
+//     $(this).addClass("active");
+//     $(this).parent().addClass('selected');
+// });
 
 
 
@@ -2642,8 +2653,41 @@ $('.tap-top').on('click', function() {
   /*=====================
    19. add to cart sidebar js
    ==========================*/
-  function openCart() {
-    document.getElementById("cart_side").classList.add('open-side');
+    function openCart() {
+        var carttcount = $("#carttcount").val();
+        if ( carttcount == '0' ){
+            $.notify({
+                    message: "First Chenge Your password,then Open Your cart.",
+                },{
+                    element: 'body',
+                    position: null,
+                    type: "success",
+                    allow_dismiss: true,
+                    newest_on_top: false,
+                    showProgressbar: true,
+                    placement: {
+                      from: "top",
+                      align: "right"
+                    },
+                   offset: 90,
+                    spacing: 10,
+                    z_index: 999999999999,
+                    delay: 6000,
+                    animate: {
+                    enter: 'animated fadeInDown',
+                    exit: 'animated fadeOutUp'
+                    },
+                    icon_type: 'class',
+                    template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert " style="color:#842029 !important;background-color:#f8d7da !important;border-color:#f5c2c7 !important; " role="alert">' +
+                      '<button type="button" aria-hidden="true" class="btn-close" data-notify="dismiss"></button>' +
+                      '<span style="color:#842029 !important;" data-notify="message">{2}</span>' +
+                      '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                      '</div>'
+            });
+        }
+        else{
+        document.getElementById("cart_side").classList.add('open-side');
+        }
   }
   function closeCart() {
     document.getElementById("cart_side").classList.remove('open-side');
@@ -2821,7 +2865,39 @@ $('.tap-top').on('click', function() {
 })(jQuery);
 
 function openCart() {
-  document.getElementById("cart_side").classList.add('open-side');
+    var carttcount = $("#carttcount").val();
+      if ( carttcount == '0' ){
+          $.notify({
+                message: "First Chenge Your password! Then Open Your cart...!",
+            },{
+                element: 'body',
+                position: null,
+                type: "success",
+                allow_dismiss: true,
+                newest_on_top: false,
+                showProgressbar: true,
+                placement: {
+                  from: "top",
+                  align: "right"
+                },
+               offset: 90,
+                spacing: 10,
+                z_index: 999999999999,
+                delay: 6000,
+                animate: {
+                enter: 'animated fadeInDown',
+                exit: 'animated fadeOutUp'
+                },
+                icon_type: 'class',
+                template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert " style="color:#842029 !important;background-color:#f8d7da !important;border-color:#f5c2c7 !important; " role="alert">' +
+                  '<span style="color:#842029 !important;" data-notify="message">{2}</span>' +
+                  '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                  '</div>'
+        });
+      }
+      else{
+        document.getElementById("cart_side").classList.add('open-side');
+      }
 }
 function closeCart() {
   document.getElementById("cart_side").classList.remove('open-side');

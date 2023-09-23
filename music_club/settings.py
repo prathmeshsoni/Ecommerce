@@ -23,9 +23,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '7k@nilk%2=97j8ecf)gxloyd*anhhprwnmuhq69x5*1a=90uaf'
 
 # SECURITY WARNING: don't run with debug turned on in production! True False
+# DEBUG = True
 DEBUG = False
 
-ALLOWED_HOSTS = ['monarksoni.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -39,8 +40,8 @@ INSTALLED_APPS = [
     'Admin.product',
     'Admin.slider',
     'Admin.filter',
-    'crispy_forms',
     'Admin.address_master',
+    'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -68,10 +69,12 @@ SECURE_SSL_REDIRECT = True
 
 ROOT_URLCONF = 'music_club.urls'
 
+SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [os.path.join(SETTINGS_PATH, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -87,20 +90,19 @@ TEMPLATES = [
 WSGI_APPLICATION = 'music_club.wsgi.application'
 
 LOGIN_REDIRECT_URL = '/admin/'
-LOGOUT_REDIRECT_URL = '/admin/'
+LOGOUT_REDIRECT_URL = '/admin/accounts/login/'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'monarkso_music_shopping',
+        'NAME': 'prathmes_music-club',
         'HOST': 'localhost',
-        'PORT': '3306',
-        'USER': 'monarkso_Soni',
-        'PASSWORD':'Soni!@#$%^',
+        'USER': 'prathmes_admin',
+        'PASSWORD':'Lookathersmile',
+
     }
 }
 
@@ -142,13 +144,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = os.path.join(BASE_DIR, '/static/'),
+STATIC_ROOT = BASE_DIR / "static"
 
 
-MEDIA_URL = '/hit/uploads/'
-# MEDIA_ROOT = [
-#     BASE_DIR / "static",
-#     ]
+MEDIA_URL = '/uploads/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 
 
@@ -157,4 +156,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'team.musicclub.com@gmail.com'
-EMAIL_HOST_PASSWORD = 'Admin@music.com'
+EMAIL_HOST_PASSWORD = 'xirfhrznftnibwqh'
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
