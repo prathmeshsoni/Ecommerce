@@ -32,7 +32,7 @@ This Django-built Music Instruments E-commerce system facilitates product additi
 
 ## About The Project
 
-![Screen Shot](\static\admin\folder\images\pretty-snap-25-09-2023.png)
+![Screen Shot](/blob/main/static/admin/folder/images/pretty-snap-25-09-2023.png)
 
 This project is a full-stack Music Instruments E-commerce website developed using Python and the Django framework. It incorporates essential features for an online store, including user authentication, a shopping cart, and integration with the Razorpay payment gateway.
 
