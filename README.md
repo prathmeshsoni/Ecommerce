@@ -1,0 +1,171 @@
+<br/>
+<h2 align="center">
+    <a href="https://music-club.prathmeshsoni.works/">Music Club eCommerce</a>
+</h2>
+
+<p align="center">
+<img src="https://img.shields.io/badge/Django-239120?logo=django&logoColor=white" />
+<img src="https://img.shields.io/badge/Python-239120?logo=python&logoColor=white" />
+<img src="https://img.shields.io/badge/SQL%20Server-CC2927?logo=microsoft-sql-server&logoColor=white" />
+<img src="https://img.shields.io/badge/Html5-E34F26?logo=html5&logoColor=white" />
+<img src="https://img.shields.io/badge/Css3-1572B6?logo=css3&logoColor=white" />
+<img src="https://img.shields.io/badge/Bootstrap-563D7C?logo=bootstrap&logoColor=white" />
+<img src="https://img.shields.io/badge/Github-181717?logo=github&logoColor=white" />
+<img src="https://img.shields.io/badge/Razorpay-000144?logo=Razorpay&logoColor=white" />
+</p>
+
+
+<hr class="dotted">
+This Django-built Music Instruments E-commerce system facilitates product addition and integrates Razorpay for seamless payments.
+
+## Table Of Contents
+
+* [About the Project](#About-The-Project)
+* [Technologies Used](#technologies-used)
+* [Features](#Features)
+* [Getting Started](#Getting-Started)
+  * [Prerequisites](#Prerequisites)
+  * [Installation](#installation)
+* [Credentials](#Default-Credentials)
+* [Screenshots](#Screenshots)
+* [Connect Me](#Connect-with-me-at)
+
+## About The Project
+
+![Screen Shot](\static\admin\folder\images\pretty-snap-25-09-2023.png)
+
+This project is a full-stack Music Instruments E-commerce website developed using Python and the Django framework. It incorporates essential features for an online store, including user authentication, a shopping cart, and integration with the Razorpay payment gateway.
+
+## Technologies Used
+
+- Full Stack: Python, Django, HTML, CSS, Bootstrap
+- Database: MySQL
+- Payment Gateway: Razorpay
+
+
+## Features
+
+- User Authentication : Secure login and registration for a personalized shopping experience.
+- Shopping Cart: Efficient cart management for adding, updating, and removing products.
+- Razorpay Integration: Seamless payment transactions through the Razorpay payment gateway.
+
+## Getting Started
+
+This is an example of how you may give instructions on setting up your project locally.
+To get a local copy up and running follow these simple example steps.
+
+### Prerequisites
+Install Python 3.7 or above
+
+*  [Python](https://www.python.org/)
+
+### Installation
+
+> 👉 **Step 1** - Download the code from the GH repository (using `GIT`):
+```bash
+git clone https://github.com/prathmeshsoni/Ecommerce.git
+cd Ecommerce
+```
+
+<br />
+
+> 👉 **Step 2** - Create virtual environment:
+```
+python -m venv .venv
+```
+
+<br />
+
+> 👉 **Step 3** - Activating the environment:
+
+on Windows:
+```bash
+.venv\Scripts\activate.bat
+```
+on Mac OS / Linux:
+```bash
+source .venv\Scripts\activate
+```
+
+<br />
+
+> 👉 **Step 4** - Installing dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+<br />
+
+> 👉 **Step 5** - Go `config.py`
+
+
+Go to `config.py` file on Ecommerce folder (`/music_club/config.py`) setting all requirements after "=". 
+
+```
+email = ''
+password = ''
+razorpay_key_id = ''
+razorpay_key_secret = ''
+```
+
+<br />
+
+> 👉 **Step 6** - You can now run the development server:
+
+```bash
+python manage.py runserver
+```
+
+Visit [`http://127.0.0.1:8000`](http://localhost:8000) in your browser. The app should be up & running.
+
+<br />
+
+> 👉 **Step 7** - Integrate the Razorpay payment gateway for transactions.
+
+**IMPORTANT**: Make sure your Razorpay account is running in `TEST Mode` and Use Test token provided by razorpay:
+
+<br />
+
+## Default Credentials
+
+- **User Credentials:**
+  - URL: http://127.0.0.1:8000/
+  - Username: user
+  - Password: user@123
+
+- **Admin Credentials:**
+  - URLS:
+    - Admin Panel: http://127.0.0.1:8000/admin/
+    - Django Admin Panel: http://127.0.0.1:8000/admin_side/
+  - Username: admin
+  - Password: admin@123
+
+## Screenshots
+
+Visit our [Screenshots Page](https://private-app.prathmeshsoni.works/view/113) for a visual walkthrough of the Music Club E-Commerce Website.
+
+
+<br />
+
+The repository is a start point for most of my professional projects; for this, I'm using as a part of my portfolio, feel free to use wherever you want. I'll be happy if you provide any feedback or code improvements or suggestions.
+
+## Connect with me at
+
+<p align='center'>
+    
+  <a href="https://www.linkedin.com/in/prathmeshsoni/">
+    <img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" />
+  </a>&nbsp;
+  
+</p>
+
+<p align='center'>
+  📫 How to reach me: <a href='mailto:connect.prathmeshsoni@gmail.com'>connect.prathmeshsoni@gmail.com</a>
+</p>
+<p align='center'>
+      <a href="#"><img src="https://badges.pufler.dev/visits/prathmeshsoni/Ecommerce"></a> 
+</p>
+
+---
+**[Music Club](https://music-club.prathmeshsoni.works/) eCommerce** - Provided by **[Prathmesh Soni](https://www.linkedin.com/in/prathmeshsoni/)**

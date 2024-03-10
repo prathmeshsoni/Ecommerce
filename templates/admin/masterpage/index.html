@@ -10,21 +10,31 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="shortcut icon" href="{% static 'user/folder/assets/images/avtar/music_clu.png' %}" type="image/x-icon">
-	<!-- <title></title> -->
+	
+    <link rel="shortcut icon" href="{% static 'admin/folder/images/logo-mini-music-club.png' %}">
+    <link rel="icon" href="{% static 'admin/folder/images/logo-mini-music-club.png' %}" type="image/x-icon">
+    
+    <title>Admin | {% block title3 %} {% endblock %}</title>
+	  
+    <meta name="description" content="Discover a harmonious shopping experience for music instruments in our E-Commerce store."/>
+    <meta name="author" content="Prathmesh Soni"/>
+    <meta property="og:title" content="Prathmesh Soni"/>
+    <meta property="og:site_name" content="Prathmesh Soni Music Club Website"/>
+    <meta property="og:url" content=""/>
+    <meta property="og:description" content="Discover a harmonious shopping experience for music instruments in our E-Commerce store.">
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content="https://music-club.prathmeshsoni.works/static/admin/folder/images/pretty-snap-25-09-2023.png"/>
+	
+	<script src="https://use.fontawesome.com/c0fc7bc651.js"></script>
 
 	<!-- Global stylesheets -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
-	<script src="https://use.fontawesome.com/c0fc7bc651.js"></script>
 	<link href="{% static 'admin/global_assets/css/icons/icomoon/styles.min.css' %}" rel="stylesheet" type="text/css">
 	<link href="{% static 'admin/assets/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
 	<link href="{% static 'admin/assets/css/bootstrap_limitless.min.css' %}" rel="stylesheet" type="text/css">
 	<link href="{% static 'admin/assets/css/components.min.css' %}" rel="stylesheet" type="text/css">
 	<link href="{% static 'admin/assets/css/layout.min.css' %}" rel="stylesheet" type="text/css">
 	<link href="{% static 'admin/assets/css/colors.min.css' %}" rel="stylesheet" type="text/css">
-	<!-- /global stylesheets -->
-
-	<title>Admin | {% block title3 %} {% endblock %}</title>
 
 	<!-- Core JS files -->
 	<script src="{% static 'admin/global_assets/js/main/jquery.min.js' %}"></script>
@@ -33,8 +43,8 @@
 
 	<!-- /core JS files -->
 	<script src="{% static 'admin/assets/js/app.js' %}"></script>
+	
 	<!-- /theme JS files -->
-
 	<script src="{% static 'admin/global_assets/js/plugins/tables/datatables/datatables.min.js' %}"></script>
 	<script src="{% static 'admin/global_assets/js/plugins/forms/selects/select2.min.js' %}"></script>
 	<script src="{% static 'admin/global_assets/js/plugins/tables/datatables/extensions/jszip/jszip.min.js' %}"></script>
@@ -43,17 +53,12 @@
 	<script src="{% static 'admin/global_assets/js/demo_pages/datatables_extension_buttons_html5.js' %}"></script>
 
 	<!-- for image_uploader -->
-
 	<script src="{% static 'admin/global_assets/js/demo_pages/uploader_bootstrap.js' %}"></script>
-
 	<script src="{% static 'admin/global_assets/js/plugins/uploaders/fileinput.min.js' %}"></script>
 
 	<!-- for Notifiacations -->
-
 	<script src="{% static 'admin/global_assets/js/pnotify.min.js' %}"></script>
-
 	<script src="{% static 'admin/global_assets/js/extra_pnotify.js' %}"></script>
-
 </head>
 
 <body>
@@ -119,8 +124,7 @@
 
 							<div class="media-body mt-2">
 								<div class="media-title font-weight-semibold">Admin</div>
-								<div class="font-size-xs opacity-50">
-																	</div>
+								<div class="font-size-xs opacity-50"></div>
 							</div>
 
 
@@ -268,28 +272,20 @@
 			<!-- Content area -->
 
 			<!-- Footer -->
-			<div class="navbar navbar-expand-lg navbar-light">
-				<div class="text-center d-lg-none w-100">
-					<button type="button" class="navbar-toggler dropdown-toggle" data-toggle="collapse" data-target="#navbar-footer">
-						<i class="icon-unfold mr-2"></i>
-						Footer
-					</button>
-				</div>
-
-				<div class="navbar-collapse collapse" id="navbar-footer">
-					<span class="navbar-text">
-						&copy; 2015 - 2018. <a href="#">Music Club
-
-						</a> by <a href="#" target="_blank">Eugene Kopyov</a>
-					</span>
-
-					<ul class="navbar-nav ml-lg-auto">
-						<li class="nav-item"><a href="#" class="navbar-nav-link" target="_blank"><i class="icon-lifebuoy mr-2"></i> Support</a></li>
-						<li class="nav-item"><a href="#" class="navbar-nav-link" target="_blank"><i class="icon-file-text2 mr-2"></i> Docs</a></li>
-						<li class="nav-item"><a href="#" class="navbar-nav-link font-weight-semibold"><span class="text-pink-400"><i class="icon-cart2 mr-2"></i> Purchase</span></a></li>
-					</ul>
-				</div>
-			</div>
+            <footer class="main-footer">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a href="https://prathmeshsoni.works/" target="_blank" class="nav-link">
+                            Prathmesh Soni <i class="fa fa-heart ml-1" style="color: red"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://prathmeshsoni.works/project/" target="_blank" class="nav-link">
+                            Project
+                        </a>
+                    </li>
+                </ul>
+            </footer>
 			<!-- /footer -->
 
 		</div>

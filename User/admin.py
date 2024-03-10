@@ -1,8 +1,7 @@
 from django.contrib import admin
-from .models import Profile, addressModel, buyModel, Sub_bayModel, add_to_cart
-# from django.contrib.auth.models import User
 
-# admin.site.register(User)
+from .models import Profile, addressModel, buyModel, Sub_bayModel, add_to_cart
+
 admin.site.register(Profile)
 admin.site.register(addressModel)
 admin.site.register(buyModel)

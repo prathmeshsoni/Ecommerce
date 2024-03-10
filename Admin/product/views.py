@@ -1,21 +1,16 @@
-from django.shortcuts import render,redirect
-from Admin.product.models import productModel
-from Admin.category.models import categoryModel
-from Admin.product.serializer import proSerialize
-from Admin.subcategory.models  import brandModel
-from Admin.filter.models import colourModel
-from django.views.decorators.csrf import csrf_exempt
+from django.contrib import messages
 from django.http import JsonResponse
+from django.shortcuts import render, redirect
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializer import proSerialize
-from User.models import add_to_cart,Sub_bayModel
-from django.contrib import messages
-# from django.contrib.auth import user
 
-def indexc(request):
-    x = {'cat_master':'master','product_active':'product_master'}
-    return render(request,'admin/product.html',x)
+from Admin.category.models import categoryModel
+from Admin.filter.models import colourModel
+from Admin.product.models import productModel
+from Admin.subcategory.models import brandModel
+from User.models import add_to_cart, Sub_bayModel
+from .serializer import proSerialize
+
 
 def index(request):
     if request.method == 'POST':
@@ -29,13 +24,13 @@ def index(request):
 
             try:
                 hid = request.POST.get('hid')
-                pro_obj = productModel.objects.get(id = hid)
+                pro_obj = productModel.objects.get(id=hid)
             except:
                 pro_obj = productModel()
 
-            cat_id = categoryModel.objects.get(id = catname_id)
+            cat_id = categoryModel.objects.get(id=catname_id)
             pro_obj.catname_id = cat_id
-            brand_id = brandModel.objects.get(id = brandname_id)
+            brand_id = brandModel.objects.get(id=brandname_id)
             pro_obj.brand = brand_id
             pro_obj.productname = productname
             pro_obj.pro_description = pro_description
@@ -44,19 +39,16 @@ def index(request):
             try:
                 gb = 1
                 pro_obj.save()
-            # return redirect('/admin/product/')
             except:
                 gb = 0
 
             id = pro_obj.id
-        except Exception as e:
+        except:
             gb = 0
-            print(e)
 
-        if(gb == 1):
-            a = {'status':True,'id':id}
-        elif(gb == 0):
-            a = {'status':False}
+        a = {'status': False}
+        if gb == 1:
+            a = {'status': True, 'id': id}
 
         return JsonResponse(a)
 
@@ -66,30 +58,29 @@ def index(request):
         brand_obj = brandModel.objects.all()
         colour_obj = colourModel.objects.all()
 
-        m = {'cat_master':'master','product_active':'product_master','cat_obj':cat_obj,
-            'brand_obj':brand_obj,'colour_obj':colour_obj,'pro_data':pro_data}
+        m = {'cat_master': 'master', 'product_active': 'product_master', 'cat_obj': cat_obj,
+             'brand_obj': brand_obj, 'colour_obj': colour_obj, 'pro_data': pro_data}
 
-        return render(request,"admin/product-1.html",m)
+        return render(request, "admin/product-1.html", m)
 
 
 def getdata(request):
-
     if request.method == 'POST':
         hid = request.POST.get('hidden_id')
         try:
             pro_image = request.FILES['pro_image']
         except:
-            print("hello");
+            pass
         try:
             pro_back_image = request.FILES['pro_back_image']
         except:
-            print("hello");
+            pass
         try:
             feature_image = request.FILES['feature_image']
         except:
-            print("hello");
+            pass
 
-        pro_quntity  = request.POST.get('pro_quntity')
+        pro_quntity = request.POST.get('pro_quntity')
         pro_price = request.POST.get('pro_price')
         strike_price = request.POST.get('strike_price')
 
@@ -101,9 +92,7 @@ def getdata(request):
         pro_width = request.POST.get('pro_width')
         pro_length = request.POST.get('pro_length')
 
-
-
-        obj = productModel.objects.get(id = hid)
+        obj = productModel.objects.get(id=hid)
 
         obj.total_quantity = pro_quntity
         obj.pro_price = pro_price
@@ -112,15 +101,15 @@ def getdata(request):
         try:
             obj.pro_image = pro_image
         except:
-            print("hello");
+            pass
         try:
             obj.pro_back_image = pro_back_image
         except:
-            print("hello");
+            pass
         try:
             obj.feature_image = feature_image
         except:
-            print("hello1");
+            pass
 
         obj.pro_colour = pro_colour
         obj.return_product = return_product
@@ -134,38 +123,33 @@ def getdata(request):
 
         return redirect('/admin/product/')
 
+
 @api_view(['POST'])
 def updatepro(request):
     id = request.POST.get('id')
-    obj = productModel.objects.get(id = id)
+    obj = productModel.objects.get(id=id)
     serializer = proSerialize(obj)
     return Response(serializer.data)
 
 
-def remove_pro(request,hid):
+def remove_pro(request, hid):
     if request.user.is_authenticated:
         try:
-            add_obj = add_to_cart.objects.get(product_id = hid)
+            add_obj = add_to_cart.objects.get(product_id=hid)
             add_obj_chec = add_obj.id
             add_obj_check = str(add_obj_chec)
 
         except:
             add_obj_check = int(0)
-        sub_obj = Sub_bayModel.objects.filter(product_id = hid)
+        sub_obj = Sub_bayModel.objects.filter(product_id=hid)
         sub_count = sub_obj.count()
-        obj = productModel.objects.get(id = hid)
-        # try:
-        if(add_obj_check == 0 and (int(sub_count) == 0)):
+        obj = productModel.objects.get(id=hid)
+        if add_obj_check == 0 and (int(sub_count) == 0):
             obj.delete()
             return redirect('/admin/product/')
         else:
             objs = obj.productname
-            messages.success(request, "Can't Delete This ("+objs+")")
+            messages.success(request, "Can't Delete This (" + objs + ")")
             return redirect('/admin/product/')
     else:
-        # messages.success(request, "Can't Delete This ("+objs+")")
-            return redirect('/admin/')
-    # except:
-    #     messages.success(request, "Can't Delete This (2)")
-    #     return redirect('/admin/product/')
-
+        return redirect('/admin/')

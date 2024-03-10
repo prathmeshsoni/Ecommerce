@@ -3,40 +3,46 @@
 <html lang="en">
 
 <head>
-  <title>Music Club | {% block title %} {% endblock %}</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Music-club">
-  <!--<meta name="keywords" content="Music-club">-->
-  <!--<meta name="author" content="Music-club">-->
-   <link rel="icon" href="{% static 'user/folder/assets/images/favicon/favicon.png' %}" type="image/x-icon">
-  <link rel="shortcut icon" href="{% static 'user/folder/assets/images/avtar/music_clu.png' %}" type="image/x-icon">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    
+    <link rel="shortcut icon" href="{% static 'admin/folder/images/logo-mini-music-club.png' %}">
+    <link rel="icon" href="{% static 'admin/folder/images/logo-mini-music-club.png' %}" type="image/x-icon">
+    
+    <title>Music Club | {% block title %} {% endblock %}</title>
+    
+    <meta name="description" content="Discover a Harmonious Shopping Experience for Music Instruments in our E Commerce Store."/>
+    <meta name="author" content="Prathmesh Soni"/>
+    <meta property="og:title" content="Prathmesh Soni"/>
+    <meta property="og:site_name" content="Prathmesh Soni Music Club Website"/>
+    <meta property="og:url" content=""/>
+    <meta property="og:description" content="Discover a Harmonious Shopping Experience for Music Instruments in our E Commerce Store.">
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content="https://music-club.prathmeshsoni.works/static/admin/folder/images/pretty-snap-25-09-2023.png"/>
 
-  <!--Google font-->
-
-  {% block css %}
-  {% endblock %}
-
-  <!--icon css-->
-  <!--Slick slider css-->
-  <script src="https://use.fontawesome.com/c0fc7bc651.js"></script>
-  <link rel="stylesheet" type="text/css" href="{% static 'user/folder/assets/css/slick.css' %}">
-  <link rel="stylesheet" type="text/css" href="{% static 'user/folder/assets/css/slick-theme.css' %}">
-  <!-- <link href="{% static 'admin/assets/css/components.min.css' %}" rel="stylesheet" type="text/css"> -->
-
-  <!--Animate css-->
-  <link rel="stylesheet" type="text/css" href="{% static 'user/folder/assets/css/animate.css' %}">
-  <!-- Bootstrap css -->
-  <link rel="stylesheet" type="text/css" href="{% static 'user/folder/assets/css/bootstrap.css' %}">
-
-  <!-- Theme css -->
-  <link rel="stylesheet" type="text/css" href="{% static 'user/folder/assets/css/color2.css' %}" >
-
-</head>
-
-<body style="background-color: #f5f6fb!important ;"  >
+    <script src="https://use.fontawesome.com/c0fc7bc651.js"></script>
+    
+    {% block css %}
+    {% endblock %}
+    
+    <!--Slick slider css-->
+    <link rel="stylesheet" type="text/css" href="{% static 'user/folder/assets/css/slick.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'user/folder/assets/css/slick-theme.css' %}">
+    
+    <!--Animate css-->
+    <link rel="stylesheet" type="text/css" href="{% static 'user/folder/assets/css/animate.css' %}">
+    
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'user/folder/assets/css/bootstrap.css' %}">
+    
+    <!-- Theme css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'user/folder/assets/css/color2.css' %}" >
+    
     <style>
+        .tab-prodcut-contain > ul > li {
+            margin-bottom: 15px !important;
+        }
         .oorder_detail{
             align-self: center;
             /*align-items: center;*/
@@ -65,7 +71,19 @@
         .dipa-none{
             display: none;
         }
+        .detail-title-1{
+            margin: 0;
+            padding-top: 0;
+            position: absolute;
+            top: 40%;
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
     </style>
+</head>
+
+<body style="background-color: #f5f6fb!important ;"  >
+
   <!-- loader start -->
   <div class="loader-wrapper">
     <div>
@@ -88,7 +106,7 @@
           <div class="header-left">
             <div class="brand-logo logo-sm-center">
               <a href="/user/">
-                <img src="{% static 'user/folder/assets/images/avtar/music_club.png' %}" class="img-fluid" style="height: 75px;" alt="logo">
+                <img src="{% static 'admin/folder/images/logo-music-club.png' %}" class="img-fluid" style="height: 75px;" alt="logo">
               </a>
             </div>
           </div>
@@ -173,14 +191,14 @@
             <div class="logo-block">
               <div class="brand-logo logo-sm-center">
                 <a href="/user/">
-                  <img src="{% static 'user/folder/assets/images/avtar/music_club.png' %}" class="img-fluid" style="height: 95px;" alt="logo">
+                  <img src="{% static 'admin/folder/images/logo-music-club.png' %}" class="img-fluid" style="height: 95px;" alt="logo">
                 </a>
               </div>
             </div>
             <div class="nav-block">
               <div class="brand-logo logo-sm-center">
                 <a href="/user/">
-                  <img src="{% static 'user/folder/assets/images/avtar/music_club.png' %}" class="img-fluid" style="height: 95px;" alt="logo">
+                  <img src="{% static 'admin/folder/images/logo-music-club.png' %}" class="img-fluid" style="height: 95px;" alt="logo">
                 </a>
               </div>
             </div>
@@ -302,6 +320,49 @@
         <div class="row">
           <div class="col-12">
             <div class="footer-main">
+                
+              <div class="footer-box">
+                <div class="footer-title">
+                    <a href="https://prathmeshsoni.works/project/">
+                        <h5>Projects</h5>
+                    </a>
+                </div>
+                <div class="footer-contant">
+                  <ul>
+                    <li><a href="https://prathmeshsoni.works/"><i class="fa fa-home"></i> Home</a></li>
+                    <li><a href="https://private-app.prathmeshsoni.works/"><i class="fa fa-lock"></i> Private Note</a></li>
+                    <li><a href="https://money-manager.prathmeshsoni.works/"><i class="fa fa-money"></i> Money Manager</a></li>
+                    <li><a href="https://google.prathmeshsoni.works/"><i class="fa fa-google"></i> Google Search </a></li>
+                    <li><a href="https://instagram.prathmeshsoni.works/"><i class="fa fa-instagram"></i> Instagram Story Viewer </a></li>
+                    <li><a href="https://aiml.prathmeshsoni.works/"><i class="fa fa-line-chart"></i> MSE Marks Ranking</a></li>
+                    <li><a href="https://chat.cse-aiml.live/"><i class="fa fa-commenting"></i> Chat App </a></li>
+                  </ul>
+                </div>
+              </div>
+              
+              <div class="footer-box">
+                <div class="footer-title">
+                    <a href="https://prathmeshsoni.works/contact/">
+                        <h5>contact us</h5>
+                    </a>
+                </div>
+                <div class="footer-contant">
+                  <ul class="contact-list">
+                    <li><i class="fa fa-map-marker"></i>Music Club store <br> india-<span>380051</span></li>
+                    <li>
+                        <a href="tel:9157379996">
+                            <i class="fa fa-phone"></i>call us: <span>+91 9876543210</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mailto:connect.prathmeshsoni@gmail.com" style="text-transform: none !important;" >
+                            <i class="fa fa-envelope-o"></i>email us: connect.prathmeshsoni@gmail.com
+                        </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              
               <div class="footer-box">
                 <div class="footer-title mobile-title">
                   <h5>about</h5>
@@ -309,59 +370,19 @@
                 <div class="footer-contant">
                   <div class="footer-logo">
                     <a href="/user/">
-                        <img src="{% static 'user/folder/assets/images/avtar/music_club.png' %}" class="img-fluid  " alt="logo" style="height: 95px; " >
+                        <img src="{% static 'admin/folder/images/logo-music-club.png' %}" class="img-fluid  " alt="logo" style="height: 95px; " >
                     </a>
                   </div>
-                  <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC.</p>
-                  <ul class="paymant">
-                    <li><a href="javascript:void(0)"><img src="{% static 'user/folder/assets/images/layout-1/pay/2.png' %}" class="img-fluid" alt="pay"></a></li>
-                    <li><a href="javascript:void(0)"><img src="{% static 'user/folder/assets/images/layout-1/pay/1.png' %}" class="img-fluid" alt="pay"></a></li>
-                    <li><a href="javascript:void(0)"><img src="{% static 'user/folder/assets/images/layout-1/pay/3.png' %}" class="img-fluid" alt="pay"></a></li>
-                    <li><a href="javascript:void(0)"><img src="{% static 'user/folder/assets/images/layout-1/pay/4.png' %}" class="img-fluid" alt="pay"></a></li>
-                    <li><a href="javascript:void(0)"><img src="{% static 'user/folder/assets/images/layout-1/pay/5.png' %}" class="img-fluid" alt="pay"></a></li>
-                  </ul>
+                  <p>
+                      &copy; Copyright 2024
+                     
+                    . Made by
+                    <a rel="noreferrer" target="_blank" href="https://prathmeshsoni.works">Prathmesh Soni</a>
+                  </p>
+                  
                 </div>
               </div>
-              <div class="footer-box">
-                <div class="footer-title">
-                  <h5>my account</h5>
-                </div>
-                <div class="footer-contant">
-                  <ul>
-                    <li><a href="javascript:void(0)">about us</a></li>
-                    <li><a href="javascript:void(0)">contact us</a></li>
-                    <li><a href="javascript:void(0)">terms &amp; conditions</a></li>
-                    <li><a href="javascript:void(0)">returns &amp; exchanges</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="footer-box">
-                <div class="footer-title">
-                  <h5>contact us</h5>
-                </div>
-                <div class="footer-contant">
-                  <ul class="contact-list">
-                    <li><i class="fa fa-map-marker"></i>Music Club store <br> india-<span>380051</span></li>
-                    <li><i class="fa fa-phone"></i>call us: <span>+91 9157379996</span></li>
-                    <li><i class="fa fa-envelope-o" style="text-transform: none !important;" ></i>email us: team.musicclub.com@gmail.com</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="footer-box">
-                <div class="footer-contant">
-                  <div class="newsletter-second">
-                    <div class="form-group ">
-                      <div class="input-group">
-                        <input type="text" class="form-control" placeholder="enter email address" >
-                        <span class="input-group-text"><i class="ti-email"></i></span>
-                      </div>
-                    </div>
-                    <div class="form-group mb-0">
-                      <a href="javascript:void(0)" class="btn btn-solid btn-sm">submit now</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              
             </div>
           </div>
         </div>
@@ -396,7 +417,7 @@
               </h2>
               <p>
                 Your shopping cart is waiting. Give it purpose fill it with groceries, clothing, household supplies, electronics and more.
-                Continue shopping on the<br> <a href="/user/"> musicclub.com homepage </a> , learn about today's deals.
+                Continue shopping on the<br> <a href="/user/"> Music-Club homepage </a> , learn about today's deals.
               </p>
             </div>
             </ul>
@@ -588,7 +609,7 @@
                                           box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%);
                                           float: left;" >
                 Sign in to your account</a>
-                <a href="/user/register" class="" style="
+                <a href="/user/register/" class="" style="
                                           display: block;
                                           margin-left: 10px;
                                           line-height: 29px;
@@ -1672,7 +1693,7 @@
          window.onload = function exampleFunction(){
             {% if request.session.username %}
                 var passwords = window.location.href
-                if ( passwords == 'https://musicalclub.pythonanywhere.com/user/password-reset/' || passwords =='https://musicalclub.pythonanywhere.com/user/password-reset-confirm/MTY/set-password/' || passwords == 'https://musicalclub.pythonanywhere.com/user/password-reset/done/' || passwords == 'https://musicalclub.pythonanywhere.com/user/password-reset-complete/' ){
+                if ( passwords == 'https://music-club.prathmeshsoni.works/user/password-reset/' || passwords =='https://music-club.prathmeshsoni.works/user/password-reset-confirm/MTY/set-password/' || passwords == 'https://music-club.prathmeshsoni.works/user/password-reset/done/' || passwords == 'https://music-club.prathmeshsoni.works/user/password-reset-complete/' ){
                     window.location.href = '/user/dashboard/';
                 }
                 else{

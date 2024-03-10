@@ -3,21 +3,31 @@
 <html lang="en" style="display: none;" id="main-html">
 
     <head>
-      <meta charset="utf-8">
+        <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
-       	<link rel="shortcut icon" href="{% static 'user/folder/assets/images/avtar/music_clu.png' %}" type="image/x-icon">
+        
+        <link rel="shortcut icon" href="{% static 'admin/folder/images/logo-mini-music-club.png' %}">
+        <link rel="icon" href="{% static 'admin/folder/images/logo-mini-music-club.png' %}" type="image/x-icon">
+    
+        <title>Admin | {% block title3 %} DashBoard {% endblock %}</title>
+        
+        <meta name="description" content="Discover a harmonious shopping experience for music instruments in our E-Commerce store."/>
+        <meta name="author" content="Prathmesh Soni"/>
+        <meta property="og:title" content="Prathmesh Soni"/>
+        <meta property="og:site_name" content="Prathmesh Soni Music Club Website"/>
+        <meta property="og:url" content=""/>
+        <meta property="og:description" content="Discover a harmonious shopping experience for music instruments in our E-Commerce store.">
+        <meta property="og:type" content="website"/>
+        <meta property="og:image" content="https://music-club.prathmeshsoni.works/static/admin/folder/images/pretty-snap-25-09-2023.png"/>
 
-            <title>Admin | {% block title3 %} DashBoard {% endblock %}</title>
+    	<script src="https://use.fontawesome.com/c0fc7bc651.js"></script>
 
     	<!-- Bootstrap 4.0-->
     	<link rel="stylesheet" href="{% static 'admin/folder/assets/vendor_components/bootstrap/dist/css/bootstrap.min.css' %}">
-    	<script src="https://use.fontawesome.com/c0fc7bc651.js"></script>
+    	
     	<!-- Bootstrap extend-->
     	<link rel="stylesheet" href="{% static 'admin/folder/css/bootstrap-extend.css' %}">
-
     	<link rel="stylesheet" type="text/css" href="{% static 'admin/folder/assets/vendor_components/datatable/datatables.min.css' %}" />
 
     	<!-- Theme style -->
@@ -25,14 +35,12 @@
 
     	<!-- Fab Admin skins -->
     	<link rel="stylesheet" href="{% static 'admin/folder/css/skins/_all-skins.css' %}">
-
     	<link rel="stylesheet" href="{% static 'admin/folder/assets/vendor_components/themify-icons/themify-icons.css' %}">
     	<link rel="stylesheet" href="{% static 'admin/folder/assets/vendor_components/linea-icons/linea.css' %}">
     	<link rel="stylesheet" href="{% static 'admin/folder/assets/vendor_components/glyphicons/glyphicon.css' %}">
     	<link rel="stylesheet" href="{% static 'admin/folder/assets/vendor_components/flag-icon/css/flag-icon.css' %}">
     	<link rel="stylesheet" href="{% static 'admin/folder/assets/vendor_components/material-design-iconic-font/css/materialdesignicons.css' %}">
     	<link rel="stylesheet" href="{% static 'admin/folder/assets/vendor_components/simple-line-icons-master/css/simple-line-icons.css' %}">
-
     </head>
     <body class="hold-transition skin-blue-light sidebar-mini" style="min-height: 100% !important; height: 100% !important;" >
 
@@ -44,12 +52,12 @@
                 <a href="/" class="logo">
                   <!-- mini logo -->
             	<b class="logo-mini" style="display: none;" >
-            		  <span class="light-logo"><img src="{% static 'user/folder/assets/images/avtar/music_clu.png' %}" style="height: 60px;width: 50px;" alt="logo"></span>
-            		  <span class="dark-logo"><img src="{% static 'user/folder/assets/images/avtar/music_clu.png' %}" alt="logo"></span>
+            		  <span class="light-logo"><img src="{% static 'admin/folder/images/logo-mini-music-club.png' %}" style="height: 60px;width: 50px;" alt="logo"></span>
+            		  <span class="dark-logo"><img src="{% static 'admin/folder/images/logo-mini-music-club.png' %}" alt="logo"></span>
             	  </b>
                   <!-- logo-->
                   <span class="logo-lg">
-            		  <img src="{% static 'user/folder/assets/images/avtar/music_club.png' %}" alt="logo" style="width: 200px;height: 60px;" class="light-logo">
+            		  <img src="{% static 'admin/folder/images/logo-music-club.png' %}" alt="logo" style="width: 200px;height: 60px; mix-blend-mode: hue;" class="light-logo">
             	  </span>
                 </a>
                 <!--<a href="/" class="logo">-->
@@ -245,23 +253,18 @@
 
 
             <footer class="main-footer">
-                <div class="pull-right d-none d-sm-inline-block">
-                    <ul class="nav nav-primary nav-dotted nav-dot-separated justify-content-center justify-content-md-end">
-            		  <li class="nav-item">
-            			<a class="nav-link" href="javascript:void(0)">Support</a>
-            		  </li>
-            		  <li class="nav-item">
-            			<a class="nav-link" href="javascript:void(0)">Docs</a>
-            		  </li>
-            		  <li class="nav-item">
-
-            			<a class="nav-link" href="#">Purchase Now</a>
-            		  </li>
-            		</ul>
-                </div>
-            	  &copy;  2015 - 2018 <a href="#">Music Club
-
-						</a> All Rights Reserved.
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a href="https://prathmeshsoni.works/" target="_blank" class="nav-link">
+                            Prathmesh Soni <i class="fa fa-heart ml-1" style="color: red"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://prathmeshsoni.works/project/" target="_blank" class="nav-link">
+                            Project
+                        </a>
+                    </li>
+                </ul>
             </footer>
             <div class="control-sidebar-bg"></div>
 
