@@ -4,11 +4,13 @@
   </a>
 </p>
 
-<h1 align="center">
+<h1 align="center" class="dotted">
     <a href="https://music-club.prathmeshsoni.works/">Music Club eCommerce</a>
-</h1>
-
+  
 <p align="center">
+
+<br>
+  
 <img src="https://img.shields.io/badge/Django-239120?logo=django&logoColor=white" />
 <img src="https://img.shields.io/badge/Python-239120?logo=python&logoColor=white" />
 <img src="https://img.shields.io/badge/SQL%20Server-CC2927?logo=microsoft-sql-server&logoColor=white" />
@@ -19,15 +21,18 @@
 <img src="https://img.shields.io/badge/Razorpay-000144?logo=Razorpay&logoColor=white" />
 </p>
 
+</h1>
 
-<hr class="dotted">
+
 This Django-built Music Instruments E-commerce system facilitates product addition and integrates Razorpay for seamless payments.
+
+# Live Demo 👇:
+
+https://music-club.prathmeshsoni.works/
 
 <br>
 
-Check out the website in action here  <a href="https://music-club.prathmeshsoni.works/">Deployed App</a>
-
-## Table Of Contents
+## Table Of Contents :
 
 * [About the Project](#About-The-Project)
 * [Technologies Used](#technologies-used)
@@ -165,7 +170,7 @@ The repository is a start point for most of my professional projects; for this, 
     
   <a href="https://www.linkedin.com/in/prathmeshsoni/">
     <img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" />
-  </a>&nbsp;
+  </a>
   
 </p>
 
