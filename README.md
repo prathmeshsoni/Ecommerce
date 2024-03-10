@@ -1,7 +1,12 @@
-<br/>
-<h2 align="center">
+<p id="top" align="center">
+  <a href="https://music-club.prathmeshsoni.works/">
+    <img src="music_club/static/admin/folder/images/logo-music-club.png" alt="Logo" width="300" height="100">
+  </a>
+</p>
+
+<h1 align="center">
     <a href="https://music-club.prathmeshsoni.works/">Music Club eCommerce</a>
-</h2>
+</h1>
 
 <p align="center">
 <img src="https://img.shields.io/badge/Django-239120?logo=django&logoColor=white" />
@@ -18,6 +23,10 @@
 <hr class="dotted">
 This Django-built Music Instruments E-commerce system facilitates product addition and integrates Razorpay for seamless payments.
 
+<br>
+
+Check out the website in action here  <a href="https://music-club.prathmeshsoni.works/">Deployed App</a>
+
 ## Table Of Contents
 
 * [About the Project](#About-The-Project)
@@ -32,7 +41,7 @@ This Django-built Music Instruments E-commerce system facilitates product additi
 
 ## About The Project
 
-![Screen Shot](/static/admin/folder/images/pretty-snap-25-09-2023.png)
+![Screen Shot](/music_club/static/admin/folder/images/pretty-snap-25-09-2023.png)
 
 This project is a full-stack Music Instruments E-commerce website developed using Python and the Django framework. It incorporates essential features for an online store, including user authentication, a shopping cart, and integration with the Razorpay payment gateway.
 
@@ -167,5 +176,10 @@ The repository is a start point for most of my professional projects; for this, 
       <a href="#"><img src="https://badges.pufler.dev/visits/prathmeshsoni/Ecommerce"></a> 
 </p>
 
+## All Set :)
+
+<p><a href="#top">Back to Top</a></p>
+
+
 ---
-**[Music Club](https://music-club.prathmeshsoni.works/) eCommerce** - Provided by **[Prathmesh Soni](https://www.linkedin.com/in/prathmeshsoni/)**
+**[Music Club](https://music-club.prathmeshsoni.works/) eCommerce** - Provided by **[Prathmesh Soni](https://prathmeshsoni.works/)**
