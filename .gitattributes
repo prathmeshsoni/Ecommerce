@@ -1,4 +1,11 @@
-*.py linguist-language=Python
-*.html linguist-language=HTML
-*.js linguist-language=JavaScript
-*.css linguist-language=CSS
+# Languages
+*.py linguist-vendored
+*.html linguist-vendored
+*.js linguist-vendored
+*.css linguist-vendored
+
+# Language usage percentages
+*.py linguist-vendored=50%
+*.html linguist-vendored=20%
+*.js linguist-vendored=20%
+*.css linguist-vendored=10%
