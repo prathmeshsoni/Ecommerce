@@ -11,14 +11,14 @@
 
 <br>
   
-<img src="https://img.shields.io/badge/Django-239120?logo=django&logoColor=white" />
-<img src="https://img.shields.io/badge/Python-239120?logo=python&logoColor=white" />
+<img src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white" />
+<img src="https://img.shields.io/badge/Django-092E20?logo=django&logoColor=white" />
+<img src="https://img.shields.io/badge/Razorpay-0C2451?logo=Razorpay&logoColor=white" />
 <img src="https://img.shields.io/badge/SQL%20Server-CC2927?logo=microsoft-sql-server&logoColor=white" />
 <img src="https://img.shields.io/badge/Html5-E34F26?logo=html5&logoColor=white" />
 <img src="https://img.shields.io/badge/Css3-1572B6?logo=css3&logoColor=white" />
 <img src="https://img.shields.io/badge/Bootstrap-563D7C?logo=bootstrap&logoColor=white" />
 <img src="https://img.shields.io/badge/Github-181717?logo=github&logoColor=white" />
-<img src="https://img.shields.io/badge/Razorpay-000144?logo=Razorpay&logoColor=white" />
 </p>
 
 </h1>
@@ -71,7 +71,7 @@ To get a local copy up and running follow these simple example steps.
 ### Prerequisites
 Install Python 3.7 or above
 
-*  [Python](https://www.python.org/)
+*  [Python](https://python.org/downloads/)
 
 ### Installation
 
