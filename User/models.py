@@ -53,7 +53,7 @@ class buyModel(models.Model):
     order_idd = models.IntegerField(null=True)
 
     def __str__(self):
-        return self.user_id.username
+        return f'{self.user_id.username}'
 
 
 class Sub_bayModel(models.Model):
@@ -63,4 +63,4 @@ class Sub_bayModel(models.Model):
     total = models.IntegerField(null=True)
 
     def __str__(self):
-        return self.product_id
+        return f'{self.product_id}'

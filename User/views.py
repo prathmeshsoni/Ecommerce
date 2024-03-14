@@ -1294,7 +1294,7 @@ def payment_status(request):
         }
 
         transaction_id = params_dict['razorpay_payment_id']
-        i = request.session.get('order_info')
+        i = request.session.get('order_info')[0]
         shipping_charge = 70
         today_date = date.today()
         payment_option = 'RAZORPAY'
