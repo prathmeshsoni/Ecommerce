@@ -11,14 +11,18 @@
 
 <br>
   
-<img src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white" />
-<img src="https://img.shields.io/badge/Django-092E20?logo=django&logoColor=white" />
-<img src="https://img.shields.io/badge/Razorpay-0C2451?logo=Razorpay&logoColor=white" />
-<img src="https://img.shields.io/badge/SQL%20Server-CC2927?logo=microsoft-sql-server&logoColor=white" />
-<img src="https://img.shields.io/badge/Html5-E34F26?logo=html5&logoColor=white" />
-<img src="https://img.shields.io/badge/Css3-1572B6?logo=css3&logoColor=white" />
-<img src="https://img.shields.io/badge/Bootstrap-563D7C?logo=bootstrap&logoColor=white" />
-<img src="https://img.shields.io/badge/Github-181717?logo=github&logoColor=white" />
+<img src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white&style=for-the-badge" />
+<img src="https://img.shields.io/badge/Django-092E20?logo=django&logoColor=white&style=for-the-badge" />
+<img src="https://img.shields.io/badge/Razorpay-0C2451?logo=Razorpay&logoColor=white&style=for-the-badge" />
+<img src="https://img.shields.io/badge/SQL%20Server-CC2927?logo=microsoft-sql-server&logoColor=white&style=for-the-badge" />
+<img src="https://img.shields.io/badge/Html5-E34F26?logo=html5&logoColor=white&style=for-the-badge" />
+<img src="https://img.shields.io/badge/Css3-1572B6?logo=css3&logoColor=white&style=for-the-badge" />
+<img src="https://img.shields.io/badge/Bootstrap-563D7C?logo=bootstrap&logoColor=white&style=for-the-badge" />
+<img src="https://img.shields.io/badge/Github-181717?logo=github&logoColor=white&style=for-the-badge" />
+<a href="https://github.com/PrathmeshSoni">
+<img src="https://badges.pufler.dev/visits/prathmeshsoni/Ecommerce?label=VISITOR&style=for-the-badge&logoColor=FFFFFF&color=purple&labelColor=640464&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9IndoaXRlIiB2ZXJzaW9uPSIxLjEiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2IiBjbGFzcz0ib2N0aWNvbiBvY3RpY29uLWV5ZSIgYXJpYS1oaWRkZW49InRydWUiPjxwYXRoIGQ9Ik04IDJjMS45ODEgMCAzLjY3MS45OTIgNC45MzMgMi4wNzggMS4yNyAxLjA5MSAyLjE4NyAyLjM0NSAyLjYzNyAzLjAyM2ExLjYyIDEuNjIgMCAwIDEgMCAxLjc5OGMtLjQ1LjY3OC0xLjM2NyAxLjkzMi0yLjYzNyAzLjAyM0MxMS42NyAxMy4wMDggOS45ODEgMTQgOCAxNGMtMS45ODEgMC0zLjY3MS0uOTkyLTQuOTMzLTIuMDc4QzEuNzk3IDEwLjgzLjg4IDkuNTc2LjQzIDguODk4YTEuNjIgMS42MiAwIDAgMSAwLTEuNzk4Yy40NS0uNjc3IDEuMzY3LTEuOTMxIDIuNjM3LTMuMDIyQzQuMzMgMi45OTIgNi4wMTkgMiA4IDJaTTEuNjc5IDcuOTMyYS4xMi4xMiAwIDAgMCAwIC4xMzZjLjQxMS42MjIgMS4yNDEgMS43NSAyLjM2NiAyLjcxN0M1LjE3NiAxMS43NTggNi41MjcgMTIuNSA4IDEyLjVjMS40NzMgMCAyLjgyNS0uNzQyIDMuOTU1LTEuNzE1IDEuMTI0LS45NjcgMS45NTQtMi4wOTYgMi4zNjYtMi43MTdhLjEyLjEyIDAgMCAwIDAtLjEzNmMtLjQxMi0uNjIxLTEuMjQyLTEuNzUtMi4zNjYtMi43MTdDMTAuODI0IDQuMjQyIDkuNDczIDMuNSA4IDMuNWMtMS40NzMgMC0yLjgyNS43NDItMy45NTUgMS43MTUtMS4xMjQuOTY3LTEuOTU0IDIuMDk2LTIuMzY2IDIuNzE3Wk04IDEwYTIgMiAwIDEgMS0uMDAxLTMuOTk5QTIgMiAwIDAgMSA4IDEwWiI+PC9wYXRoPjwvc3ZnPg==">
+</a> 
+
 </p>
 
 </h1>
@@ -41,7 +45,7 @@ https://music-club.prathmeshsoni.works/
   * [Prerequisites](#Prerequisites)
   * [Installation](#installation)
 * [Credentials](#Default-Credentials)
-* [Screenshots](#Screenshots)
+* [Screenshots, Demo Video](#Screenshots)
 * [Connect Me](#Connect-with-me-at)
 
 ## About The Project
@@ -159,6 +163,10 @@ Visit [`http://127.0.0.1:8000`](http://localhost:8000) in your browser. The app 
 
 Visit our [Screenshots Page](https://private-app.prathmeshsoni.works/view/113) for a visual walkthrough of the Music Club E-Commerce Website.
 
+Demo Video 👇:
+
+https://github.com/prathmeshsoni/Ecommerce/assets/78293392/d98ab45a-f093-4cdd-88ff-ac1406e0332f
+
 
 <br />
 
@@ -176,9 +184,6 @@ The repository is a start point for most of my professional projects; for this, 
 
 <p align='center'>
   📫 How to reach me: <a href='mailto:connect.prathmeshsoni@gmail.com'>connect.prathmeshsoni@gmail.com</a>
-</p>
-<p align='center'>
-      <a href="#"><img src="https://badges.pufler.dev/visits/prathmeshsoni/Ecommerce"></a> 
 </p>
 
 ## All Set :)
