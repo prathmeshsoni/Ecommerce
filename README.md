@@ -169,8 +169,7 @@ Visit our [Screenshots Page](https://private-app.prathmeshsoni.works/view/113) f
 
 Demo Video 👇:
 
-https://github.com/prathmeshsoni/Ecommerce/assets/78293392/d98ab45a-f093-4cdd-88ff-ac1406e0332f
-
+https://github.com/prathmeshsoni/Ecommerce/assets/78293392/77c6be7a-d6a2-4e27-9c8e-e28327c99586
 
 <br />
 
