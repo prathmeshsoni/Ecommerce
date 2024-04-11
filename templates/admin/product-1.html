@@ -1,0 +1,525 @@
+{% extends 'admin/masterpage/index-1.html' %}
+{% load static %}
+{% block title3 %} Manage Product {% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="cal_ content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="row">
+            <div class="col-md-4">
+                <h5 class="card-title">Manage Product</h5>
+            </div>
+            <div class="col-md-2" >
+                {% if messages %}
+
+                        {% for message in messages %}
+                            <!--<div class="alert alert-info">-->
+                                <p style="color: red; margin-top: 10px !important;" >
+                                {{ message }}
+                                </p>
+                            <!--</div>-->
+                        {% endfor %}
+
+                    {% endif %}
+            </div>
+            <div class="col-md-3">
+                <div style="text-align-last: center; padding-top:12px; " >
+                    <button type="button" onclick="productModal()" class="btn btn-sm btn-light" style="
+                    color: blue; border: blue solid 1.7px; padding: 6px 17px;" ><i class="fa fa-plus" style="font-weight: bolder;" ></i> ADD PRODUCT</button>
+                </div>
+            </div>
+            <div class="col-md-3" style=" padding-top:12px; " >
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/admin/"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Master</a></li>
+                <li class="breadcrumb-item active">Product</li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+        <div class="row">
+            {% for i in pro_data %}
+		    <div class="col-12 col-lg-6 col-xl-3">
+    		    <div class="box">
+                    <div class="box-body">
+    				    <div class="product-img">
+    				        {% if i.pro_image %}
+        					    <img src="{{i.pro_image.url}}" alt="" class="das" >
+        					{% else %}
+        					    <img src="{% static 'admin/global_assets/images/clicktoupdate.jpg' %}" alt="" class="das" >
+        					{% endif %}
+        					<div class="pro-img-overlay">
+        					    <a href="javascript:void(0)" onclick="updateModel({{i.id}})" class="bg-info" style="width: auto !important; padding: 10px 25px !important; margin: 0; margin-top: 80px !important;" >Edit</a>
+        					    <a href="javascript:void(0)" class="bg-danger" onclick="Delete({{i.id}})" style="width: auto !important; padding: 10px 25px !important; margin: 0; margin-top: 80px !important;" >Delete</a>
+    					    </div>
+    				    </div>
+    				    <div class="product-text">
+    				        {% if i.pro_price %}
+        					    <h2 class="pro-price text-green">₹ {{i.pro_price}}</h2>
+        					    <h3 class="box-title mb-0" style="width: 60%;">{{i.productname}}</h3>
+    					    {% else %}
+
+    					        <a href="javascript:void(0)" onclick="updateModel({{i.id}})"><h5 class="pro-price mb-0" >Updete Product</h5></a>
+    					        <h3 class="box-title mb-0">{{i.productname}}</h3>
+    					        <!--<div>-->
+    					            <a href="javascript:void(0)" onclick="Delete({{i.id}})" style="float: right;"><h6 class="mb-0" style="font-weight: 500; padding: 0 10px; font-size: 17px;" >Delete Product</h6></a>
+    					        <!--</div>-->
+
+    					    {% endif %}
+
+    				    </div>
+                    </div>
+                </div>
+    	    </div>
+    	    {% endfor %}
+        </div>
+
+    </section>
+    <!-- /.content -->
+  </div>
+
+
+<div class="modal center-modal fade" id="productModal" tabindex="-1">
+  <div class="modal-dialog">
+	<div class="modal-content">
+	  <div class="modal-header">
+		<h5 class="modal-title" id="add_pro" >ADD PRODUCT</h5>
+		<h5 class="modal-title" id="edit_pro" >EDIT PRODUCT</h5>
+		<button type="button" class="close" data-dismiss="modal">
+		  <span aria-hidden="true">&times;</span>
+		</button>
+	  </div>
+	  <div class="modal-body">
+        <form method="POST" id="formid" onsubmit="openForm(); return false;" >
+          <input type="hidden" name="hid" id="hid">
+          <input type="hidden" name="closeid" id="closeid">
+            <div class="form-group">
+                <div class="row">
+                    <div id="div_id_catname_id" class="col-md-6">
+                        <label for="id_catname_id" class=" requiredField">
+                            Category
+                        </label>
+                        <div class="">
+                            <select name="catname_id" class="select form-control" required
+                                id="id_catname_id">
+                                <option selected value="">Select Category</option>
+                                {% for i in cat_obj %}
+                                  <option value="{{i.id}}" >{{i.cat_name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div id="div_id_brandname" class="col-md-6">
+                        <label for="id_brandname" class=" requiredField">
+                          Brand Name
+                        </label>
+                        <div class="">
+                          <select name="brandname_id" class="select form-control" required
+                              id="id_brand">
+                              <option selected value="">Select Brand</option>
+                              {% for i in brand_obj %}
+                                <option value="{{i.id}}">{{i.brand_name}}</option>
+                              {% endfor %}
+                          </select>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+
+                <div class="form-group col-md-6 mb-3">
+                  <div id="div_id_productname" class="form-group">
+                    <label for="id_productname" class=" requiredField">
+                      Product Name
+                    </label>
+                    <div class="">
+                      <input type="text" name="productname" placeholder="Enter Product Name" maxlength="100"
+                        class="textinput textInput form-control" id="id_productname" required >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group col-md-6 mb-3">
+                  <div id="div_id_pro_code" class="form-group">
+                    <label for="id_pro_code" class=" requiredField">
+                      Product Code
+                    </label>
+                    <div class="">
+                      <input type="number" name="pro_code" id="id_pro_code" placeholder="Enter Product Code" class="numberinput form-control" required>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div id="div_id_pro_description" class="col-md-12">
+                        <label for="id_pro_description" class=" requiredField">
+                            Product Description
+                        </label>
+                        <div class="">
+                            <textarea name="pro_description" cols="40" rows="10" placeholder="Enter Product Description"
+                                class="textarea form-control" id="id_pro_description" required ></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          {% csrf_token %}
+            <div class="modal-footer pb-1">
+                <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                <button type="submit" id="dubmit" class="btn btn-primary">Open Form</button>
+                <button type="submit" id="csubmit" onclick="savefun()" class="btn btn-info">Save</button>
+            </div>
+        </form>
+      </div>
+	</div>
+  </div>
+</div>
+
+
+<div class="modal center-modal fade" id="category2Model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Product Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" enctype="multipart/form-data" id="productform_id" action="/admin/product/getdata/">
+          <input type="hidden" name="hidden_id" id="hidden_id">
+          <div class="row">
+
+            <div class="form-group col-md-4 mb-3">
+              <div id="main_image" class="form-group">
+                <div class="form-group">
+                  <label class="col-form-label">Front Image</label>
+                  <input type="file" class="file-input"  name="pro_image" id="id_pro_image" data-fouc required >
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-md-4 mb-3">
+              <div id="back_image" class="form-group">
+                <div class="form-group">
+                  <label class="col-form-label">Back Image</label>
+                  <input type="file" class="file-input" name="pro_back_image" id="id_pro_back_image" data-fouc required >
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-md-4 mb-3">
+              <div id="idi_feature_image" class="form-group">
+                <div class="form-group">
+                  <label class="col-form-label">Feature Image</label>
+                  <input type="file" class="file-input" name="feature_image" id="id_feature_image"  data-fouc required >
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row">
+
+            <div class="form-group col-md-4 mb-3">
+
+              <div id="div_id_strike_price" class="form-group">
+
+                <label for="pro_quntity" class="requiredField">
+                  Product Quantity
+                </label>
+                <div class="">
+                  <input type="number" class="form-control" name="pro_quntity" id="id_pro_quantity"
+                    onkeyup="enable_button()" placeholder="Enter Quntity" required >
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-md-4 mb-3">
+
+              <div id="div_id_pro_price" class="form-group">
+
+                <label for="id_pro_price" class="requiredField">
+                  Product Price
+                </label>
+                <div class="">
+                  <input type="number" class="form-control" name="pro_price" placeholder="Enter Price" id="id_pro_price" required >
+                </div>
+              </div>
+
+            </div>
+
+            <div class="form-group col-md-4 mb-3">
+              <div id="div_id_pro_price" class="form-group">
+                <label for="strike_price" class="requiredField">
+                  Strike Price
+                </label>
+                <div class="">
+                  <input type="number" class="form-control" name="strike_price" placeholder="Enter Strike Price" id="id_strike_price" required >
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row">
+
+            <div class="form-group col-md-4 mb-3">
+
+              <div id="div_id_pro_colour" class="form-group">
+
+                <label for="pro_colour" class="requiredField">
+                  Product Colour
+                </label>
+                <div class="">
+                  <input type="text" class="form-control" name="pro_colour" placeholder="Enter Colour" id="id_pro_colour" required >
+                </div>
+              </div>
+
+            </div>
+
+            <div class="form-group col-md-4 mb-3">
+
+              <div id="div_id_return_product" class="form-group">
+
+                <label for="id_return_product" class="requiredField">
+                  Return Product
+                </label>
+                <div class="">
+                  <select name="return_product" class="select form-control"  id="id_return_product">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="form-group col-md-4 mb-3" id="return_opt">
+
+              <div id="div_id_return_period_days" class="form-group">
+
+                <label for="return_period_days" class="requiredField">
+                  Return Period Days
+                </label>
+                <div class="">
+                  <input type="number" class="form-control" name="return_period_days" value='0' placeholder="Enter Return Days" id="id_return_period_days">
+                </div>
+              </div>
+
+            </div>
+
+
+
+          </div>
+
+          <div class="row">
+
+            <div class="form-group col-md-4 mb-3">
+
+              <div id="div_pro_height" class="form-group">
+
+                <label for="pro_height" class="requiredField">
+                  Product Height
+                </label>
+                <div class="">
+                  <input type="number" class="form-control" name="pro_height" placeholder="Enter Height" id="pro_height" required >
+                </div>
+              </div>
+
+            </div>
+
+            <div class="form-group col-md-4 mb-3">
+
+              <div id="div_pro_width" class="form-group">
+
+                <label for="pro_width" class="requiredField">
+                  Product Width
+                </label>
+                <div class="">
+                  <input type="number" class="form-control" name="pro_width" placeholder="Enter Width" id="pro_width" required >
+                </div>
+              </div>
+
+            </div>
+
+            <div class="form-group col-md-4 mb-3">
+
+              <div id="div_id_pro_length" class="form-group">
+
+                <label for="pro_length" class="requiredField">
+                  Product Length
+                </label>
+                <div class="">
+                  <input type="number" class="form-control" name="pro_length" placeholder="Enter Length" id="pro_length" required >
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          <div class="modal-footer pb-1">
+            <button type="button" onclick="modalreopen()" class="btn btn-dark">back</button>
+            <button type="submit" id="submit_button" class="btn btn-primary">submit</button>
+          </div>
+    {% csrf_token %}
+    </form>
+  </div>
+</div>
+</div>
+</div>
+
+<script>
+
+  function updateModel(id) {
+    $.ajax({
+      url: '/admin/product/updatepro/',
+      method: 'POST',
+      data: { 'id': id, csrfmiddlewaretoken: '{{csrf_token}}' },
+      dataType: 'JSON',
+
+      success: function (data) {
+        $('#hid').val(data.id);
+        $('#id_catname_id').val(data.catname_id);
+        $('#id_brand').val(data.brand);
+        $('#id_productname').val(data.productname);
+        $('#id_pro_code').val(data.pro_code);
+        $('#id_pro_description').val(data.pro_description);
+
+
+        $('#id_pro_quantity').val(data.total_quantity);
+        $('#id_pro_price').val(data.pro_price);
+        $('#id_strike_price').val(data.strike_price);
+
+
+        $('#id_pro_colour').val(data.pro_colour);
+        $('#id_return_product').val(data.return_product);
+        $('#id_return_period_days').val(data.return_period_days);
+
+        $('#pro_height').val(data.pro_height);
+        $('#pro_width').val(data.pro_width);
+        $('#pro_length').val(data.pro_length);
+        $("#add_pro").css('display','none');
+        $("#edit_pro").css('display','block');
+        $('#productModal').modal();
+
+      },
+
+      error: function () {
+        alert('Something is Wrong');
+      }
+    });
+  };
+
+  function modalreopen() {
+    $('#productModal').modal('show');
+    $('#category2Model').modal('hide');
+  };
+
+
+  function productModal() {
+    $("#formid")[0].reset();
+    $("#productform_id")[0].reset();
+    $('#hid').val('');
+    $('#hidden_id').val('');
+
+    $("#add_pro").css('display','block');
+    $("#edit_pro").css('display','none');
+
+    $('#productModal').modal();
+
+  };
+
+  function savefun() {
+      $('#closeid').val('No');
+  }
+
+  function openForm() {
+      var a='s';
+      var a = $('#closeid').val();
+      if (a == 'No') {
+        $.ajax({
+          url: '/admin/product/',
+          method: 'POST',
+          data: $('#formid').serialize(),
+          dataType: 'JSON',
+          success: function (data) {
+
+            if (data.status == true) {
+              $('#productModal').modal('hide');
+                window.location.href = "/admin/product/";
+            } else {
+              alert('Something is Wrong')
+            }
+          }
+        });
+      }
+
+      else {
+          $.ajax({
+          url: '/admin/product/',
+          method: 'POST',
+          data: $('#formid').serialize(),
+          dataType: 'JSON',
+          success: function (data) {
+
+            if (data.status == true) {
+              $('#hidden_id').val(data.id);
+              $('#hid').val(data.id);
+              $('#productModal').modal('hide');
+              $('#category2Model').modal('show');
+            } else {
+              alert('Something is Wrong')
+            }
+          }
+        });
+      };
+  }
+
+    document.getElementById('id_return_product').onchange =
+    function () {
+
+      var a = $('#id_return_product').val();
+
+      if (a == 'No') {
+        $('#return_opt').css('display', 'none');
+        $('#id_return_period_days').val('0');
+      }
+
+      else {
+        $('#return_opt').css('display', 'block');
+        $('#id_return_period_days').val('0');
+      }
+
+    };
+
+
+    function Delete(id){
+        let confirmAction = confirm("You want to delete Product?")
+        if (confirmAction){
+            window.location.href = "/admin/product/remove_pro/" + id + "";
+        }
+        else{
+
+        }
+
+    }
+
+
+</script>
+
+
+
+
+{% endblock %}

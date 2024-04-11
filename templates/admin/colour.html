@@ -1,0 +1,125 @@
+{% extends 'admin/masterpage/index-1.html' %}
+{% load crispy_forms_tags %}
+{% block title3 %} Manage Colour {% endblock %}
+{% block title %} Filter {% endblock %}
+{% block title2 %} Colour {% endblock %}
+{% block content %}
+<div class="content">
+  <div class="content">
+    <!-- <div class="ml-4 mb-3 w-100">
+      <button type="button" onclick="openModel()" class="btn bg-primary-400 btn-labeled btn-labeled-left"><b><i
+            class="icon-plus2"></i></b> Add Category </button>
+    </div> -->
+    
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+            <div class="col-md-9">
+                <h5 class="card-title">Manage Colour</h5>
+            </div>
+            <div class="col-md-2">
+                <button type="button" onclick="openModel()" class="btn btn-sm btn-light"><i class="icon-plus-circle2"></i> ADD COLOUR</button>
+            </div>
+            <div class="col-md-1">
+                <div class="list-icons">
+                    <a class="list-icons-item" data-action="collapse"></a>
+                    <a class="list-icons-item" data-action="reload"></a>
+                    <a class="list-icons-item" data-action="remove"></a>
+                </div>
+            </div>
+        </div>
+      </div>
+      <table class="table table-bordered datatable-button-html5-basic">
+        <thead>
+          <tr class="bgcolor text-light">
+              <th width="1" >No</th>
+              <th>Colour Name</th>
+              <th>Colour Image</th>
+              <th width="20" >Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for i in show_data %}
+          <tr>
+              <td>{{i.id}}</td>
+              <td>{{i.colour_name}}</td>
+              <td><img src="{{i.colour_image.url}}" width="100px" alt=""></td>
+              <td>
+                <a href="javascript:void(0)" class="mr-2" data-popup="tooltip" title="Update" data-container="body"  onclick="updateModel({{i.id}})"><i class="icon-pencil3"></i></a>
+                <a href="/admin/filter/colour/removecolour/{{i.id}}" class="" data-popup="tooltip" title="Remove" ><i class="icon-trash"></i></a>
+              </td>
+                
+          </tr>
+          {% endfor %}
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="colourModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="categoryModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">ADD COLOUR</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" id="Addcolour" enctype="multipart/form-data">
+          <input type="hidden" name="id" id="id" />
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-12">
+                {{colour_obj|crispy}}
+                {% csrf_token %}
+              </div>
+            </div>
+          </div>
+          {% csrf_token %}
+          <div class="modal-footer">
+            <button type="button" class="btn btn-dark" data-dismiss="modal"><span class="text-light">Close</span></button>
+            <button type="submit" class="btn btn-primary ">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+
+  function openModel() {
+    $('#colourModal').modal();
+    $("#Addcolour")[0].reset();
+  };
+
+
+  function updateModel(id) {
+    $.ajax({
+      url: '/admin/filter/colour/updatecolour/',
+      method: 'POST',
+      data: { 'id': id, csrfmiddlewaretoken: '{{csrf_token}}' },
+      dataType: 'JSON',
+
+      success: function (data) {
+        $('#id').val(data.id);
+        $('#id_colour_name').val(data.colour_name);
+        $('#colourModal').modal();
+
+      },
+
+      error: function () {
+        alert('Something is Wrong');
+      }
+    });
+  }
+
+
+</script>
+
+{% endblock %}

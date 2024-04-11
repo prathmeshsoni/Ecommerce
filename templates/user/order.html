@@ -1,0 +1,112 @@
+{% extends 'user/profile.html' %}
+{% block title %} My Order   {% endblock %}
+{% block titall %} My Order {% endblock %}
+{% block contentt %}
+
+<div class="col-md-8" style="padding-bottom: 75px;" >
+    {% if emptyorder == 0 %}
+    <div id="add_2">
+        <div style="box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%) !important;  " class="mb-2 col-md-12 " id="add_1"  >
+            <div class="block-content" style="padding: 1px;" >
+                <div class="checkout-page contact-page">
+                    <div class="checkout-form">
+                        <h1>No Order Found!!</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div id="add_2">
+        <div style="box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%) !important;  " class="mb-2 col-md-12 " id="add_1"  >
+            <div class="block-content" style="padding: 1px;" >
+                <div class="checkout-page contact-page">
+                    <div class="checkout-form">
+                        {% for i in allorder %}
+                        <div class="row">
+                            <div class="col-md-12 pb-0 ">
+                                <div class="theme-form abc " style="padding: 30px 7px 30px 8px; margin: 35px 17px 17px 17px  !important;">
+                                    <div class="row check-out ">
+                                        <div class="form-group col-md-12">
+                                            <div class="row" >
+                                                <div class="col-md-7">
+                                                    <div class="row" >
+                                                        <div class="col-md-5">
+                                                            <label class="field-label" style="color: black;" ><span style="font-weight: 400;"> Order ID: </span>{{i.order_idd}}</label>
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            <label class="field-label"><span style="font-weight: 400;"> Order Date: </span>{{i.order_date}}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <label class="field-label"><span style="font-weight: 400;"> Total Price: </span><i class="fa fa-inr" aria-hidden="true"></i> {{i.total_amount}}.00</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <div class="row" >
+                                                <div class="col-md-12">
+                                                    <div class="row" >
+                                                        <div class="col-md-5">
+                                                            <label class="field-label" style="color: black;" ><span style="font-weight: 400;"> Payment Method: </span>{{i.payment_mode}}</label>
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <label class="field-label" style="color: black;" ><span style="font-weight: 400;"> Order Status: </span>{{i.order_status}}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-12 pt-0 pb-3">
+                                 <div class="col-md-3 pe-4" style="float: right;">
+                                    <a href="/user/order/{{i.id}}/0" >
+                                        <!--onclick="orrder({{i.id}})" -->
+                                        <button  type="submit" class="baak2">
+                                            View order details
+                                        </button>
+                                    </a>
+                                </div>
+                                {% if i.order_status == 'pending' %}
+                                    <div class="col-md-3 pe-4" style="float: right;" >
+                                        <a href="javascript:void(0)" onclick="cancel_order({{i.id}})" >
+                                            <!--onclick="orrder({{i.id}})" -->
+                                            <button type="button" class="baak2">
+                                                <span>
+                                                    Cancel order
+                                                </span>
+                                            </button>
+                                        </a>
+                                    </div>
+                               {% endif %}
+                            </div>
+                        </div>
+                        <hr>
+                        <!--{% for j in order_detailss %}-->
+                        <!--<tr>-->
+                        <!--    {% if i.id == j.order_id.id  %}-->
+                            <!--<td></td>-->
+                        <!--    <td>-->
+                        <!--        {{j.id}}-->
+                        <!--    </td>-->
+                        <!--    <td>-->
+                        <!--        {{j.product_id.productname}}-->
+                        <!--    </td>-->
+                        <!--    {% endif %}-->
+                        <!--</tr>-->
+                        <!--{% endfor %}-->
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,156 @@
+{% extends 'admin/masterpage/index-1.html' %}
+{% block title3 %} Private Window {% endblock %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+  <div class="cal_ content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="row">
+            <div class="col-md-4">
+                <h5 class="card-title">Manage Private Window</h5>
+            </div>
+            <div class="col-md-2" >
+                {% if messages %}
+
+                        {% for message in messages %}
+                            <!--<div class="alert alert-info">-->
+                                <p style="color: red; margin-top: 10px !important;" >
+                                {{ message }}
+                                </p>
+                            <!--</div>-->
+                        {% endfor %}
+
+                    {% endif %}
+            </div>
+            <div class="col-md-3">
+                <div style="text-align-last: center; padding-top:12px; " >
+                    <button type="button" onclick="openModel()" class="btn btn-sm btn-light" style="
+                    color: blue; border: blue solid 1.7px; padding: 6px 17px;" ><i class="fa fa-plus" style="font-weight: bolder;" ></i> ADD DATE</button>
+                </div>
+            </div>
+            <div class="col-md-3" style=" padding-top:12px; " >
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0)"><i class="fa fa-dashboard mr-1"></i>Private</a></li>
+                <li class="breadcrumb-item active"><a href="javascript:void(0)">Window</a></li>
+                <!--<li class="breadcrumb-item active"></li>-->
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+        <div class="row">
+            {% for i in list %}
+		    <div class="col-12 col-lg-6 col-xl-3">
+    		    <div class="box">
+                    <div class="box-body">
+    				    <div>
+    				        <a href="/private/view/{{i.id}}">
+            					<h3 class="box-title mb-0">
+            					    <span>
+            					        <i style="margin-right: 20px;" class="fa fa-info-circle" aria-hidden="true"></i>
+            					    </span>
+            					    {{i.date_name}}
+            					 </h3>
+    				        </a>
+    				    </div>
+                    </div>
+                </div>
+    	    </div>
+    	    {% endfor %}
+        </div>
+
+    </section>
+    <!-- /.content -->
+  </div>
+
+
+<div class="modal center-modal fade" id="categoryModal" tabindex="-1">
+  <div class="modal-dialog">
+	<div class="modal-content">
+	  <div class="modal-header">
+		<h5 class="modal-title " id="add_cat" style="display: none;" >ADD DETAILS</h5>
+		<h5 class="modal-title " id="edit_cat" style="display: none;" >EDIT DETAILS</h5>
+		<button type="button" class="close" data-dismiss="modal">
+		  <span aria-hidden="true">&times;</span>
+		</button>
+	  </div>
+	  <div class="modal-body">
+        <form method="POST" id="Addcategory" enctype="multipart/form-data">
+          <input type="hidden" name="id" id="id" value="" />
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-12">
+                {{ m.date_name|as_crispy_field }}
+                {{ m.private_description|as_crispy_field }}
+              </div>
+            </div>
+          </div>
+          {% csrf_token %}
+          <div class="modal-footer">
+            <button type="button" class="btn btn-dark" data-dismiss="modal"><span class="text-light">Close</span></button>
+            <button type="submit" class="btn btn-primary ">Submit</button>
+          </div>
+        </form>
+      </div>
+	</div>
+  </div>
+</div>
+
+
+<script>
+
+  function openModel() {
+    $('[name="id"]').val("");
+    $("#Addcategory")[0].reset();
+    $("#add_cat").css('display','block');
+    $("#edit_cat").css('display','none');
+    // document.getElementById("id_private_img").required = true;
+    $('#categoryModal').modal();
+
+  };
+
+
+  function updateModel(id) {''
+    $.ajax({
+      url: '/private/updatepra/',
+      method: 'POST',
+      data: { 'id': id, csrfmiddlewaretoken: '{{csrf_token}}' },
+      dataType: 'JSON',
+
+      success: function (data) {
+        $('[name="id"]').val(data.id);
+        $('#id_date_name').val(data.date_name);
+        $('#id_private_description').val(data.private_description);
+        // document.getElementById("id_private_img").required = false;
+        $("#add_cat").css('display','none');
+        $("#edit_cat").css('display','block');
+        $('#categoryModal').modal();
+
+      },
+
+      error: function () {
+        alert('Something is Wrong');
+      }
+    });
+  }
+
+    function Delete(id){
+        let confirmAction = confirm("You want to delete Private Item?")
+        if (confirmAction){
+            window.location.href = "/private/remove_pri/" + id + "";
+        }
+        else{
+
+        }
+    }
+
+</script>
+
+
+
+{% endblock %}

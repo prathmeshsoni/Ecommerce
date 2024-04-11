@@ -1,0 +1,162 @@
+{% extends 'admin/masterpage/index-1.html' %}
+{% block title3 %} Manage State {% endblock %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+    <div class="cal_ content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5 class="card-title">Manage STATE</h5>
+                </div>
+                <div class="col-md-2" >
+                    {% if messages %}
+    
+                            {% for message in messages %}
+                                <!--<div class="alert alert-info">-->
+                                    <p style="color: red; margin-top: 10px !important;" >    
+                                    {{ message }}
+                                    </p>
+                                <!--</div>-->
+                            {% endfor %}
+                    
+                        {% endif %}
+                </div>
+                <div class="col-md-2">
+                    <div style="text-align-last: center; padding-top:12px; " >
+                        <button type="button" onclick="openmodel()" class="btn btn-sm btn-light" style="
+                        color: blue; border: blue solid 1.7px; padding: 6px 17px;" ><i class="fa fa-plus" style="font-weight: bolder;" ></i> ADD STATE</button>
+                    </div>            
+                </div>
+                <div class="col-md-4" style=" padding-top:12px; " >
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/admin/"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">Address Master</a></li>
+                    <li class="breadcrumb-item active">State Master</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+    
+        <!-- Main content -->
+        <section class="content">
+    
+            <div class="row">
+                <div class="col-md-12" style="padding: 0;border-bottom: 2px solid rgba(120,130,140,.13);margin-bottom: 25px;" >
+                    <div class="col-12 col-lg-6 col-xl-4">
+            		    <div class="box">
+                            <div class="box-body">
+            				    <div class="text-center"  >
+                					
+                					<h3 class="text-muted db">State Name</h3>
+            				    </div>
+                            </div>
+                        </div>
+            	    </div>
+        	    </div>
+                {% for i in state_list %}
+    		    <div class="col-12 col-lg-6 col-xl-3">
+        		    <div class="box">
+                        <div class="box-body">
+        				    <div class="product-img" >
+            					<!--<img src="{{i.cat_img.url}}" alt="">-->
+            					<h3 class="box-title mb-0">{{i.state_name}}</h3>
+            					<div class="pro-img-overlayy pro-img-overlay" style="top: -10px !important;" >
+            					    <a href="javascript:void(0)" onclick="updateModel({{i.id}})" class="bg-info" style="width: auto !important;height: auto !important;padding: 10px 25px !important;margin: 0 !important;" >Edit</a>
+            					    <a href="javascript:void(0)" onclick="Delete({{i.id}})" class="bg-danger" style="width: auto !important;height: auto !important;padding: 10px 25px !important;margin: 0 !important;" >Delete</a>
+        					    </div>
+        				    </div>
+        				    <!--<div class="product-text">-->
+            					<!--<h2 class="pro-price text-green">$270</h2>-->
+            					
+            					<!--<small class="text-muted db">Lorem Ipsum Dummy Text</small>-->
+        				    <!--</div>-->
+                        </div>
+                    </div>
+        	    </div>
+        	    {% endfor %}
+            </div>
+    
+        </section>
+    <!-- /.content -->
+  </div>
+  
+  
+<div class="modal center-modal fade" id="stateModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="stateModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="add_state">ADD STATE</h5>
+        <h5 class="modal-title" id="edit_state">EDIT STATE</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" id="addstate" enctype="multipart/form-data">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-12">
+                <input type="hidden" name="id" id="id" value="" />
+                {{form_obj|crispy}}
+              </div>
+            </div>
+          </div>
+          {% csrf_token %}
+          <div class="modal-footer">
+            <button type="button" class="btn btn-dark" data-dismiss="modal"><span class="text-light">Close</span></button>
+            <button type="submit" class="btn btn-primary ">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<script>
+    function openmodel(){
+        $('#addstate')[0].reset();
+        $("#add_state").css('display','block');
+        $("#edit_state").css('display','none');
+        $('#stateModal').modal();
+    };
+
+    function updateModel(id){
+      $.ajax({
+      url: '/admin/address/state/updateState/',
+      method: 'POST',
+      data: { 'id': id, csrfmiddlewaretoken: '{{csrf_token}}' },
+      dataType: 'JSON',
+
+      success: function (data){
+        $('#id').val(data.id);
+        $('#id_state_name').val(data.state_name);
+        $("#add_state").css('display','none');
+        $("#edit_state").css('display','block');
+        $('#stateModal').modal();
+      },
+
+      error:function(){
+        alert('Something is wrong')
+      }
+    });
+  }
+    function Delete(id){
+        let confirmAction = confirm("You want to delete State?")
+        if (confirmAction){
+            window.location.href = "/admin/address/state/remove_state/" + id + "";
+        }
+        else{
+                    
+        }
+            
+    }
+
+</script>
+
+  
+{% endblock %}

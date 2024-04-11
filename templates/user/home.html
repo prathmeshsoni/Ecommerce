@@ -1,0 +1,143 @@
+{% extends 'user/index.html' %}
+{% block title %} Home   {% endblock %}
+{% load static %}
+{% block content %}
+
+
+
+<!--<section class="theme-slider home-slide b-g-white " id="home-slide">-->
+<!--  <div class="custom-container">-->
+<!--    <div class="row">-->
+<!--      <div class="col">-->
+<!--        <div class="slide-1 no-arrow">-->
+<!--                {% for i in obj %}-->
+<!--          <div>-->
+<!--            <div class="slider-banner p-center slide-banner-1">-->
+<!--              <div class="slider-img">-->
+<!--                <ul class="layout1-slide-1">-->
+<!--                          <li id="img-1"><img src="{{i.slider_img.url}}" style="width:100% !important;" class="img-fluid" alt="slider"></li>-->
+<!--                </ul>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--                  {% endfor %}-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</section>-->
+
+<section class="collection-banner section-pt-space b-g-white ">
+  <div class="custom-container">
+    <div class="row collection2">
+        {% for i in obj %}
+      <div class="col-md-4 pb-2 ">
+        <div class="collection-banner-main banner-1  p-right">
+          <div class="collection-img">
+            <img src="{{i.slider_img.url}}" class="img-fluid bg-img  " alt="banner">
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+  <!--tab product-->
+  <!--<section class="section-pt-space   mt-0 pt-0 pb-3" style="background-color: #fff;" >-->
+  <!--  <div class="tab-product-main">-->
+  <!--    <div class="tab-prodcut-contain" style="background-color: #e3e3e3c4;"  >-->
+  <!--      <ul class="">-->
+  <!--        {% for i in pro %}-->
+  <!--        <li>-->
+  <!--          <a href="/user/category/{{i.id}}">{{i.cat_name}}</a>-->
+  <!--        </li>-->
+  <!--        {% endfor %}-->
+  <!--      </ul>-->
+  <!--    </div>-->
+  <!--  </div>-->
+  <!--</section>-->
+
+    <div class="title8 section-big-pt-space">
+        <h4>our category</h4>
+    </div>
+
+    <section  class="tab-product-main  tab-second">
+        <div class="tab-prodcut-contain">
+            <ul class="tabs tab-title">
+                <li class="current">
+                    <a onclick="cat(0)" href="javascript:void(0)">all</a>
+                </li>
+
+                {% for i in pro %}
+                    <li class="">
+                        <a href="javascript:void(0)" onclick="cat({{i.id}})" >{{i.cat_name}}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+  <!--tab product-->
+
+  <!--product start-->
+
+  <!--product end-->
+  <section class="mb-0 pt-5 mt-0 section-big-mb-space ratio_square product "  style="background-color: #f5f6fb!important ;" >
+
+
+    {% for categoryy in pro %}
+        <div id="catt-{{categoryy.id}}" class="container-fluid pb-5">
+        <div class="row">
+            <div class="col-12 pr-0">
+               <div class="product-slide-5 product-m no-arrow">
+                  {% for products in categoryy.product_rel.all  %}
+                    {% if products.pro_image %}
+                        <div>
+                      <div class="product-box product-box2">
+                          <div class="product-imgbox">
+                            <div class="product-front">
+                                <a href="/user/product/{{products.id}}">
+                                  <img src="{{products.pro_image.url}}" class="img-fluid" style="width:70% !important; height:50% !important;"  alt="product">
+                                </a>
+                            </div>
+                            <div class="product-back">
+                                <a href="/user/product/{{products.id}}">
+                                  <img src="{{products.pro_image.url}}" class="img-fluid" style="width:70% !important; height:50% !important;" alt="product">
+                                </a>
+                            </div>
+                            <div class="product-icon icon-inline">
+                                <button  onclick="openquickk({{products.id}},0)" class="tooltip-top" data-tippy-content="Add to cart" >
+                                        <i  data-feather="shopping-cart"></i>
+                                                </button>
+                                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view" class="tooltip-top"  onclick="openquick({{products.id}})">
+                                  <i  data-feather="eye"></i>
+                                </a>
+                            </div>
+                          </div>
+                          <div class="product-detail product-detail2 ">
+                            <a href="/user/product/{{products.id}}">
+                                <h3>{{i.productname}}</h3>
+                            </a>
+                            <h5>
+                                <i class="fa fa-inr" aria-hidden="true"></i>  {{products.pro_price}}.00
+                                <span class="ms-3">
+                                    <i class="fa fa-inr" aria-hidden="true"></i>  {{products.strike_price}}.00
+                                </span>
+                            </h5>
+                          </div>
+                      </div>
+                    </div>
+                    {% endif %}
+                  {% endfor %}
+               </div>
+            </div>
+        </div>
+      </div>
+    {% endfor %}
+
+
+    </section>
+
+
+
+
+  {% endblock %}

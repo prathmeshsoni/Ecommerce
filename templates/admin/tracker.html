@@ -1,0 +1,133 @@
+{% extends 'admin/masterpage/index-1.html' %}
+{% block title3 %} View Order {% endblock %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+<div class="cal_ content-wrapper">
+    <section class="content-header">
+        <div class="row">
+            <div class="col-md-3">
+                <h5 class="card-title">Order Tracking</h5>
+            </div>
+            <div class="col-md-2" >
+            </div>
+            <div class="col-md-3">
+                <div style="text-align-last: center; padding-top:12px; " >
+                    <button type="button" onclick="openModel()" class="btn btn-sm btn-light" style="
+                    color: blue; border: blue solid 1.7px; padding: 6px 17px;" ><i class="fa fa-plus" style="font-weight: bolder;" ></i>ADD Tracking Details</button>
+                </div>            
+            </div>
+            <div class="col-md-4" style=" padding-top:12px; " >
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/admin/"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">Tracker Master</a></li>
+                    <li class="breadcrumb-item active">Tracker Order</li>
+                    </ol>
+            </div>
+        </div>
+    </section>
+
+    <section class="content">
+        <div class="row">
+    	    <div class="col-12">
+    	        <div class="box">
+                    <div class="box-body">
+    			        <div class="table-responsive">
+    				        <table id="productorder" class="table table-hover no-wrap product-order text-center" data-page-size="10">
+    					        <thead>
+    						        <tr>
+    						            <th>Details</th>
+        								<th>Order ID</th>
+                                        <th>description</th>
+                                        <th>Time</th>
+        							</tr>
+    					        </thead>
+    					        <tbody>
+    					            {% for i in tracker_details %}
+    					            <tr>
+        					            <td>
+                                            <a href="/admin/order/{{i.order_id.id}}">
+                                                <i style="font-size: 2em;" class="fa fa-info-circle" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                        <td>{{i.order_id.id}}</td>
+                                        <td>{{i.update_desc}}</td>
+                                        <td>{{i.timestamp}}</td>
+                                    </tr>
+                                    {% endfor %}
+    						    </tbody>
+    				        </table>
+    			        </div>
+                    </div>
+                </div>
+    	    </div>		  
+        </div>
+    </section>
+</div>
+
+<div class="modal center-modal fade" id="orderModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">ADD Order Tracking</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" id="Addcategory" enctype="multipart/form-data">
+          <input type="hidden" name="id" id="id" value="" />
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-12">
+                {{form_obj|crispy}}
+              </div>
+            </div>
+          </div>
+          {% csrf_token %}
+          <div class="modal-footer">
+            <button type="button" class="btn btn-dark" data-dismiss="modal"><span class="text-light">Close</span></button>
+            <button type="submit" class="btn btn-primary ">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+
+  function openModel() {
+    $('#orderModal').modal();
+    $("#Addcategory")[0].reset();
+    
+  };
+
+
+  function updateModel(id) {
+    $.ajax({
+      url: '/admin//tracker/',
+      method: 'POST',
+      data: { 'id': id, csrfmiddlewaretoken: '{{csrf_token}}' },
+      dataType: 'JSON',
+
+      success: function (data) {
+        $('[name="id"]').val(data.id);
+        $('#id_cat_name').val(data.cat_name);
+        $('#orderModal').modal();
+
+      },
+
+      error: function () {
+        alert('Something is Wrong');
+      }
+    });
+  }
+
+
+</script>
+
+{% endblock %}

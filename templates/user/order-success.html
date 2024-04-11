@@ -1,0 +1,279 @@
+{% extends 'user/index.html' %}
+{% block title %}
+{% if sid == 1 %}
+    Order Success
+{% else %}
+   Order Details
+{% endif %}
+{% endblock %}
+
+{% load static %}
+{% block content %}
+
+{% if sid == 1 %}
+<!-- thank-you section start -->
+<section class="section-big-py-space light-layout">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="success-text"><i class="fa fa-check-circle" aria-hidden="true"></i>
+                    <h2>thank you</h2>
+                    <input type="hidden" id="ssucesss" value="{{sid}}" >
+                    {% if order.payment_mode == 'COD' %}
+                    <p>Your Order is confirmed and the payment will be collected in cash at the place of delivery</p>
+                    <p>Order ID:{{order.order_idd}}</p>
+                    {% else %}
+                    <p>Payment is successfully processsed and your order is on the way</p>
+                    <p>Transaction ID:{{order.transaction_id}}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Section ends -->
+
+
+{% endif %}
+
+
+
+<!-- order-detail section start -->
+<!--<section class="section-big-py-space mt--5 b-g-light">-->
+<!--    <div  {% if sid == 1 %} {% else %} style="padding: 40px 30px ; " {% endif %} class="custom-container">-->
+<!--        <div class="row">-->
+<!--            <div class="col-lg-6">-->
+<!--                <div class="product-order">-->
+<!--                    <h3>your order details</h3>-->
+<!--                    <div class="row product-order-detail">-->
+<!--                        <div class="col-12">-->
+<!--                            <div class="row" style="color: black; font-weight: bold; text-align: center;" >-->
+<!--                                <div class="col-md-3">-->
+<!--                                    <h4>Product Image</h4>-->
+<!--                                </div>-->
+<!--                                <div class="col-md-9">-->
+<!--                                    <div class="col-md-3" style="display: inline-block;" >-->
+<!--                                        <h4>Product Name</h4>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-md-3" style="display: inline-block;" >-->
+<!--                                        <h4>Quantity</h4>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-md-3" style="display: inline-block;" >-->
+<!--                                        <h4>Price</h4>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            {% for i in order_list %}-->
+<!--                            <div class="row" style="text-align: center;" >-->
+<!--                                <div class="col-md-3">-->
+<!--                                    <a href="/user/product/{{i.product_id.id}}">    -->
+<!--                                        <img src="{{i.product_id.pro_image.url}}" alt="" class="img-fluid ">-->
+<!--                                    </a>-->
+<!--                                </div>-->
+<!--                                <div class="col-md-9"  style="padding-top: 50px;" >-->
+<!--                                <div class="col-md-3" style="display: inline-block;">-->
+<!--                                    <a href="/user/product/{{i.product_id.id}}" style="color: #777777;" >-->
+<!--                                        <h5>{{i.product_id.productname}}</h5>-->
+<!--                                    </a>-->
+<!--                                </div>-->
+<!--                                <div class="col-md-3" style="display: inline-block;">-->
+<!--                                    <h5>{{i.quantity}}</h5>-->
+<!--                                </div>-->
+<!--                                <div class="col-md-3" style="display: inline-block;">-->
+<!--                                    <h5>₹ {{i.total}}</h5>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            </div>-->
+<!--                            {% endfor %}-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="total-sec">-->
+<!--                        <ul>-->
+<!--                            <li>subtotal <span>₹ {{subtotal}}</span></li>-->
+<!--                            <li>shipping <span>₹ {{order.shipping_charge}}</span></li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                    <div class="final-total">-->
+<!--                        <h3>total <span>₹ {{order.total_amount}}</span></h3></div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-lg-6">-->
+<!--                <div class="row order-success-sec">-->
+<!--                    <div class="col-sm-6">-->
+<!--                        <h4>summery</h4>-->
+<!--                        <ul class="order-detail">-->
+<!--                            {% if order.payment_mode == 'COD' %}-->
+<!--                            <li>order ID: {{order.order_idd}}</li>-->
+<!--                            {% else %}-->
+<!--                            {% if sid == 1 %}-->
+<!--                            {% else %}-->
+<!--                            <li>Transaction ID:{{order.transaction_id}}</li>-->
+<!--                            {% endif %}-->
+<!--                            <li>order ID: {{order.order_idd}}</li>-->
+<!--                            {% endif %}-->
+<!--                            <li>Order Date: {{order.order_date}}</li>-->
+<!--                            <li>Order Total: ₹ {{order.total_amount}}</li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                    <div class="col-sm-6">-->
+<!--                        <h4>shipping address</h4>-->
+<!--                        <ul class="order-detail">-->
+<!--                            <li>{{order.address_id.street_address}},</li>-->
+<!--                            <li>{{order.address_id.locality}},</li>-->
+<!--                            <li>{{order.address_id.city}}- {{order.address_id.pincode}}</li>-->
+<!--                            <li>{{order.address_id.state}}, {{order.address_id.country}}</li>-->
+<!--                            <li>Contact No. {{order.address_id.phone_number}}</li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                    <div class="col-sm-12 payment-mode">-->
+<!--                        <h4>payment method</h4>-->
+<!--                        <p>{{order.payment_mode}}</p>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-12 pt-3">-->
+<!--                        <div class="delivery-sec">-->
+<!--                            <h3>expected date of delivery</h3>-->
+<!--                            <h2>october 22, 2018</h2></div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
+<!-- Section ends -->
+
+
+
+<!-- order-detail section start -->
+<section class="section-big-py-space mt--5 b-g-light">
+    <div class="custom-container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="product-order">
+                    <h3>your order details</h3>
+                    <div class="row mt-3" style="color: black; font-weight: bold; text-align: center;" >
+                        <div class="col-3">
+                            <h4>Image</h4>
+                        </div>
+                        <!--<div class="col-9">-->
+                        <div class="col-3">
+                            <h4>Name</h4>
+                        </div>
+                        <div class="col-3">
+                            <h4>Quantity</h4>
+                        </div>
+                        <div class="col-3">
+                            <h4>Price</h4>
+                        </div>
+                        <!--</div>-->
+                    </div>
+                    {% for i in order_list %}
+                        <div class="row product-order-detail text-center">
+                            <div class="col-3">
+                                <a href="/user/product/{{i.product_id.id}}">
+                                    <img src="{{i.product_id.pro_image.url}}" alt="" class="img-fluid ">
+                                </a>
+                            </div>
+                            <div class="col-3 oorder_detail">
+                                <a href="/user/product/{{i.product_id.id}}" style="color: #777777;" >
+                                        <h5>{{i.product_id.productname}}</h5>
+                                    </a>
+                                <!--<div>-->
+                                    <!--<h5>{{i.product_id.productname}}</h5>-->
+                                    <!--</div>-->
+                            </div>
+                            <div class="col-3 oorder_detail">
+                                <!--<div>-->
+                                    <h5>{{i.quantity}}</h5>
+                                    <!--</div>-->
+                            </div>
+                            <div class="col-3 oorder_detail">
+                                <!--<div>-->
+                                    <h5><i class="fa fa-inr" aria-hidden="true"></i> {{i.product_id.pro_price}}</h5>
+                                    <!--</div>-->
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <div class="total-sec">
+                        <ul>
+                            <li>subtotal <span><i class="fa fa-inr" aria-hidden="true"></i> {{subtotal}}.00</span></li>
+                            <li>shipping <span><i class="fa fa-inr" aria-hidden="true"></i> {{order.shipping_charge}}.00</span></li>
+                        </ul>
+                    </div>
+                    <div class="final-total">
+                        <h3>total <span><i class="fa fa-inr" aria-hidden="true"></i> {{order.total_amount}}.00</span></h3></div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="row order-success-sec">
+                    <div class="col-sm-6">
+                        <h4>summery</h4>
+                        <ul class="order-detail">
+                            {% if order.payment_mode == 'COD' %}
+                            <li>order ID: {{order.order_idd}}</li>
+                            {% else %}
+                                {% if sid == 1 %}
+
+                                {% else %}
+                                <li>Transaction ID:{{order.transaction_id}}</li>
+                                {% endif %}
+                            <li>order ID: {{order.order_idd}}</li>
+                            {% endif %}
+                            <li>Order Date: {{order.order_date}}</li>
+                            <li>Order Total:
+                                <span>
+                                    <i class="fa fa-inr me-2 ms-2" aria-hidden="true"></i>
+                                </span>
+                                {{order.total_amount}}.00</li>
+                            {% if i.order_status == 'pending' %}
+                            {% else %}
+                                <li>Order Status:
+                                    {{order.order_status}}
+                                </li>
+                            {% endif %}
+
+                        </ul>
+                    </div>
+                    <div class="col-sm-6">
+                        <h4>shipping address</h4>
+                        <ul class="order-detail">
+                            <li>{{order.address_id.street_address}},</li>
+                            <li>{{order.address_id.locality}},</li>
+                            <li>{{order.address_id.city}}- {{order.address_id.pincode}}</li>
+                            <li>{{order.address_id.state}}, {{order.address_id.country}}</li>
+                            <li>Contact No. {{order.address_id.phone_number}}</li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-12 payment-mode">
+                        <h4>payment method</h4>
+                        <p>{{order.payment_mode}}</p>
+                    </div>
+                    {% if order.order_status == 'pending' %}
+                        <div class="col-md-12">
+                            <div class="delivery-sec">
+                                <h3>expected date of delivery</h3>
+                                <h2>{{order_date}}</h2>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="col-md-12">
+                            <div class="delivery-sec">
+                                <h3 style="color: red !important;" >Your Order is Cancel Now !!
+                                {% if order.payment_mode == 'COD' %}
+                                {% else %}
+                                    <br>
+                                    Your paymant will be refunded in 7 working Days....!
+                                {% endif %}
+                                </h3>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Section ends -->
+
+
+
+{% endblock %}

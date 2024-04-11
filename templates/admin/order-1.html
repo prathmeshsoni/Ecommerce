@@ -1,0 +1,134 @@
+{% extends 'admin/masterpage/index-1.html' %}
+{% block title3 %} View Order {% endblock %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<!--<div class="cal_ content-wrapper">-->
+<!--    <section class="content-header">-->
+<!--        <div class="row">-->
+<!--            <div class="col-md-4">-->
+<!--                <h5 class="card-title">Manage Category</h5>-->
+<!--            </div>-->
+<!--            <div class="col-md-2" >-->
+<!--                {% if messages %}-->
+
+<!--                        {% for message in messages %}-->
+                            <!--<div class="alert alert-info">-->
+<!--                                <p style="color: red; margin-top: 10px !important;" >    -->
+<!--                                {{ message }}-->
+<!--                                </p>-->
+                            <!--</div>-->
+<!--                        {% endfor %}-->
+
+<!--                    {% endif %}-->
+<!--            </div>-->
+<!--            <div class="col-md-3">-->
+<!--                <div style="text-align-last: center; padding-top:12px; " >-->
+<!--                    <button type="button" onclick="openModel()" class="btn btn-sm btn-light" style="-->
+<!--                    color: blue; border: blue solid 1.7px; padding: 6px 17px;" ><i class="fa fa-plus" style="font-weight: bolder;" ></i> ADD CATEGORY</button>-->
+<!--                </div>            -->
+<!--            </div>-->
+<!--            <div class="col-md-3" style=" padding-top:12px; " >-->
+<!--            <ol class="breadcrumb">-->
+<!--                <li class="breadcrumb-item"><a href="/admin/"><i class="fa fa-dashboard"></i> Home</a></li>-->
+<!--                <li class="breadcrumb-item"><a href="javascript:void(0)">Order Master</a></li>-->
+<!--                <li class="breadcrumb-item active">Order</li>-->
+<!--                </ol>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
+<!--    <div class="card" style="margin: 30px;" >-->
+<!--     <table class="table datatable-button-html5-basic text-center">-->
+<!--            <thead>-->
+<!--                <tr>-->
+<!--                    <th>Detail</th>-->
+<!--                    <th>Id</th>-->
+<!--                    <th>UserName</th>-->
+<!--                    <th>Total Quantity</th>-->
+<!--                    <th>Total Amount</th>-->
+<!--                    <th>PaymentMode</th>-->
+<!--                    <th>Order Id</th>-->
+<!--                    <th>Order Status</th>-->
+<!--                </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--                {% for i in order_details %}-->
+<!--                <tr>-->
+<!--                    <td>-->
+<!--                        <a href="/admin/order/{{i.id}}">-->
+<!--                            <i style="font-size: 2em;" class="fa fa-info-circle" aria-hidden="true"></i>-->
+<!--                        </a>-->
+<!--                    </td>-->
+<!--                    <td>{{i.id}}</td>-->
+<!--                    <td>{{i.address_id.user_id.username}}</td>-->
+<!--                    <td>{{i.total_quantity}}</td>-->
+<!--                    <td>₹ {{i.total_amount}}</td>-->
+<!--                    <td>{{i.payment_mode}}</td>-->
+<!--                    <td>{{i.order_idd}}</td>-->
+<!--                    <td>{{i.order_status}}</td>-->
+<!--                </tr>-->
+<!--                {% endfor %}-->
+<!--            </tbody>-->
+<!--        </table>-->
+<!--    </div>-->
+<!--</div>-->
+
+<div class="cal_ content-wrapper">
+    <section class="content-header">
+        <h1>
+            View Order
+        </h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/admin/"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Order Master</a></li>
+            <li class="breadcrumb-item active">Order</li>
+        </ol>
+    </section>
+
+    <section class="content">
+        <div class="row">
+    	    <div class="col-12">
+    	        <div class="box">
+                    <div class="box-body">
+    			        <div class="table-responsive">
+    				        <table id="productorder" class="table table-hover no-wrap product-order text-center" data-page-size="10">
+    					        <thead>
+    						        <tr>
+        								<th>Detail</th>
+                                        <th>Customer</th>
+                                        <th>Order Id</th>
+                                        <th>Total Quantity</th>
+                                        <th>Total Amount</th>
+                                        <th>PaymentMode</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+        							</tr>
+    					        </thead>
+    					        <tbody>
+    					            {% for i in order_details %}
+    					            <tr>
+        					            <td>
+                                            <a href="/admin/order/{{i.id}}">
+                                                <i style="font-size: 2em;" class="fa fa-info-circle" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                        <td>{{i.address_id.user_id.username}}</td>
+                                        <td>#{{i.order_idd}}</td>
+                                        <td>{{i.total_quantity}}</td>
+                                        <td>₹ {{i.total_amount}}</td>
+                                        <td>{{i.payment_mode}}</td>
+                                        <td>{{i.order_date}}</td>
+                                        <td><span class="label label-warning">{{i.order_status}}</span></td>
+                                    </tr>
+                                    {% endfor %}
+    						    </tbody>
+    				        </table>
+    			        </div>
+                    </div>
+                </div>
+    	    </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

@@ -1,0 +1,236 @@
+{% extends 'user/index.html' %}
+{% block title %} My Cart   {% endblock %}
+{% load static %}
+{% block content %}
+
+
+<!-- breadcrumb start -->
+<div class="breadcrumb-main ">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="breadcrumb-contain">
+                    <div>
+                        <h2>My Cart</h2>
+                        <ul>
+                            <li><a href="index-2.html">home</a></li>
+                            <li><i class="fa fa-angle-double-right"></i></li>
+                            <li><a href="javascript:void(0)">My Cart</a></li>
+                            {% if messages %}
+                    
+                            {% for message in messages %}
+                            <div class="alert alert-info">
+                                {{ message }}
+                            </div>
+                            {% endfor %}
+                    
+                        {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<!-- breadcrumb End -->
+
+{% if emptycart == 'emtycart' %}
+    <h1 class="ps-5 ms-5" >Your Music-Club Cart is empty!!</h1>
+{% else %}
+    <!--section start-->
+    <section class="cart-section section-big-py-space b-g-light" id="soni"  >
+        <div class="custom-container" >
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table cart-table table-responsive-md">
+                        <thead>
+                        <tr class="table-head">
+                            <th scope="col">image</th>
+                            <th scope="col">product name</th>
+                            <th scope="col">price</th>
+                            <!--<th scope="col">Colour</th>-->
+                            <th scope="col">quantity</th>
+                            <th scope="col">action</th>
+                            <th scope="col">total price</th>
+                            <input type="hidden" name="cart_scroll" id="cart_scroll" value="{{cartc}}" />
+                        </tr>
+                        </thead>
+                        {% for i in cartt %}
+                        <tbody>
+                        <tr>
+                            <td>
+                                <a href="/user/product/{{i.product_id.id}}"><img src="{{i.product_id.pro_image.url}}" alt="cart"  class=" "  ></a>
+                            </td>
+                            <td>
+                                <a href="/user/product/{{i.product_id.id}}">{{i.product_id.productname}}</a>
+                                <div class="mobile-cart-content">
+                                    <div class="col-xs-3">
+                                        <h2 class="td-color"><i class="fa fa-inr" aria-hidden="true"></i> {{i.product_id.pro_price}}.00</h2>
+                                    </div>
+                                </div>
+                                <div class="mobile-cart-content">
+                                    <div class="col-xs-3">
+                                        <div class="qty-box">
+                                            <div class="input-group">
+                                                <button class="qty-minus" onclick="minus({{i.id}})" >
+                                                    <i class="fa fa-minus" aria-hidden="true"></i>
+                                                </button>
+                                                <form method="POST">
+                                                    {% csrf_token %}
+                                                    <input type="hidden" class="cartquntityss{{i.id}}" name="cartquntity" id="cartquntity-{{i.id}}" value="{{i.quantity}}" >
+                                                </form>
+                                                <input class="qty-adj form-control demo1{{i.id}}" style="width: 55px !important;" id="qty-adj{{i.id}}" type="number" onblur="inppp({{i.id}})" value="{{i.quantity}}"/>
+                                                <button class="qty-plus" onclick="plus({{i.id}})" > 
+                                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mobile-cart-content">
+                                    <div class="col-xs-3">
+                                        <h2 class="td-color">
+                                            <a href="javascript:void(0)" onclick="deletee({{i.id}})" >
+                                                <i class="fa fa-trash-o assa" aria-hidden="true"></i>
+                                            </a>
+                                        </h2>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <input type="hidden"  id="ok{{i.id}}" value="{{i.product_id.pro_price}}"  >
+                                <a href="/user/product/{{i.product_id.id}}"><i class="fa fa-inr" aria-hidden="true"></i> {{i.product_id.pro_price}}.00</a>
+                            </td>
+                            
+                            <!--<td>-->
+                            <!--    <a href="/user/product/{{i.product_id.id}}">{{i.product_id.pro_colour}}</a>-->
+                            <!--</td>-->
+                            
+                            <td>
+                                <div class="qty-box">
+                                    <div class="input-group">
+                                        <button class="qty-minus" onclick="minus({{i.id}})" >
+                                            <i class="fa fa-minus" aria-hidden="true"></i>
+                                        </button>
+                                        <form method="POST">
+                                            {% csrf_token %}
+                                            <input type="hidden" class="cartquntityss{{i.id}}" name="cartquntity" id="cartquntity-{{i.id}}" value="{{i.quantity}}" >
+                                        </form>
+                                        <input class="qty-adj form-control demo1{{i.id}}" style="width: 55px !important;" id="qty-adj{{i.id}}" type="number" onblur="inppp({{i.id}})" value="{{i.quantity}}"/>
+                                        <button class="qty-plus" onclick="plus({{i.id}})" > 
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                    <div class="input-group">
+                                        {% if i.product_id.total_quantity < i.quantity %}
+                                        <button type="button" style="padding: 2px 3px 3px;color: red;background-color: #abfff8;" >
+                                                <h6> {{i.product_id.total_quantity}} </h6>
+                                                <h7>Avail</h7>
+                                                
+                                            {% else %}
+                                                
+                                        </button>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)" onclick="deletee({{i.id}})" >
+                                    <i class="fa fa-trash-o assa" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="" class="cart_subtotal-{{i.id}}" >
+                                <i class="fa fa-inr" aria-hidden="true"></i> {% widthratio i.product_id.pro_price 1 i.quantity %}.00
+                                </a>
+                                
+                            </td>
+                        
+                        
+                            <!--<td style="min-width: 100px !important;" >-->
+                            <!--    <a href="javascript:void(0)"><img src="{{i.product_id.pro_image.url}}" alt="cart"  class=" "></a>-->
+                            <!--</td>-->
+                            <!--<td><a href="javascript:void(0)">{{i.product_id.productname}}</a>-->
+                            <!--    <div class="mobile-cart-content">-->
+                            <!--        <div class="col-xs-3">-->
+                            <!--            <h2 class="td-color">₹ {{i.product_id.pro_price}}.00</h2>-->
+                            <!--        </div>-->
+                            <!--    </div>-->
+                            <!--    <div class="mobile-cart-content">-->
+                            <!--        <div class="col-xs-3">-->
+                            <!--            <div class="qty-box">-->
+                            <!--                <div class="input-group">-->
+                            <!--                    <button style="padding-left: 5px !important; padding-right: 5px !important;" class="qty-minus" onclick="minus({{i.id}})" >-->
+                            <!--                        <i class="fa fa-minus" aria-hidden="true"></i>-->
+                            <!--                    </button>-->
+                            <!--                    <form method="POST">-->
+                            <!--                        {% csrf_token %}-->
+                            <!--                        <input type="hidden" class="cartquntityss{{i.id}}" name="cartquntity" id="cartquntity-{{i.id}}" value="{{i.quantity}}" >-->
+                            <!--                    </form>-->
+                            <!--                    <input class="qty-adj form-control demo1{{i.id}}" style="width: 36px !important;" id="qty-adj{{i.id}}" type="number" onblur="inppp({{i.id}})" value="{{i.quantity}}"/>-->
+                            <!--                    <button style="padding-left: 5px !important; padding-right: 5px !important;" class="qty-plus" onclick="plus({{i.id}})" > -->
+                            <!--                        <i class="fa fa-plus" aria-hidden="true"></i>-->
+                            <!--                    </button>-->
+                            <!--                </div>-->
+                            <!--            </div>-->
+                            <!--        </div>-->
+                            <!--        <div class="col-xs-3">-->
+                            <!--            <h2 class="td-color">-->
+                            <!--                <a href="javascript:void(0)" onclick="deletee({{i.id}})" >-->
+                            <!--                    <i class="fa fa-trash-o assa" aria-hidden="true"></i>-->
+                            <!--                </a>-->
+                            <!--            </h2>-->
+                            <!--        </div>-->
+                            <!--    </div>-->
+                            <!--</td>-->
+                            <!--<td>-->
+                            <!--    <h2>₹ {{i.product_id.pro_price}}.00</h2></td>-->
+                            <!--<td>-->
+                            <!--    <div class="qty-box">-->
+                            <!--        <div class="input-group">-->
+                            <!--            <input type="number" name="quantity" class="form-control input-number" value="1">-->
+                            <!--        </div>-->
+                            <!--    </div>-->
+                            <!--</td>-->
+                            <!--<td>-->
+                            <!--    <a href="javascript:void(0)" onclick="deletee({{i.id}})" >-->
+                            <!--        <i class="fa fa-trash-o assa" aria-hidden="true"></i>-->
+                            <!--    </a>-->
+                            <!--</td>-->
+                            <!--<td>-->
+                            <!--    <h2 class="td-color">₹ {% widthratio i.product_id.pro_price 1 i.quantity %}.00</h2></td>-->
+                        </tr>
+                        </tbody>
+                        {% endfor %}
+                    </table>
+                    <table class="table cart-table table-responsive-md">
+                        <tfoot>
+                        <tr>
+                            <td>total price :</td>
+                            <td>
+                                <input type="text" class="form-control toatl_aa" id="tatal" readonly style="background-color: #fafafa; width: 175px;" value="₹ {{totall_amount}}.00" >
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+            <div class="row cart-buttons">
+                <div class="col-12">
+                    <a href="/user/product/" class="btn btn-normal">continue shopping</a>
+                    <a href="/user/checkout/" class="btn btn-normal ms-3">check out</a>
+                </div>
+            </div>
+            <!--<div class="row cart-buttons">-->
+            <!--    <div class="col-12">-->
+            <!--            <a href="/user/product/" onloadeddata="sassa()" class="btn btn-normal">continue shopping</a> -->
+            <!--            <a href="/user/checkout/" class="btn btn-normal">check out</a>-->
+            <!--    </div>-->
+            <!--</div>-->
+        </div>
+    </section>
+    <!--section end-->
+{% endif %}
+
+{% endblock %}

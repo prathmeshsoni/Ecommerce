@@ -1,0 +1,111 @@
+{% extends 'admin/masterpage/index-1.html' %}
+{% block title3 %} Order Detail {% endblock %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+
+
+<div class="cal_ content-wrapper">
+        <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Order Detail
+      </h1>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="breadcrumb-item"><a href="javascript:void(0)">Order Master</a></li>
+        <li class="breadcrumb-item active">Order ID :{{order.id}}</li>
+      </ol>
+    </section>
+
+        <!-- Main content -->
+    <section class="content" style="min-height: 220px !important;" >
+
+      <div class="row">
+		  <div class="col-12">
+		    <div class="box">
+              <div class="box-body">
+				<div class="table-responsive">
+					<table class="table text-center" style="color: black !important;" >
+						<thead>
+							<tr>
+							    <th>Id</th>
+                                <th>Customer</th>
+                                {% if order.payment_mode == 'RAZORPAY' %}
+                                    <th>Order Id</th>
+                                    <th>Transaction Id</th>
+                                {% else %}
+                                    <th>Order Id</th>
+                                {% endif %}
+                                <th>Total Quantity</th>
+                                <th>Total Amount</th>
+                                <th>PaymentMode</th>
+                                <th>Date</th>
+                                <th>Status</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+							    <td>{{order.id}}</td>
+                                <td>{{order.address_id.user_id.username}}</td>
+                                {% if order.payment_mode == 'RAZORPAY' %}
+                                    <td>#{{order.order_idd}}</td>
+                                    <td>{{order.transaction_id}}</td>
+                                {% else %}
+                                    <td>#{{order.order_idd}}</td>
+                                {% endif %}
+                                <td>{{order.total_quantity}}</td>
+                                <td>₹ {{order.total_amount}}</td>
+                                <td>{{order.payment_mode}}</td>
+                                <td>{{order.order_date}}</td>
+                            	<td><span class="label label-warning">Pending</span></td>
+						</tbody>						
+					</table>
+				</div>
+              </div>
+            </div>
+		  </div>		  
+	  </div>
+
+    </section>
+        <!-- /.content -->
+    
+        
+    <section class="content pt-0">
+            <div class="row">
+    		    <div class="col-12">
+    		        <div class="box">
+                        <div class="box-body">
+    				        <div class="table-responsive">
+    					        <table id="productorder" class="table table-hover no-wrap product-order text-center" data-page-size="10">
+    						        <thead>
+    							        <tr>
+            								 <th>Image</th>
+            								 <th>Name</th>
+            								 <th>Quantity</th>
+            								 <th>Price</th>
+            								 <th>Color</th>
+            							</tr>
+    						        </thead>
+    						        <tbody>
+    						            {% for i in order_list %}
+        							        <tr>
+                								<td><img src="{{i.product_id.pro_image.url}}" alt="product" width="80"></td>
+                								<td>{{i.product_id.productname}}</td>
+                								<td>{{i.quantity}}</td>
+                								<td>₹ {{i.product_id.pro_price}}</td>
+                								<td>{{i.product_id.pro_colour}}</td>
+        							        </tr>
+    							        {% endfor %}
+    							    </tbody>
+    					        </table>
+    				        </div>
+                        </div>
+                    </div>
+    		    </div>		  
+    	    </div>
+        </section>
+</div>
+{% endblock %}

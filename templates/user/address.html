@@ -1,0 +1,274 @@
+{% extends 'user/profile.html' %}
+{% block title %} Address Book   {% endblock %}
+{% block titall %} Address Book {% endblock %}
+{% block contentt %}
+
+<div class="col-md-9">
+    <input type="hidden" name="cart_scroll" id="cart_scroll" value="2" />
+    <input type="hidden" name="confirm_delete" id="confirm_delete" value="1" />
+    <div class="dashboard-right" style="background-color: #ffffff00 !important;" >
+        <div class="dashboard pt-0 pb-0" style="display: none; " id="add_2">
+            <div class="col-md-12 mb-2"  style="box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%) !important;">
+                <div class="block-content" style="padding: 1px;" >
+                    <div class="checkout-page contact-page">
+                        <div class="checkout-form">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form method="POST" action="/user/myaccount/" id="id_addressform" >
+                                        {% csrf_token %}
+                                        <input type="hidden" name="hid" id="hid"> 
+                                        <div>
+                                            <div class="theme-form abc">
+                                                <div class="row check-out ">
+                                                    <div class="form-group col-md-12 pbb-2">
+                                                        <div class="row" >
+                                                            <div class="col-md-5 hid-e" style="display: none;" >
+                                                                <button type="button" onclick="clickclose()" style="width: 45%; float: right;" class="baak2 me-2">
+                                                                    back
+                                                                </button>
+                                                            </div>
+                                                            <div class="col-md-1 pe-0 pt-1 widht-auto">
+                                                                <input type="radio" style="width: 25px; height: 15px; " checked name="newaddress" >
+                                                            </div>
+                                                            <div class="col-md-5 ps-0 widht-auto" id="neew" style="display: none;" >
+                                                                <label class="field-label">Add New address</label>
+                                                            </div>
+                                                            <div class="col-md-5 ps-0 widht-auto" id="ediit" style="display: none;" >
+                                                                <label class="field-label">Edit Address</label>
+                                                            </div>
+                                                            <div class="col-md-6 hideee">
+                                                                <button type="button" onclick="clickclose()" style="width: 45%; float: right;" class="baak2 me-2">
+                                                                    back
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-md-12">
+                                                        <div class="row" >
+            
+                                                            <div class="col-md-6">
+                                                                <label class="field-label">First Name</label>
+                                                                <input type="text" name="firstname" placeholder="Enter Your First name" id="firstname" required >
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label class="field-label">last Name</label>
+                                                                <input type="text" name="lastname" placeholder="Enter Your Last name" id="lastname" required >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-md-12">
+                                                        <div class="row" >
+                                                            <div class="col-md-12">
+                                                                <label class="field-label">Phone Number</label>
+                                                                <input type="number" name="phone_number" value="" placeholder="Enter Your Phone number" id="phone_number" required >
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-md-12">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <label class="field-label">Street Address</label>
+                                                                <div class="son" >
+                                                                    <textarea name="Street" cols="8" rows="3" placeholder="Enter Your Street address,.." id="Street" required></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-md-12">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <label class="field-label">locality</label>
+                                                                <input type="text" name="locality" value="" placeholder="Enter Your locality" id="locality" required >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-md-12">
+                                                        <div class="row" >
+                                                            <div class="col-md-6">
+                                                                <label class="field-label">City</label>
+                                                                <input type="text" name="city" placeholder="Enter Your City" id="city" required >
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label class="field-label">Zip/Postal Code</label>
+                                                                <input type="number" name="pincode" value="" placeholder="Enter Your Pincode" id="pincode" required >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-md-12">
+                                                        <div class="row" >
+                                                            <div class="col-md-6">
+                                                                <label class="field-label">State</label>
+                                                                <select class="form-control" name="state" id="state" required >
+                                                                    <option value="" >---------- Select State ----------</option>
+                                                                    {% for i in state_list %}
+                                                                    <option value="{{i.id}}">{{i.state_name}}</option>
+                                                                    {% endfor %}
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label class="field-label">Country</label>
+                                                                <select  class="form-control" name="country" id="country" >
+                                                                    <option>INDIA</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-md-12 mt-3 ">
+                                                        <div class="row" >
+                                                            <div class="col-md-6 pbb-2">
+                                                                <button type="button"  id="canceel" onclick="clickclose()"  class="baak">
+                                                                    cancel
+                                                                </button>
+                                                            </div>
+                                                            
+                                                            <div class="col-md-6">
+                                                                <button type="submit" class="baak2">
+                                                                    SAVE
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dashboard pt-0 pb-0" >
+            <div class="col-md-10 mb-2" id="id_1" style="box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%) !important;" >
+                <div class="block-content" style="padding: 1px;" >
+                    <div class="form-group col-md-10 m-4">
+                        <div class="row" >
+                            <div class="col-md-9">
+                                <a href="javascript:void(0)" onclick="clicknew()" >
+                                    <h4 style="font-weight: 500; font-size: 20px; color: #00b9c6; " > <span style="margin-left: 22px; margin-right: 20px; " >+</span>  ADD NEW ADDRESS</h4>
+                                </a>
+                            </div>
+                            {% if messages %}
+                                {% for message in messages %}
+                                <div class="col-md-3" style="padding-left: 0px !important;">
+                                    <a href="javascript:void(0)">
+                                        <span class="{{ message.tags }}d" >{{message}}</span>
+                                    </a>
+                                </div>   
+                                {% endfor %}
+                             {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dashboard pt-0 pb-0" >
+            {% for i in address_obj %}
+                <div class="col-md-10 mb-4" id="id_2" style="box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%) !important" >
+                <div class="block-content">
+                    <div class="form-group col-md-12 p-4">
+                        <div class="row" >
+                            <div class="col-md-12">
+                                <div style="color: rgba(60,60,60,.54); " >
+                                    <span style="color: black !important; text-transform: capitalize; font-size: 17px; font-weight: 400;" >{{i.first_name}} {{i.last_name}}</span><br>
+                                    <br><span>Mob. {{i.phone_number}}</span><br>
+                                    <span>
+                                        {{i.street_address}}
+                                    </span><br>
+                                    {% if i.locality == None %}
+                                    <span>
+                                    </span>
+                                    {% else %}
+                                    <span>{{i.locality}}</span><br>
+                                    {% endif %}
+                                    <span style="text-transform: uppercase;" >{{i.city}} - {{i.pincode}}</span><br>
+                                    <span style="text-transform: uppercase;"  >{{i.state}},{{i.country}}</span><br>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-12 form-group mt-4">
+                                <div class="row" >
+                                    <div class="col-md-6 width-50">
+                                        <a href="javascript:void(0)">
+                                            <button type="button" class="add_edit" onclick="edit_add({{i.id}})" >
+                                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                <span class="ps-1" >
+                                                    edit
+                                                </span>
+                                            </button>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-6 width-50">
+                                        <a href="javascript:void(0)" onclick="addressdelete({{i.id}})" >
+                                            <button type="button" class="add_delete" >
+                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                                <span class="ps-1" >
+                                                    delete
+                                                </span>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+        
+                    </div>
+                </div>
+        </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function clicknew(){
+        $("#id_addressform")[0].reset();
+        $('#hid').val('');
+        $('#add_2').css('display', 'block');
+        $("#neew").css('display', 'block');
+        $("#ediit").css('display', 'none');
+        $("#firstname").focus();
+    }
+    function clickclose(){
+        $('#add_2').css('display', 'none');
+        $("#neew").css('display', 'none');
+    }
+    function edit_add(id) {
+    $.ajax({
+      url: '/user/address/updete/',
+      method: 'POST',
+      data: { 'id': id, csrfmiddlewaretoken: '{{csrf_token}}' },
+      dataType: 'JSON',
+
+      success: function (data) {
+        $('#hid').val(data.id);
+
+        $('#firstname').val(data.first_name);
+        $('#lastname').val(data.last_name);
+        $('#phone_number').val(data.phone_number);
+        $('#Street').val(data.street_address);
+        $('#locality').val(data.locality);
+        $('#city').val(data.city);
+        $('#pincode').val(data.pincode);
+        $('#state').val(data.state);
+        
+        $("#neew").css('display', 'none');
+        $("#ediit").css('display', 'block');
+        $('#add_2').css('display', 'block');
+        $("#firstname").focus();
+
+      },
+
+      error: function () {
+        alert('Something is Wrong');
+      }
+    });
+  };
+</script>
+
+{% endblock %}

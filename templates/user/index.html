@@ -1,0 +1,2427 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    
+    <link rel="shortcut icon" href="{% static 'admin/folder/images/logo-mini-music-club.png' %}">
+    <link rel="icon" href="{% static 'admin/folder/images/logo-mini-music-club.png' %}" type="image/x-icon">
+    
+    <title>Music Club | {% block title %} {% endblock %}</title>
+    
+    <meta name="author" content="Prathmesh Soni"/>
+    <meta name="description" content="Discover a Harmonious Shopping Experience for Music Instruments in our E Commerce Store."/>
+    <meta property="og:title" content="Prathmesh Soni"/>
+    <meta property="og:site_name" content="Prathmesh Soni Music Club Website"/>
+    <meta property="og:url" content=""/>
+    <meta property="og:description" content="Discover a Harmonious Shopping Experience for Music Instruments in our E Commerce Store.">
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content="https://music-club.prathmeshsoni.works/static/admin/folder/images/pretty-snap-25-09-2023.png"/>
+
+    <script src="https://use.fontawesome.com/c0fc7bc651.js"></script>
+    
+    {% block css %}
+    {% endblock %}
+    
+    <!--Slick slider css-->
+    <link rel="stylesheet" type="text/css" href="{% static 'user/folder/assets/css/slick.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'user/folder/assets/css/slick-theme.css' %}">
+    
+    <!--Animate css-->
+    <link rel="stylesheet" type="text/css" href="{% static 'user/folder/assets/css/animate.css' %}">
+    
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'user/folder/assets/css/bootstrap.css' %}">
+    
+    <!-- Theme css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'user/folder/assets/css/color2.css' %}" >
+    
+    <style>
+        .tab-prodcut-contain > ul > li {
+            margin-bottom: 15px !important;
+        }
+        .oorder_detail{
+            align-self: center;
+            /*align-items: center;*/
+        }
+        @media (max-width: 577px){
+            .oorder_detail h5{
+                font-size: 14px;
+                line-height: 1.2;
+            }
+        }
+        .oorder_detail h5{
+            text-transform: capitalize;
+            margin-bottom: 0;
+            font-weight: 500;
+        }
+        .successd{
+            color: #2dd02d;
+        }
+        .warningd{
+            color: red;
+        }
+        .warningsd::-webkit-input-placeholder {
+            font-size: 11px;
+            color: red;
+        }
+        .dipa-none{
+            display: none;
+        }
+        .detail-title-1{
+            margin: 0;
+            padding-top: 0;
+            position: absolute;
+            top: 40%;
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
+    </style>
+</head>
+
+<body style="background-color: #f5f6fb!important ;"  >
+
+  <!-- loader start -->
+  <div class="loader-wrapper">
+    <div>
+      <img src="{% static 'user/folder/assets/images/loader.gif' %}" alt="loader">
+    </div>
+  </div>
+  <!-- loader end -->
+
+  <!--header start-->
+
+  <!--header end-->
+
+    <header id="stickyheader">
+  <div class="mobile-fix-option"></div>
+  <div class="mobile-backk" >
+  <div class="layout-header2">
+    <div class="container">
+      <div class="col-md-12">
+        <div class="main-menu-block">
+          <div class="header-left">
+            <div class="brand-logo logo-sm-center">
+              <a href="/user/">
+                <img src="{% static 'admin/folder/images/logo-music-club.png' %}" class="img-fluid" style="height: 75px;" alt="logo">
+              </a>
+            </div>
+          </div>
+          <div class="header-right">
+            <div class="icon-block">
+              <ul>
+                 <li class="mobile-wishlist">
+                    <a class="dark-menu-item" href="/user/">
+                        <!--<i class="fa fa-home" aria-hidden="true"></i>-->
+                        <img src="{% static 'user/folder/assets/images/home.png' %}" style="height: 20px; width:20px;" class="img-fluid" alt="logo">
+                    </a>
+                 </li>
+
+                {% if request.session.username %}
+                <li class="mobile-user" >
+                    <a href="/user/dashboard/">
+                        <!--<i class="fa fa-user" aria-hidden="true"></i>-->
+                        <img src="{% static 'user/folder/assets/images/profile.png' %}" style="height: 20px; width:20px;" class="img-fluid" alt="logo">
+                    </a>
+                </li>
+                <li class="mobile-search" style="right:77% !important;" >
+                    <a class="dark-menu-item" style="font-weight: 400;" href="/user/dashboard/">
+                        <span class="me-2" style="font-size: 12px; text-transform: capitalize;">hello!</span>{{request.session.username}}
+                    </a>
+                </li>
+                <li class="mobile-setting">
+                    <a class="dark-menu-item" href="javascript:void(0)" onclick="user_logout()" >
+                        <!--<i class="fa fa-sign-out" aria-hidden="true"></i>-->
+                        <img src="{% static 'user/folder/assets/images/logout-1.png' %}" style="height: 20px; width:20px;" class="img-fluid" alt="logo">
+                    </a>
+                </li>
+                {% else %}
+                <li class="mobile-user">
+                    <a class="dark-menu-item" href="{% url 'login_attempt' %}">
+                        <!--<i class="fa fa-sign-in" aria-hidden="true"></i>-->
+                        <img src="{% static 'user/folder/assets/images/login.png' %}" style="height: 20px; width:20px;" class="img-fluid" alt="logo">
+                    </a>
+                </li>
+                <li class="mobile-setting">
+                    <a class="dark-menu-item" href="/user/register">
+                        <!--<i class="fa fa-user-plus" aria-hidden="true"></i>-->
+                        <img src="{% static 'user/folder/assets/images/signup-2.png' %}" style="height: 20px; width:20px;" class="img-fluid" alt="logo">
+                    </a>
+                </li>
+                {% endif %}
+                <li class="mobile-cart item-count" onclick="openCart()">
+                  <a href="javascript:void(0)">
+                      <!--<img src="{% static 'user/folder/assets/images/cart-0.png' %}" style="height: 20px; width:20px;" class="img-fluid" alt="logo">-->
+                    <div class="cart-block">
+                      <div class="cart-icon">
+                          <img src="{% static 'user/folder/assets/images/cart-1.png' %}" style="height: 20px; width:20px;" class="img-fluid" alt="logo">
+                        <!--<svg  enable-background="new 0 0 512 512"  viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg"><g><path d="m497 401.667c-415.684 0-397.149.077-397.175-.139-4.556-36.483-4.373-34.149-4.076-34.193 199.47-1.037-277.492.065 368.071.065 26.896 0 47.18-20.377 47.18-47.4v-203.25c0-19.7-16.025-35.755-35.725-35.79l-124.179-.214v-31.746c0-17.645-14.355-32-32-32h-29.972c-17.64 0-31.99 14.351-31.99 31.99v31.594l-133.21-.232-9.985-54.992c-2.667-14.694-15.443-25.36-30.378-25.36h-68.561c-8.284 0-15 6.716-15 15s6.716 15 15 15c72.595 0 69.219-.399 69.422.719 16.275 89.632 5.917 26.988 49.58 306.416l-38.389.2c-18.027.069-32.06 15.893-29.81 33.899l4.252 34.016c1.883 15.06 14.748 26.417 29.925 26.417h26.62c-18.8 36.504 7.827 80.333 49.067 80.333 41.221 0 67.876-43.813 49.067-80.333h142.866c-18.801 36.504 7.827 80.333 49.067 80.333 41.22 0 67.875-43.811 49.066-80.333h31.267c8.284 0 15-6.716 15-15s-6.716-15-15-15zm-209.865-352.677c0-1.097.893-1.99 1.99-1.99h29.972c1.103 0 2 .897 2 2v111c0 8.284 6.716 15 15 15h22.276l-46.75 46.779c-4.149 4.151-10.866 4.151-15.015 0l-46.751-46.779h22.277c8.284 0 15-6.716 15-15v-111.01zm-30 61.594v34.416h-25.039c-20.126 0-30.252 24.394-16.014 38.644l59.308 59.342c15.874 15.883 41.576 15.885 57.452 0l59.307-59.342c14.229-14.237 4.13-38.644-16.013-38.644h-25.039v-34.254l124.127.214c3.186.005 5.776 2.603 5.776 5.79v203.25c0 10.407-6.904 17.4-17.18 17.4h-299.412l-35.477-227.039zm-56.302 346.249c0 13.877-11.29 25.167-25.167 25.167s-25.166-11.29-25.166-25.167 11.29-25.167 25.167-25.167 25.166 11.291 25.166 25.167zm241 0c0 13.877-11.289 25.167-25.166 25.167s-25.167-11.29-25.167-25.167 11.29-25.167 25.167-25.167 25.166 11.291 25.166 25.167z"/></g></svg>-->
+                      </div>
+                      <div class="cart-item">
+                        <h5>shopping</h5>
+                        <h5>cart</h5>
+                      </div>
+                    </div>
+                  </a>
+                  <div class="item-count-contain">
+                    {{cart_val}}
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="menu-nav"  >
+                <span class="toggle-nav">
+                  <i class="fa fa-bars "></i>
+                </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="category-header-2">
+    <div class="custom-container">
+      <div class="row">
+        <div class="col-12">
+          <div class="navbar-menu">
+            <div class="logo-block">
+              <div class="brand-logo logo-sm-center">
+                <a href="/user/">
+                  <img src="{% static 'admin/folder/images/logo-music-club.png' %}" class="img-fluid" style="height: 95px;" alt="logo">
+                </a>
+              </div>
+            </div>
+            <div class="nav-block">
+              <div class="brand-logo logo-sm-center">
+                <a href="/user/">
+                  <img src="{% static 'admin/folder/images/logo-music-club.png' %}" class="img-fluid" style="height: 95px;" alt="logo">
+                </a>
+              </div>
+            </div>
+
+            <div class="menu-block">
+              <nav id="main-nav">
+                <div class="toggle-nav"><i class="fa fa-bars sidebar-bar"></i></div>
+                <ul id="main-menu" class="sm pixelstrap sm-horizontal">
+                  <li>
+                    <div class="mobile-back text-right">Back<i class="fa fa-angle-right me-2" aria-hidden="true"></i></div>
+                  </li>
+                  <li class="mega">
+                    <a class="dark-menu-item" href="/user/">
+                        <img src="{% static 'user/folder/assets/images/home.png' %}" style="height: 20px; width:20px;" class="img-fluid me-2" alt="logo">
+                        Home
+                    </a>
+                  </li>
+                  <li class="mega" >
+                    <a class="dark-menu-item" href="/user/category/">
+                        <img src="{% static 'user/folder/assets/images/category.png' %}" style="height: 20px; width:20px;" class="img-fluid me-2" alt="logo">
+                        Category
+                    </a>
+                  </li>
+                  <li class="mega" >
+                    <a class="dark-menu-item" href="/user/product/">
+                        <img src="{% static 'user/folder/assets/images/product-2.png' %}" style="height: 20px; width:20px;" class="img-fluid me-2 mobile-backk" alt="logo">
+                        <img src="{% static 'user/folder/assets/images/product.png' %}" style="height: 20px; width:20px;" class="img-fluid me-2 mobile-backkk" alt="logo">
+                        Product
+                    </a>
+                  </li>
+                   {% if request.session.username %}
+
+                  <li class="mega">
+                    <a class="dark-menu-item" href="/user/dashboard/">
+                        <!--<i class="fa fa-id-card-o me-2" aria-hidden="true"></i>-->
+                        <img src="{% static 'user/folder/assets/images/dashboard.png' %}" style="height: 20px; width:20px;" class="img-fluid me-2 mobile-backk" alt="logo">
+                        <img src="{% static 'user/folder/assets/images/dashboard-1.png' %}" style="height: 20px; width:20px;" class="img-fluid me-2 mobile-backkk" alt="logo">
+                        Dashboard
+                    </a>
+                  </li>
+                  <li class="mega">
+                    <a class="dark-menu-item" style="font-weight: 400;" href="/user/dashboard/">
+                        <img src="{% static 'user/folder/assets/images/profile.png' %}" style="height: 20px; width:20px;" class="img-fluid me-2" alt="logo">
+                      <span class="me-1" style="font-size: 13px; text-transform: capitalize; color: red;" >hello!</span>{{request.session.username}}
+
+                    </a>
+                  </li>
+                  <li class="mega mobile-backk">
+                    <a class="dark-menu-item" href="javascript:void(0)" onclick="user_logout()" >
+                      <!--<i class="fa fa-sign-out me-2" aria-hidden="true"></i>-->
+                      <img src="{% static 'user/folder/assets/images/logout.png' %}" style="height: 20px; width:20px;" class="img-fluid me-2" alt="logo">
+                      logout
+                    </a>
+                  </li>
+                  {% else %}
+                  <li class="mega">
+                    <a class="dark-menu-item" href="{% url 'login_attempt' %}">
+                        <!--<i class="fa fa-sign-in me-2" aria-hidden="true"></i>-->
+                        <img src="{% static 'user/folder/assets/images/login.png' %}" style="height: 20px; width:20px;" class="img-fluid me-2" alt="logo">
+                        Login
+                    </a>
+                  </li>
+                  <li class="mega">
+                    <a class="dark-menu-item" href="/user/register">
+                        <!--<i class="fa fa-user-plus me-2" aria-hidden="true"></i>-->
+                        <img src="{% static 'user/folder/assets/images/signup-2.png' %}" style="height: 20px; width:20px;" class="img-fluid me-2  mobile-backkk" alt="logo">
+                        <img src="{% static 'user/folder/assets/images/signup-1.png' %}" style="height: 20px; width:20px;" class="img-fluid me-2  mobile-backk" alt="logo">
+                        Sign Up
+                    </a>
+                  </li>
+                  {% endif %}
+                </ul>
+              </nav>
+            </div>
+            <div class="icon-block">
+              <ul>
+                <li class="item-count">
+                  <a href="javascript:void(0)" onclick="openCart()" >
+                    <div class="cart-block">
+                      <div class="cart-icon" style="float: left;">
+                          <img src="{% static 'user/folder/assets/images/cart-1.png' %}" style="height: 40px; width:40px;" class="img-fluid" alt="logo">
+                        <!--<svg  enable-background="new 0 0 512 512"  viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg"><g><path d="m497 401.667c-415.684 0-397.149.077-397.175-.139-4.556-36.483-4.373-34.149-4.076-34.193 199.47-1.037-277.492.065 368.071.065 26.896 0 47.18-20.377 47.18-47.4v-203.25c0-19.7-16.025-35.755-35.725-35.79l-124.179-.214v-31.746c0-17.645-14.355-32-32-32h-29.972c-17.64 0-31.99 14.351-31.99 31.99v31.594l-133.21-.232-9.985-54.992c-2.667-14.694-15.443-25.36-30.378-25.36h-68.561c-8.284 0-15 6.716-15 15s6.716 15 15 15c72.595 0 69.219-.399 69.422.719 16.275 89.632 5.917 26.988 49.58 306.416l-38.389.2c-18.027.069-32.06 15.893-29.81 33.899l4.252 34.016c1.883 15.06 14.748 26.417 29.925 26.417h26.62c-18.8 36.504 7.827 80.333 49.067 80.333 41.221 0 67.876-43.813 49.067-80.333h142.866c-18.801 36.504 7.827 80.333 49.067 80.333 41.22 0 67.875-43.811 49.066-80.333h31.267c8.284 0 15-6.716 15-15s-6.716-15-15-15zm-209.865-352.677c0-1.097.893-1.99 1.99-1.99h29.972c1.103 0 2 .897 2 2v111c0 8.284 6.716 15 15 15h22.276l-46.75 46.779c-4.149 4.151-10.866 4.151-15.015 0l-46.751-46.779h22.277c8.284 0 15-6.716 15-15v-111.01zm-30 61.594v34.416h-25.039c-20.126 0-30.252 24.394-16.014 38.644l59.308 59.342c15.874 15.883 41.576 15.885 57.452 0l59.307-59.342c14.229-14.237 4.13-38.644-16.013-38.644h-25.039v-34.254l124.127.214c3.186.005 5.776 2.603 5.776 5.79v203.25c0 10.407-6.904 17.4-17.18 17.4h-299.412l-35.477-227.039zm-56.302 346.249c0 13.877-11.29 25.167-25.167 25.167s-25.166-11.29-25.166-25.167 11.29-25.167 25.167-25.167 25.166 11.291 25.166 25.167zm241 0c0 13.877-11.289 25.167-25.166 25.167s-25.167-11.29-25.167-25.167 11.29-25.167 25.167-25.167 25.166 11.291 25.166 25.167z"/></g></svg>-->
+                      </div>
+                      <div class="item-count-contain" id="cart_valuee" >
+                        {{cart_val}}
+                      </div>
+                      <div class="cart-item">
+                        <h5>shopping</h5>
+                        <h5>cart</h5>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+  <!-- content start -->
+  {% block content %}
+  {% endblock %}
+  <!-- content start -->
+
+  <!-- footer start -->
+  <footer>
+    <div class="footer1">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="footer-main">
+                
+              <div class="footer-box">
+                <div class="footer-title">
+                    <a href="https://prathmeshsoni.works/project/">
+                        <h5>Projects</h5>
+                    </a>
+                </div>
+                <div class="footer-contant">
+                  <ul>
+                    <li><a href="https://prathmeshsoni.works/"><i class="fa fa-home"></i> Home</a></li>
+                    <li><a href="https://private-app.prathmeshsoni.works/"><i class="fa fa-lock"></i> Private Note</a></li>
+                    <li><a href="https://money-manager.prathmeshsoni.works/"><i class="fa fa-money"></i> Money Manager</a></li>
+                    <li><a href="https://google.prathmeshsoni.works/"><i class="fa fa-google"></i> Google Search </a></li>
+                    <li><a href="https://instagram.prathmeshsoni.works/"><i class="fa fa-instagram"></i> Instagram Story Viewer </a></li>
+                    <li><a href="https://aiml.prathmeshsoni.works/"><i class="fa fa-line-chart"></i> MSE Marks Ranking</a></li>
+                    <li><a href="https://chat.cse-aiml.live/"><i class="fa fa-commenting"></i> Chat App </a></li>
+                  </ul>
+                </div>
+              </div>
+              
+              <div class="footer-box">
+                <div class="footer-title">
+                    <a href="https://prathmeshsoni.works/contact/">
+                        <h5>contact us</h5>
+                    </a>
+                </div>
+                <div class="footer-contant">
+                  <ul class="contact-list">
+                    <li><i class="fa fa-map-marker"></i>Music Club store <br> india-<span>380051</span></li>
+                    <li>
+                        <a href="tel:9157379996">
+                            <i class="fa fa-phone"></i>call us: <span>+91 9876543210</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mailto:connect.prathmeshsoni@gmail.com" style="text-transform: none !important;" >
+                            <i class="fa fa-envelope-o"></i>email us: connect.prathmeshsoni@gmail.com
+                        </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              
+              <div class="footer-box">
+                <div class="footer-title mobile-title">
+                  <h5>about</h5>
+                </div>
+                <div class="footer-contant">
+                  <div class="footer-logo">
+                    <a href="/user/">
+                        <img src="{% static 'admin/folder/images/logo-music-club.png' %}" class="img-fluid  " alt="logo" style="height: 95px; " >
+                    </a>
+                  </div>
+                  <p>
+                      &copy; Copyright 2024
+                     
+                    . Made by
+                    <a rel="noreferrer" target="_blank" href="https://prathmeshsoni.works">Prathmesh Soni</a>
+                  </p>
+                  
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- footer end -->
+
+  <div id="cart_side" class="add_to_cart top " style="box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 65%) !important;" >
+    <div class="cart-inner">
+      <div class="cart_top" style="background-color: rgb(0 186 242 / 16%);" >
+        <h3 style="margin-left: 20px;" >my cart</h3>
+        <div class="close-cart">
+          <a href="javascript:void(0)" onclick="closeCart()">
+            <i class="fa fa-times" aria-hidden="true"></i>
+            <input type="hidden" id="aaa" >
+          </a>
+        </div>
+      </div>
+      {% if request.session.username %}
+        {% if cart_val == 0 %}
+        <div class="mt-4" id="emptycartlogin" >
+          <ul class="">
+            <div class="col-md-2 mb-4 ps-5" style="float: left; " >
+
+              <img src="{% static '/user/folder/assets/images/avtar/cart.png' %}" width="165px" height="120px"  alt="">
+            </div>
+            <div class="col-md-10 mt-4 ps-5" style="float: left; " >
+
+              <h2 class="mb-1">
+                Your Music-Club Cart is empty.
+              </h2>
+              <p>
+                Your shopping cart is waiting. Give it purpose fill it with groceries, clothing, household supplies, electronics and more.
+                Continue shopping on the<br> <a href="/user/"> Music-Club homepage </a> , learn about today's deals.
+              </p>
+            </div>
+            </ul>
+        </div>
+        {% elif var_11 == 'varr' %}
+        <div id="cartdetail"  >
+          <div class="cart_media" >
+                <ul class="cart_product">
+              {% for i in cartt %}
+              <li style="border:3px solid #dddddd!important;" >
+                <div class="media">
+                  <a href="/user/product/{{i.product_id.id}}">
+                    <img alt="megastore1" class="me-3" src="{{i.product_id.pro_image.url}}" >
+                  </a>
+                  <div class="media-body">
+                    <a href="/user/product/{{i.product_id.id}}">
+                      <h4> {{i.product_id.productname}} </h4>
+
+                    </a>
+                    <h6>
+                      <i class="fa fa-inr" aria-hidden="true"></i> {{i.product_id.pro_price}}
+                    </h6>
+                    <div class="addit-box">
+                      <div class="qty-box">
+                        <div class="input-group">
+                          <button class="qty-minus" onclick="minus({{i.id}})" >
+                            <i class="fa fa-minus" aria-hidden="true"></i>
+                          </button>
+                          <form method="POST">
+                            {% csrf_token %}
+                              <input type="hidden" class="cartquntityss{{i.id}}" name="cartquntity" id="cartquntity-{{i.id}}" value="{{i.quantity}}" >
+                          </form>
+                          <input class="qty-adj form-control demo1{{i.id}}" style="width:50px !important;" id="qty-adj-{{i.id}}" type="number" onblur="inpp({{i.id}})" value="{{i.quantity}}"/>
+                          <button class="qty-plus" onclick="plus({{i.id}})" >
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                          </button>
+                        </div>
+                        <div class="input-group">
+                            <input type="hidden" id="dont{{i.id}}" value="{{i.product_id.total_quantity}}" >
+                            {% if i.product_id.total_quantity < i.quantity %}
+                            <button type="button" style="padding: 7px 5px 6px 5px;color: red;background-color: #abfff8;" >
+                                    <span> {{i.product_id.total_quantity}} </span>
+                                    <h7>Avail</h7>
+
+                                {% else %}
+
+                            </button>
+                            {% endif %}
+                        </div>
+                      </div>
+                      <div class="pro-add">
+                        <a href="javascript:void(0)" onclick="deletee({{i.id}})">
+                          <i class="fa fa-trash-o assa" aria-hidden="true"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              {% endfor %}
+            </ul>
+                <ul class="cart_total" style="background-color: rgb(0 186 242 / 16%) !important;">
+              <li>
+                subtotal : <span class="toatl_aa" id="tatal11" ><i class="fa fa-inr" aria-hidden="true"></i> {{subtotal}}.00</span>
+              </li>
+              <li>
+                shpping <span><i class="fa fa-inr" aria-hidden="true"></i> 70.00</span>
+              </li>
+              <li>
+                <div class="total">
+                  total<span class="cart_ttotal" ><i class="fa fa-inr" aria-hidden="true"></i> {{total_price}}.00</span>
+                </div>
+              </li>
+              <li>
+                <div class="buttons">
+                  <a href="/user/gocart/" class="btn btn-solid btn-sm pp-10">view cart</a>
+                  <a href="/user/checkout/" class="btn btn-solid btn-sm pp-10">checkout</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        {% else %}
+        <div id="cartdetail"  >
+          <div class="cart_media">
+            <ul class="cart_product">
+              {% for i in cartt %}
+              <li style="border:3px solid #dddddd!important;" >
+                <div class="media">
+                  <a href="/user/product/{{i.product_id.id}}">
+                    <img alt="megastore1" class="me-3" src="{{i.product_id.pro_image.url}}" >
+                  </a>
+                  <div class="media-body">
+                    <a href="/user/product/{{i.product_id.id}}">
+                      <h4> {{i.product_id.productname}} </h4>
+
+                    </a>
+                    <h6>
+                      <i class="fa fa-inr" aria-hidden="true"></i> {{i.product_id.pro_price}}
+                    </h6>
+                    <div class="addit-box">
+                      <div class="qty-box">
+                        <div class="input-group">
+                          <button class="qty-minus" onclick="minus({{i.id}})" >
+                            <i class="fa fa-minus" aria-hidden="true"></i>
+                          </button>
+                          <form method="POST">
+                            {% csrf_token %}
+                              <input type="hidden" class="cartquntityss{{i.id}}" name="cartquntity" id="cartquntity-{{i.id}}" value="{{i.quantity}}" >
+                          </form>
+                          <input class="qty-adj form-control demo1{{i.id}}" style="width:50px !important;" id="qty-adj-{{i.id}}" type="number" onblur="inpp({{i.id}})" value="{{i.quantity}}"/>
+                          <button class="qty-plus" onclick="plus({{i.id}})" >
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                          </button>
+                        </div>
+                        <div class="input-group">
+                            <input type="hidden" id="dont{{i.id}}" value="{{i.product_id.total_quantity}}" >
+                            {% if i.product_id.total_quantity < i.quantity %}
+                            <button type="button" style="padding: 7px 5px 6px 5px;color: red;background-color: #abfff8;" >
+                                    <span> {{i.product_id.total_quantity}} </span>
+                                    <h7>Avail</h7>
+
+                                {% else %}
+
+                            </button>
+                            {% endif %}
+                        </div>
+                      </div>
+                      <div class="pro-add">
+                        <a href="javascript:void(0)" onclick="deletee({{i.id}})">
+                          <i class="fa fa-trash-o assa" aria-hidden="true"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              {% endfor %}
+            </ul>
+            <ul class="cart_total" style="background-color: rgb(0 186 242 / 16%) !important ;">
+              <li>
+                subtotal : <span class="toatl_aa" id="tatal11" ><i class="fa fa-inr" aria-hidden="true"></i> {{total_price.1}}.00</span>
+              </li>
+              <li>
+                shpping <span><i class="fa fa-inr" aria-hidden="true"></i> 70.00</span>
+              </li>
+              <li>
+                <div class="total">
+                  total<span class="cart_ttotal" ><i class="fa fa-inr" aria-hidden="true"></i> {{total_price.0}}.00</span>
+                </div>
+              </li>
+              <li>
+                <div class="buttons">
+                  <a href="/user/gocart/" class="btn btn-solid btn-sm pp-10">view cart</a>
+                  <a href="/user/checkout/" class="btn btn-solid btn-sm pp-10">checkout</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        {% endif %}
+      {% else %}
+      <div class="mt-4" id="emptycart">
+        <ul class="">
+          <div class="col-md-2 mb-4 ps-5" style="float: left; " >
+            <input type="hidden" id="session_redirect" name="session_redirect" value="0" >
+            <img src="{% static '/user/folder/assets/images/avtar/cart.png' %}" width="165px" height="120px"  alt="">
+          </div>
+          <div class="col-md-4 mt-4 text-center" style="float: left; " >
+
+            <h4 class="mb-1">
+              Missing Cart items?
+            </h4>
+            <p>
+              Login to see the items you added previously
+            </p>
+            <div class="mt-2" >
+              <a href="/user/accounts/login/" class="" style="
+                                          display: block;
+                                          margin-left: 80px;
+                                          line-height: 29px;
+                                          padding: 0 10px 0 11px;
+                                          white-space: nowrap;
+                                          width: 45%;
+                                          height: 100%;
+                                          color: #000;
+                                          background: #FFD814;
+                                          border-radius: 8px;
+                                          box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%);
+                                          float: left;" >
+                Sign in to your account</a>
+                <a href="/user/register/" class="" style="
+                                          display: block;
+                                          margin-left: 10px;
+                                          line-height: 29px;
+                                          padding: 0 10px 0 11px;
+                                          white-space: nowrap;
+                                          width: 27%;
+                                          height: 100%;
+                                          float: left;
+                                          color: #000;
+                                          background: #FFD814;
+                                          border-radius: 8px;
+                                          box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%);" >
+                Sign Up now</a>
+              </div>
+          </div>
+          </ul>
+      </div>
+      {% endif %}
+
+    </div>
+  </div>
+
+
+
+    <!-- Quick-view modal popup start-->
+<div class="modal fade bd-example-modal-lg theme-modal" id="quick-view" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content quick-view-modal">
+      <div class="modal-body">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="row">
+          <div class="col-lg-6 col-xs-12">
+            <div class="quick-view-img">
+              <img id="img_pro" alt="" class="img-fluid bg-img">
+            </div>
+          </div>
+          <div class="col-lg-6 rtl-text">
+            <div class="product-right">
+              <div class="pro-group">
+                <h2 id="name_pro" >
+                  <!--Double Door Refrigerator-->
+                </h2>
+                <ul class="pro-price">
+                  <li id="price_pro" >
+                      <!--$70-->
+                      </li>
+                  <li><span id="price__pro" >
+                      <!--mrp $140-->
+                      </span></li>
+                </ul>
+
+              </div>
+              <div class="pro-group">
+                <h6 class="product-title">product infomation</h6>
+                <p id="dec_pro" >
+                    <!--Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium-->
+                    </p>
+              </div>
+              <div class="pro-group pb-0">
+
+                <h6 class="product-title">color</h6>
+                <div class="color-selector inline">
+                  <ul>
+                    <li>
+                      <div id="color_pro" class="active"></div>
+                    </li>
+                  </ul>
+                </div>
+                <input type="hidden" value="" id="update_cart" >
+                <h6 class="product-title">quantity</h6>
+                <div class="qty-box">
+                          <div class="input-group">
+                            <button class="qty-minus" onclick="minuss()" >
+                              <i class="fa fa-minus" aria-hidden="true"></i>
+                            </button>
+                            <input type="hidden" name="ccartquntity" id="ccartquntity" value="1" >
+                            <!--<input type="hidden" name="cartprice" id="cartprice" value="{{pdata.pro_price}}" >-->
+                            <input class="qty-adj form-control" id="qty-adj" onblur="ins()" type="number" value="1"/>
+                            <button class="qty-plus" onclick="pluss()" >
+                              <i class="fa fa-plus" aria-hidden="true"></i>
+                            </button>
+                          </div>
+                        </div>
+                <div class="product-buttons">
+                  <a href="javascript:void(0)" id="cartadd"  class="btn cart-btn btn-normal tooltip-top" >
+                    <i class="fa fa-shopping-cart"></i>
+                    add to cart
+                  </a>
+                  <a href="" class="btn btn-normal tooltip-top" id="productlink"  data-tippy-content="view detail">
+                    view detail
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Quick-view modal popup end-->
+
+
+
+  <!-- latest jquery-->
+  <script src="{% static 'user/folder/assets/js/jquery-3.3.1.min.js' %}"></script>
+
+<!-- slick js-->
+<script src="{% static 'user/folder/assets/js/slick.js' %}"></script>
+
+<!-- popper js-->
+<script src="{% static 'user/folder/assets/js/popper.min.js' %}" ></script>
+<script src="{% static 'user/folder/assets/js/bootstrap-notify.min.js' %}"></script>
+
+<!-- menu js-->
+
+<!-- timer js -->
+<!-- <script src="{% static 'user/folder/assets/js/timer2.js' %}"></script> -->
+
+<!-- Bootstrap js-->
+<script src="{% static 'user/folder/assets/js/bootstrap.js' %}"></script>
+
+
+<!-- father icon -->
+<script src="{% static 'user/folder/assets/js/feather.min.js' %}"></script>
+<script src="{% static 'user/folder/assets/js/feather-icon.js' %}"></script>
+
+<!-- Theme js-->
+<script src="{% static 'user/folder/assets/js/modal.js' %}"></script>
+<script src="{% static 'user/folder/assets/js/script.js' %}"></script>
+<script src="{% static 'admin/global_assets/js/pnotify.min.js' %}"></script>
+
+<script src="{% static 'admin/global_assets/js/extra_pnotify.js' %}"></script>
+
+
+<script>
+
+    function cancel_order(id){
+      let confirmAction = confirm("Are You sure you want to Cancel Your Order ?")
+      if (confirmAction){
+          $.ajax({
+                  url: '/user/myorder/',
+                  data: {'id': id ,csrfmiddlewaretoken: '{{csrf_token}}'},
+                  dataType: 'JSON',
+                  method: 'POST',
+                  success: function (data)
+                  {
+                      if (data.status == true) {
+                          $.notify({
+                              icon: 'fa fa-check',
+                              title: 'Success!',
+                              message: 'Cancel Order Successfully! ✔'
+                          },{
+                              element: 'body',
+                              position: null,
+                              type: "info",
+                              allow_dismiss: true,
+                              newest_on_top: true,
+                              showProgressbar: true,
+                              placement: {
+                                  from: "top",
+                                  align: "right"
+                              },
+                              offset: 20,
+                              spacing: 10,
+                              z_index: 999999999999999,
+                              delay: 2700,
+                              animate: {
+                                  enter: 'animated fadeInDown',
+                                  exit: 'animated fadeOutUp'
+                              },
+                                icon_type: 'class',
+                                template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
+                                  '<button type="button" aria-hidden="true" class="btn-close" data-notify="dismiss"></button>' +
+                                  '<span data-notify="icon"></span> ' +
+                                  '<span data-notify="message">{2}</span>' +
+                                  '<div class="progress" data-notify="progressbar">' +
+                                  '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+                                  '</div>' +
+                                  '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                                  '</div>'
+                          });
+                          setTimeout(function() {
+                              window.location.href = "/user/myorder/";
+                          }, 3000);
+                      }
+                      else {
+
+                      }
+                  },
+                  error: function () {
+                      alert('error');
+                  },
+              });
+      }
+      else{
+
+      }
+
+  }
+
+    function user_logout(){
+        let confirmAction = confirm("Are You sure you want to logout ?")
+        if (confirmAction){
+            window.location.href = "/user/logout/";
+        }
+        else{
+
+        }
+
+    }
+    function changepassword(){
+        let o = $("#id_new_password1").val().length;
+        let p = $("#id_new_password1").val();
+        let cp = $("#id_new_password2").val();
+        let cpp = $("#id_old_password").val();
+
+        if(o >= 8){
+            if (p == cp){
+                $('#login_loader').css('display', 'flex');
+                $.ajax({
+                    url: '/user/change-password/',
+                    data: $('#change_form').serialize(),
+                    dataType: 'JSON',
+                    method: 'POST',
+                    success: function (data)
+                    {
+                        if (data.status == true) {
+                            $.notify({
+                                icon: 'fa fa-check',
+                                title: 'Success!',
+                                message: 'Password Changed Successfully! ✔'
+                            },{
+                                element: 'body',
+                                position: null,
+                                type: "info",
+                                allow_dismiss: true,
+                                newest_on_top: true,
+                                showProgressbar: true,
+                                placement: {
+                                    from: "top",
+                                    align: "right"
+                                },
+                                offset: 20,
+                                spacing: 10,
+                                z_index: 999999999999999,
+                                delay: 3500,
+                                animate: {
+                                    enter: 'animated fadeInDown',
+                                    exit: 'animated fadeOutUp'
+                                },
+                                  icon_type: 'class',
+                                  template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
+                                    '<button type="button" aria-hidden="true" class="btn-close" data-notify="dismiss"></button>' +
+                                    '<span data-notify="icon"></span> ' +
+                                    '<span data-notify="message">{2}</span>' +
+                                    '<div class="progress" data-notify="progressbar">' +
+                                    '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+                                    '</div>' +
+                                    '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                                    '</div>'
+                            });
+                            setTimeout(function() {
+                                window.location.href = "/user/dashboard/";
+                            }, 3700);
+                        }
+                        else {
+                            $('#login_loader').css('display', 'none');
+                            $.notify({
+                            message: "Your old password was entered incorrectly..!",
+                            },{
+                                element: 'body',
+                                position: null,
+                                type: "success",
+                                allow_dismiss: true,
+                                newest_on_top: false,
+                                showProgressbar: true,
+                                placement: {
+                                  from: "top",
+                                  align: "right"
+                            },
+                               offset: 90,
+                                spacing: 10,
+                                z_index: 999999999999,
+                                delay: 6500,
+                                animate: {
+                                enter: 'animated fadeInDown',
+                                exit: 'animated fadeOutUp'
+                            },
+                                icon_type: 'class',
+                                template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert " style="color:#842029 !important;background-color:#f8d7da !important;border-color:#f5c2c7 !important;" role="alert">' +
+                                  '<button type="button" aria-hidden="true" class="btn-close" data-notify="dismiss"></button>' +
+                                  '<span style="color:#842029 !important;" data-notify="message">{2}</span>' +
+                                  '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                                  '</div>'
+                            });
+                            $("#id_new_password1").css("border","2px solid #dddddd");
+                            $("#id_new_password2").css("border","2px solid #dddddd");
+                            $("#id_old_password").css("border","2px solid red");
+                            $('#hint_id_new_password1').css('display', 'none');
+                            $('#error_1_id_new_password2').css('display', 'none');
+                            $('#error_1_id_old_password').css('display', 'block');
+                            $('#id_old_password').focus();
+                        }
+                    },
+                    error: function () {
+                        alert('error');
+                    },
+                });
+            }
+            else {
+                $.notify({
+                    message: "The two password fields didn’t match",
+                },{
+                    element: 'body',
+                    position: null,
+                    type: "success",
+                    allow_dismiss: true,
+                    newest_on_top: false,
+                    showProgressbar: true,
+                    placement: {
+                      from: "top",
+                      align: "right"
+                },
+                   offset: 90,
+                    spacing: 10,
+                    z_index: 999999999999,
+                    delay: 6500,
+                    animate: {
+                    enter: 'animated fadeInDown',
+                    exit: 'animated fadeOutUp'
+                },
+                    icon_type: 'class',
+                    template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert " style="color:#842029 !important;background-color:#f8d7da !important;border-color:#f5c2c7 !important;" role="alert">' +
+                      '<button type="button" aria-hidden="true" class="btn-close" data-notify="dismiss"></button>' +
+                      '<span style="color:#842029 !important;" data-notify="message">{2}</span>' +
+                      '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                      '</div>'
+                });
+                $('#error_1_id_old_password').css('display', 'none');
+                $('#hint_id_new_password1').css('display', 'none');
+                $('#error_1_id_new_password2').css('display', 'block');
+                $("#id_old_password").css("border","2px solid #dddddd");
+                $("#id_new_password1").css("border","2px solid #dddddd");
+                $("#id_new_password2").css("border","2px solid red");
+                $('#id_new_password2').focus();
+            }
+
+        }else{
+            $.notify({
+                message: 'Please enter minimum 8 characters!',
+            },{
+                element: 'body',
+                position: null,
+                type: "success",
+                allow_dismiss: true,
+                newest_on_top: false,
+                showProgressbar: true,
+                placement: {
+                  from: "top",
+                  align: "right"
+                },
+               offset: 90,
+                spacing: 10,
+                z_index: 999999999999,
+                delay: 5000,
+                animate: {
+                enter: 'animated fadeInDown',
+                exit: 'animated fadeOutUp'
+                },
+                icon_type: 'class',
+                template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert " style="color:#842029 !important;background-color:#f8d7da !important;border-color:#f5c2c7 !important;" role="alert">' +
+                  '<button type="button" aria-hidden="true" class="btn-close" data-notify="dismiss"></button>' +
+                  '<span style="color:#842029 !important;" data-notify="message">{2}</span>' +
+                  '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                  '</div>'
+            });
+            $('#error_1_id_old_password').css('display', 'none');
+            $('#error_1_id_new_password2').css('display', 'none');
+            $('#hint_id_new_password1').css('display', 'block');
+            $("#id_old_password").css("border","2px solid #dddddd");
+            $("#id_new_password1").css("border","2px solid red");
+            $("#id_new_password2").css("border","2px solid #dddddd");
+            $('#id_new_password1').focus();
+        }
+    };
+    function review(){
+        var ratingstar = $('#ratingstar').val();
+        if (ratingstar >= 6){
+            $('#ratingstar').val(5);
+            review();
+        }
+        else if (ratingstar <= -1){
+            $('#ratingstar').val(1);
+            review();
+        }
+        else if (ratingstar == 0){
+            // $('#ratingstar').val(1);
+            $.notify({
+                message: "Please Rate Product",
+            },{
+                element: 'body',
+                position: null,
+                type: "success",
+                allow_dismiss: true,
+                newest_on_top: false,
+                showProgressbar: true,
+                placement: {
+                  from: "top",
+                  align: "right"
+                },
+               offset: 90,
+                spacing: 10,
+                z_index: 999999999999,
+                delay: 5000,
+                animate: {
+                enter: 'animated fadeInDown',
+                exit: 'animated fadeOutUp'
+                },
+                icon_type: 'class',
+                template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert " style="color:#842029 !important;background-color:#f8d7da !important;border-color:#f5c2c7 !important; " role="alert">' +
+                  '<button type="button" aria-hidden="true" class="btn-close" data-notify="dismiss"></button>' +
+                  '<span style="color:#842029 !important;" data-notify="message">{2}</span>' +
+                  '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                      '</div>'
+
+            });
+        }
+        else{
+            var pro_id = $('#product__id').val();
+            $('#rating_submit').attr('disabled', true);
+            $.ajax({
+                url: '/user/review/',
+                data: $('#review_form').serialize(),
+                dataType: 'JSON',
+                method: 'POST',
+                success: function (data)
+                {
+                    if (data.status == true) {
+
+                        $.notify({
+                          icon: 'fa fa-check',
+                          title: 'Success!',
+                          message: 'Review Added Successfully! ✔'
+                        },{
+                          element: 'body',
+                          position: null,
+                          type: "info",
+                          allow_dismiss: true,
+                          newest_on_top: true,
+                          showProgressbar: true,
+                          placement: {
+                            from: "top",
+                            align: "right"
+                          },
+                          offset: 20,
+                          spacing: 10,
+                          z_index: 999999999999999,
+                          delay: 3500,
+                          animate: {
+                            enter: 'animated fadeInDown',
+                            exit: 'animated fadeOutUp'
+                          },
+                          icon_type: 'class',
+                          template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
+                            '<button type="button" aria-hidden="true" class="btn-close" data-notify="dismiss"></button>' +
+                            '<span data-notify="icon"></span> ' +
+                            '<span data-notify="message">{2}</span>' +
+                            '<div class="progress" data-notify="progressbar">' +
+                            '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+                            '</div>' +
+                            '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                            '</div>'
+                        });
+                        setTimeout(function() {
+                            window.location.href = "/user/product/"+ pro_id +"";
+                        }, 3700);
+                    }
+                },
+                error: function () {
+                    alert('error');
+                },
+            });
+        }
+    };
+
+    function addressdelete(id){
+      var confirm_delete = $('#confirm_delete').val();
+      $.ajax({
+            url: '/user/address/remove/',
+            data: {'id': id, 'confirm_delete' : confirm_delete ,csrfmiddlewaretoken: '{{csrf_token}}'},
+            dataType: 'JSON',
+            method: 'POST',
+            success: function (data){
+                if (data.status == true) {
+                    if (data.exists == "error") {
+                        window.location.href = "/user/address/";
+                    }
+                    else if (data.exists == "orderexist") {
+                        $.notify({
+                                message: "Can't Delete This address",
+                            },{
+                                element: 'body',
+                                position: null,
+                                type: "success",
+                                allow_dismiss: true,
+                                newest_on_top: false,
+                                showProgressbar: true,
+                                placement: {
+                                  from: "top",
+                                  align: "right"
+                                },
+                               offset: 90,
+                                spacing: 10,
+                                z_index: 999999999999,
+                                delay: 6000,
+                                animate: {
+                                enter: 'animated fadeInDown',
+                                exit: 'animated fadeOutUp'
+                                },
+                                icon_type: 'class',
+                                template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert " style="color:#842029 !important;background-color:#f8d7da !important;border-color:#f5c2c7 !important; " role="alert">' +
+                                  '<button type="button" aria-hidden="true" class="btn-close" data-notify="dismiss"></button>' +
+                                  '<span style="color:#842029 !important;" data-notify="message">{2}</span>' +
+                                  '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                                  '</div>'
+                       });
+
+                    }
+                    else if (data.exists == "done") {
+                        $.notify({
+                            icon: 'fa fa-check',
+                            title: 'Success!',
+                            message: 'Delete successfully ✔'
+                        },{
+                            element: 'body',
+                            position: null,
+                            type: "info",
+                            allow_dismiss: true,
+                            newest_on_top: false,
+                            showProgressbar: true,
+                            placement: {
+                                from: "top",
+                                align: "right"
+                            },
+                            offset: 20,
+                            spacing: 10,
+                            z_index: 999999999999999,
+                            delay: 3800,
+                            animate: {
+                                enter: 'animated fadeInDown',
+                                exit: 'animated fadeOutUp'
+                            },
+                            icon_type: 'class',
+                            template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
+                                '<button type="button" aria-hidden="true" class="btn-close" data-notify="dismiss"></button>' +
+                                '<span data-notify="icon"></span> ' +
+                                '<span data-notify="message">{2}</span>' +
+                                '<div class="progress" data-notify="progressbar">' +
+                                '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+                                '</div>' +
+                                '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                                '</div>'
+                        });
+                        setTimeout(function() {
+                            window.location.href = "/user/address/";
+                        }, 4000);
+                    }
+                    else if (data.exists == "confirmdelete") {
+                        let confirmAction = confirm("You want to delete Address?");
+                        if (confirmAction){
+                            $('#confirm_delete').val('0');
+                            addressdelete(id);
+                        }
+                        else{
+
+                        }
+                    }
+                }
+                else{
+                }
+            },
+            error: function ()
+            {
+                window.location.href = "/user/address/";
+            },
+      });
+
+  };
+
+    function registerr(){
+        var pass = $('#exampleInputPassword1').val().length;
+
+        if(pass >= 8){
+            $('#login_loader').css('display', 'flex');
+            $.ajax({
+              url: '/user/register/',
+              method: 'POST',
+              data: $('#registerr_form').serialize(),
+              dataType: 'JSON',
+              success: function (data) {
+
+                if (data.status == true) {
+
+                    if (data.exists == "existuser") {
+                        $.notify({
+                              message: 'Username is taken!',
+                            },{
+                              element: 'body',
+                              position: null,
+                              type: "success",
+                              allow_dismiss: true,
+                              newest_on_top: false,
+                              showProgressbar: true,
+                              placement: {
+                                from: "top",
+                                align: "right"
+                              },
+                              offset: 90,
+                              spacing: 10,
+                              z_index: 999999999999,
+                              delay: 6000,
+                              animate: {
+                                enter: 'animated fadeInDown',
+                                exit: 'animated fadeOutUp'
+                              },
+                              icon_type: 'class',
+                              template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert " style="color:#842029 !important;background-color:#f8d7da !important;border-color:#f5c2c7 !important; width: 215px !important;" role="alert">' +
+                                '<button type="button" aria-hidden="true" class="btn-close" data-notify="dismiss"></button>' +
+                                '<span style="color:#842029 !important;" data-notify="message">{2}</span>' +
+                                '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                                '</div>'
+                            });
+                        $('#exampleInputusername1').val('');
+                        $("#exampleInputusername1").focus();
+                        $("#exampleInputusername1").attr("placeholder", "Enter Another Username......");
+                        $("#exampleInputEmail1").attr("placeholder", "");
+                        $('#exampleInputusername1').addClass('warningsd');
+                        $('#login_loader').css('display', 'none');
+                    }
+                    else if (data.exists == "existemail") {
+                        $.notify({
+                            message: 'Email is taken!',
+                        },{
+                            element: 'body',
+                            position: null,
+                            type: "success",
+                            allow_dismiss: true,
+                            newest_on_top: false,
+                            showProgressbar: true,
+                            placement: {
+                              from: "top",
+                              align: "right"
+                            },
+                           offset: 90,
+                            spacing: 10,
+                            z_index: 999999999999,
+                            delay: 6000,
+                            animate: {
+                            enter: 'animated fadeInDown',
+                            exit: 'animated fadeOutUp'
+                            },
+                            icon_type: 'class',
+                            template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert " style="color:#842029 !important;background-color:#f8d7da !important;border-color:#f5c2c7 !important; width: 215px !important;" role="alert">' +
+                              '<button type="button" aria-hidden="true" class="btn-close" data-notify="dismiss"></button>' +
+                              '<span style="color:#842029 !important;" data-notify="message">{2}</span>' +
+                              '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                              '</div>'
+                          });
+                        $('#exampleInputEmail1').val('');
+                        $("#exampleInputEmail1").focus();
+                        $("#exampleInputEmail1").attr("placeholder", "Enter Another Email ID.......");
+                        $("#exampleInputusername1").attr("placeholder", "");
+                        $('#exampleInputEmail1').addClass('warningsd');
+                        $('#login_loader').css('display', 'none');
+
+                    }
+                    else if (data.create == "usercreate") {
+                        $.notify({
+                            icon: 'fa fa-check',
+                            title: 'Success!',
+                            message: 'Accout was created for '+ data.u_name +''
+                        },{
+                            element: 'body',
+                            position: null,
+                            type: "info",
+                            allow_dismiss: true,
+                            newest_on_top: false,
+                            showProgressbar: true,
+                            placement: {
+                                from: "top",
+                                align: "right"
+                            },
+                            offset: 20,
+                            spacing: 10,
+                            z_index: 999999999999999,
+                            delay: 4300,
+                            animate: {
+                                enter: 'animated fadeInDown',
+                                exit: 'animated fadeOutUp'
+                            },
+                            icon_type: 'class',
+                            template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
+                                '<button type="button" aria-hidden="true" class="btn-close" data-notify="dismiss"></button>' +
+                                '<span data-notify="icon"></span> ' +
+                                '<span data-notify="message">{2}</span>' +
+                                '<div class="progress" data-notify="progressbar">' +
+                                '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+                                '</div>' +
+                                '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                                '</div>'
+                        });
+                        $('#login_loader').css('display', 'none');
+                        setTimeout(function() {
+                            window.location.href = "/user/token";
+                        }, 4500);
+                    }
+
+                }
+
+                else {
+                  alert('Something is Wrong')
+                }
+              }
+
+            });
+          }
+        else{
+              $.notify({
+                    message: 'Please enter minimum 8 characters!',
+                },{
+                    element: 'body',
+                    position: null,
+                    type: "success",
+                    allow_dismiss: true,
+                    newest_on_top: false,
+                    showProgressbar: true,
+                    placement: {
+                      from: "top",
+                      align: "right"
+                    },
+                   offset: 90,
+                    spacing: 10,
+                    z_index: 999999999999,
+                    delay: 5000,
+                    animate: {
+                    enter: 'animated fadeInDown',
+                    exit: 'animated fadeOutUp'
+                    },
+                    icon_type: 'class',
+                    template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert " style="color:#842029 !important;background-color:#f8d7da !important;border-color:#f5c2c7 !important;" role="alert">' +
+                      '<button type="button" aria-hidden="true" class="btn-close" data-notify="dismiss"></button>' +
+                      '<span style="color:#842029 !important;" data-notify="message">{2}</span>' +
+                      '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                      '</div>'
+                  });
+              $('#exampleInputPassword1').focus();
+          }
+
+    }
+
+    function loginn(){
+        $('#login_loader').css('display', 'flex');
+        $.ajax({
+              url: '/user/accounts/login/',
+              method: 'POST',
+              data: $('#loginn_form').serialize(),
+              dataType: 'JSON',
+              success: function (data) {
+
+                if (data.status == true) {
+
+                    if (data.exists == "notexistuser") {
+                        $.notify({
+                              message: 'User not found!',
+                            },{
+                              element: 'body',
+                              position: null,
+                              type: "success",
+                              allow_dismiss: true,
+                              newest_on_top: false,
+                              showProgressbar: true,
+                              placement: {
+                                from: "top",
+                                align: "right"
+                              },
+                              offset: 90,
+                              spacing: 10,
+                              z_index: 999999999999,
+                              delay: 6000,
+                              animate: {
+                                enter: 'animated fadeInDown',
+                                exit: 'animated fadeOutUp'
+                              },
+                              icon_type: 'class',
+                              template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert " style="color:#842029 !important;background-color:#f8d7da !important;border-color:#f5c2c7 !important; width: 215px !important;" role="alert">' +
+                                '<button type="button" aria-hidden="true" class="btn-close" data-notify="dismiss"></button>' +
+                                '<span style="color:#842029 !important;" data-notify="message">{2}</span>' +
+                                '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                                '</div>'
+                            });
+                        $('#exampleInputEmail1').val('');
+                        $("#exampleInputEmail1").focus();
+                        $("#exampleInputEmail1").attr("placeholder", "Enter Another Username/Email.. User Not found!");
+                        $('#exampleInputEmail1').addClass('warningsd');
+                        $('#exampleInputPassword1').val('');
+                        $("#exampleInputPassword1").attr("placeholder", "Enter Password...");
+                        $('#exampleInputPassword1').removeClass('warningsd');
+                        $('#login_loader').css('display', 'none');
+                    }
+                    else if (data.admin == "admincant") {
+                        $.notify({
+                          message: "Admin can't login!",
+                        },{
+                          element: 'body',
+                          position: null,
+                          type: "success",
+                          allow_dismiss: true,
+                          newest_on_top: false,
+                          showProgressbar: true,
+                          placement: {
+                            from: "top",
+                            align: "right"
+                          },
+                          offset: 90,
+                          spacing: 10,
+                          z_index: 999999999999,
+                          delay: 6000,
+                          animate: {
+                            enter: 'animated fadeInDown',
+                            exit: 'animated fadeOutUp'
+                          },
+                          icon_type: 'class',
+                          template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert " style="color:#842029 !important;background-color:#f8d7da !important;border-color:#f5c2c7 !important; width: 215px !important;" role="alert">' +
+                            '<button type="button" aria-hidden="true" class="btn-close" data-notify="dismiss"></button>' +
+                            '<span style="color:#842029 !important;" data-notify="message">{2}</span>' +
+                            '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                            '</div>'
+                        });
+                        $('#exampleInputEmail1').val('');
+                        $('#exampleInputPassword1').val('');
+                        $("#exampleInputEmail1").focus();
+                        $("#exampleInputEmail1").attr("placeholder", "Admin can't Login");
+                        $('#exampleInputEmail1').addClass('warningsd');
+                        $("#exampleInputPassword1").attr("placeholder", "Enter Password...");
+                        $('#exampleInputPassword1').removeClass('warningsd');
+                        $('#login_loader').css('display', 'none');
+                    }
+                    else if (data.verify == "notverify") {
+                        $.notify({
+                              message: "Profile is not verified check your mail.",
+                            },{
+                              element: 'body',
+                              position: null,
+                              type: "success",
+                              allow_dismiss: true,
+                              newest_on_top: false,
+                              showProgressbar: true,
+                              placement: {
+                                from: "top",
+                                align: "right"
+                              },
+                              offset: 90,
+                              spacing: 10,
+                              z_index: 999999999999,
+                              delay: 10000,
+                              animate: {
+                                enter: 'animated fadeInDown',
+                                exit: 'animated fadeOutUp'
+                              },
+                              icon_type: 'class',
+                              template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert " style="color:#842029 !important;background-color:#f8d7da !important;border-color:#f5c2c7 !important;" role="alert">' +
+                                '<button type="button" aria-hidden="true" class="btn-close" data-notify="dismiss"></button>' +
+                                '<span style="color:#842029 !important;" data-notify="message">{2}</span>' +
+                                '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                                '</div>'
+                            });
+                        $('#exampleInputEmail1').val('');
+                        $('#exampleInputPassword1').val('');
+                        $("#exampleInputEmail1").focus();
+                        $("#exampleInputEmail1").attr("placeholder", "Enter Anothor Username/Email.. Profile is not verified!");
+                        $('#exampleInputEmail1').addClass('warningsd');
+                        $("#exampleInputPassword1").attr("placeholder", "Enter Password...");
+                        $('#exampleInputPassword1').removeClass('warningsd');
+                        $('#login_loader').css('display', 'none');
+                    }
+                    else if (data.wrong == "wrongpassword") {
+                        $.notify({
+                              message: "Wrong Password!!",
+                            },{
+                              element: 'body',
+                              position: null,
+                              type: "success",
+                              allow_dismiss: true,
+                              newest_on_top: false,
+                              showProgressbar: true,
+                              placement: {
+                                from: "top",
+                                align: "right"
+                              },
+                              offset: 90,
+                              spacing: 10,
+                              z_index: 999999999999,
+                              delay: 6000,
+                              animate: {
+                                enter: 'animated fadeInDown',
+                                exit: 'animated fadeOutUp'
+                              },
+                              icon_type: 'class',
+                              template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert " style="color:#842029 !important;background-color:#f8d7da !important;border-color:#f5c2c7 !important; width: 215px !important;" role="alert">' +
+                                '<button type="button" aria-hidden="true" class="btn-close" data-notify="dismiss"></button>' +
+                                '<span style="color:#842029 !important;" data-notify="message">{2}</span>' +
+                                '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                                '</div>'
+                            });
+                        $('#exampleInputPassword1').val('');
+                        $("#exampleInputPassword1").focus();
+                        $("#exampleInputPassword1").attr("placeholder", "Enter Correct Password....");
+                        $('#exampleInputPassword1').addClass('warningsd');
+                        $("#exampleInputEmail1").attr("placeholder", "Enter Username/Email...");
+                        $('#exampleInputEmail1').removeClass('warningsd');
+                        $('#login_loader').css('display', 'none');
+                    }
+                    else if (data.success == "loginsuccess") {
+                        $.notify({
+                          icon: 'fa fa-check',
+                          title: 'Success!',
+                          message: 'Login Done Successfully ✔'
+                        },{
+                          element: 'body',
+                          position: null,
+                          type: "info",
+                          allow_dismiss: true,
+                          newest_on_top: false,
+                          showProgressbar: true,
+                          placement: {
+                            from: "top",
+                            align: "right"
+                          },
+                          offset: 20,
+                          spacing: 10,
+                          z_index: 999999999999999,
+                          delay: 3400,
+                          animate: {
+                            enter: 'animated fadeInDown',
+                            exit: 'animated fadeOutUp'
+                          },
+                          icon_type: 'class',
+                          template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
+                            '<button type="button" aria-hidden="true" class="btn-close" data-notify="dismiss"></button>' +
+                            '<span data-notify="icon"></span> ' +
+                            '<span data-notify="message">{2}</span>' +
+                            '<div class="progress" data-notify="progressbar">' +
+                            '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+                            '</div>' +
+                            '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                            '</div>'
+                        });
+                        setTimeout(function() {
+                            if (data.redirect == "particularpage") {
+                                window.location.href = ""+ data.pagelink +"";
+                            }
+                            else if (data.redirect == "dashboard") {
+                                window.location.href = "/user/dashboard/";
+                            }
+                        }, 3600);
+                    }
+                }
+
+                else {
+                  alert('Something is Wrong')
+                }
+              }
+            });
+
+    }
+
+    </script>
+
+    <script>
+
+
+        function openquick(id){
+            $.ajax({
+              url: '/user/quickview/',
+              method: 'POST',
+              data: { 'id': id, csrfmiddlewaretoken: '{{csrf_token}}' },
+              dataType: 'JSON',
+
+              success: function (data) {
+                $('#name_pro').html(data.productname);
+                $('#price_pro').html('<i class="fa fa-inr" aria-hidden="true"></i> ' + data.pro_price + '.00');
+                $('#price__pro').html('<i class="fa fa-inr" aria-hidden="true"></i> ' + data.strike_price + '.00');
+                $('#dec_pro').html(data.pro_description);
+                $('#color_pro').css("background-color", data.pro_colour);
+                $('#img_pro').attr("src", data.pro_image);
+                $('#img_pro').css("display", "block");
+                $('#cartadd').attr('onClick', 'addCart(' +id+ ')');
+                $('#productlink').attr('href', '/user/product/'+ id +'');
+                openquickk(id,1);
+
+
+
+              },
+
+              error: function () {
+                alert('Something is Wrong');
+              }
+            });
+
+        };
+
+        function openquickk(id,idd) {
+            $.ajax({
+                url: '/user/quickview1/',
+                data: {csrfmiddlewaretoken:"{{csrf_token}}", 'id': id },
+                dataType: 'JSON',
+                method: 'POST',
+                success: function (data) {
+                    $('#update_cart').val(data.cdata);
+                    if(idd == 1){
+                        $('#quick-view').modal('show');
+                    }
+                    else{
+                        addCart(id);
+                    }
+                },
+
+              error: function () {
+                alert('Something is Wrong');
+              }
+
+            });
+        };
+    </script>
+    {% if click_on == '1' %}
+      {% if address_obj %}
+      <script>
+        window.onload = function exampleFunction(){
+          select_notify();
+          $('#add_2').css('display', 'none');
+          $("#add_1").css('display', 'block');
+          $("#addd_1").css('display', 'block');
+          $('#login_loader').css('display', 'none');
+
+        }
+
+
+      </script>
+      {% else %}
+      <script>
+         window.onload = function exampleFunction(){
+            add_notify();
+            $('#login_loader').css('display', 'none');
+          }
+
+      </script>
+      {% endif %}
+    {% else %}
+    <script>
+         window.onload = function exampleFunction(){
+            {% if request.session.username %}
+                var passwords = window.location.href
+                if ( passwords == 'https://music-club.prathmeshsoni.works/user/password-reset/' || passwords =='https://music-club.prathmeshsoni.works/user/password-reset-confirm/MTY/set-password/' || passwords == 'https://music-club.prathmeshsoni.works/user/password-reset/done/' || passwords == 'https://music-club.prathmeshsoni.works/user/password-reset-complete/' ){
+                    window.location.href = '/user/dashboard/';
+                }
+                else{
+                }
+            {% endif %}
+            var soni = $("#check_var").val()
+             if (soni == 'True'){
+              $('.razorpay-payment-button').click();
+             }
+             else{
+                var productnotready = $('#imgnotfound').val();
+                var carttcount = $("#carttcount").val();
+                if ( carttcount == '0' ){
+                    $("#id_new_password1").val('0');
+                    var pass = $("#id_new_password1").val();
+                    if ( pass == '0' ){
+                        $("#id_new_password1").val('');
+                    }
+                    else{
+                        $.notify({
+                            message: "You have already changed your password. We redirect you across the login page ..!",
+                        },{
+                            element: 'body',
+                            position: null,
+                            type: "success",
+                            allow_dismiss: true,
+                            newest_on_top: false,
+                            showProgressbar: true,
+                            placement: {
+                              from: "top",
+                              align: "right"
+                            },
+                            offset: 90,
+                            spacing: 10,
+                            z_index: 999999999999,
+                            delay: 6800,
+                            animate: {
+                            enter: 'animated fadeInDown',
+                            exit: 'animated fadeOutUp'
+                            },
+                            icon_type: 'class',
+                            template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert " style="color:#842029 !important;background-color:#f8d7da !important;border-color:#f5c2c7 !important; " role="alert">' +
+                                '<span style="color:#842029 !important;" data-notify="message">{2}</span>' +
+                                '<div class="progress" data-notify="progressbar">' +
+                                '<div style="background-color:#842029 !important;" class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+                                '</div>' +
+                                '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                                '</div>'
+                            });
+                            setTimeout(function() {
+                                window.location.href = "/user/logout/";
+                            }, 7000);
+
+                        }
+
+                }
+                else if ( productnotready == '0' ){
+                    window.location.href = "/user/product/";
+                }
+                else{
+
+                }
+            }
+        }
+
+      </script>
+    {% endif %}
+
+  <script>
+
+    function add_notify(){
+        $(".hide-1").css('display', 'none');
+        $(".hide-2").css('display', 'none');
+        $.notify({
+            //   icon: 'fa fa-check',
+              message: 'Add Address',
+            },{
+              element: 'body',
+              position: null,
+              type: "success",
+              allow_dismiss: true,
+              newest_on_top: true,
+              showProgressbar: true,
+              placement: {
+                from: "top",
+                align: "right"
+              },
+              offset: 90,
+              spacing: 10,
+              z_index: 99999999999999999,
+              delay: 50000000,
+              animate: {
+                enter: 'animated fadeInDown',
+                exit: 'animated fadeOutUp'
+              },
+              icon_type: 'class',
+              template: '<div data-notify="container" class="col-xs-8 col-sm-3 alert hide-2"  role="alert">' +
+                '<button type="button" aria-hidden="true" class="btn-close" data-notify="dismiss"></button>' +
+                '<span  data-notify="message">{2}</span>' +
+                '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                '</div>'
+            });
+    }
+
+    function select_notify(){
+        $(".hide-1").css('display', 'none');
+        $(".hide-2").css('display', 'none');
+        $.notify({
+            //   icon: 'fa fa-check',
+              message: 'Select Your Address',
+            },{
+              element: 'body',
+              position: null,
+              type: "success",
+              allow_dismiss: true,
+              newest_on_top: true,
+              showProgressbar: true,
+              placement: {
+                from: "top",
+                align: "right"
+              },
+              offset: 90,
+              spacing: 10,
+              z_index: 99999999999999999,
+              delay: 5000000,
+              animate: {
+                enter: 'animated fadeInDown',
+                exit: 'animated fadeOutUp'
+              },
+              icon_type: 'class',
+              template: '<div data-notify="container" class="col-xs-8 col-sm-3 alert hide-1"  role="alert">' +
+                '<button type="button" aria-hidden="true" class="btn-close" data-notify="dismiss"></button>' +
+                '<span  data-notify="message">{2}</span>' +
+                '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                '</div>'
+            });
+    }
+
+    function change_address(){
+        $("#set-1").css('display', 'none');
+        $("#set-2").css('display', 'block');
+        $("#add_2").css('display', 'none');
+        $("#add_1").css('display', 'block');
+        select_notify();
+        $('#showclose-1').css('display', 'block');
+
+    }
+
+
+    function address1(){
+        var address = $('input[name="address"]:checked').val();
+        $("#hidden_address").val(address);
+        $("#set-2").css('display', 'none');
+        $("#this_address").html(' Address No - ' + address);
+        $("#set-1").css('display', 'block');
+        $(".hide-1").css('display', 'none');
+        $(".hide-2").css('display', 'none');
+
+
+    }
+
+    function anothor(){
+
+      $('#add_2').css('display', 'block');
+      $("#add_1").css('display', 'none');
+      add_notify();
+      $("#cancel").css('display', 'block');
+      $("#cancelll").css('display', 'block');
+      $("#Buynow").attr('disabled', true);
+      $("#Buynow").addClass('buynow');
+      var val1 = $("#hidden_address").val();
+      if (val1 == '0' ){
+
+
+      }
+      else{
+        $('#showclose-2').css('display', 'block');
+        $("#showclose-1").css('display', 'none');
+      }
+
+    }
+
+    function open_paymen(){
+      alert("eello");
+    }
+
+    function cancell(){
+      $('#add_2').css('display', 'none');
+      $("#add_1").css('display', 'block');
+      select_notify();
+      var val1 = $("#hidden_address").val();
+      if (val1 == '0' ){
+
+
+      }
+      else{
+        $('#showclose-2').css('display', 'none');
+        $("#showclose-1").css('display', 'block');
+      }
+
+    }
+
+    function check_add(){
+      var address = $('#hidden_address').val();
+      if (address == '0' ){
+
+      }
+      else{
+        $("#Buynow").attr('disabled', false);
+        $("#Buynow").removeClass('buynow');
+      }
+    }
+
+
+    function addCart(id) {
+      update_cart = $('#update_cart').val();
+      ccartquntity = $('#ccartquntity').val();
+      session_redirect = $('#session_redirect').val();
+      urll = '/user/product/'+id
+        $.ajax({
+            url: '/user/cart/',
+            data: { 'id': id,'var':'1','ccartquntity':ccartquntity,'update_cart':update_cart,'redairecturl':urll,'session_redirect':session_redirect},
+            dataType: 'JSON',
+            method: 'POST',
+            success: function (data) {
+
+                if (data.status == true) {
+                    $('#update_cart').val(data.c_id);
+                    $.notify({
+                      icon: 'fa fa-check',
+                      title: 'Success!',
+                      message: 'Item Successfully added in Cart ✔'
+                    },{
+                      element: 'body',
+                      position: null,
+                      type: "info",
+                      allow_dismiss: true,
+                      newest_on_top: false,
+                      showProgressbar: true,
+                      placement: {
+                        from: "top",
+                        align: "right"
+                      },
+                      offset: 20,
+                      spacing: 10,
+                      z_index: 999999999999999,
+                      delay: 3400,
+                      animate: {
+                        enter: 'animated fadeInDown',
+                        exit: 'animated fadeOutUp'
+                      },
+                      icon_type: 'class',
+                      template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
+                        '<button type="button" aria-hidden="true" class="btn-close" data-notify="dismiss"></button>' +
+                        '<span data-notify="icon"></span> ' +
+                        '<span data-notify="message">{2}</span>' +
+                        '<div class="progress" data-notify="progressbar">' +
+                        '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+                        '</div>' +
+                        '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                        '</div>'
+                    });
+                    setTimeout(function() {
+                        history.go();
+                    }, 3600);
+
+                }
+
+                else if (data.status == false) {
+                    if (data.redirect == "1") {
+                        window.location.href = "/user/accounts/login/";
+                    }
+                    else {
+                        let confirmAction = confirm("Need Login");
+                        if (confirmAction){
+                            $('#session_redirect').val(1);
+                            addCart(id);
+                        }
+                        else{
+
+                        }
+                    }
+                }
+                else if (data.status == "error") {
+                  if( data.another == 0){
+                      var chakk = $('#update_cart').val();
+                      if( chakk == 0 ){
+                           $.notify({
+                            //   icon: 'fa fa-check',
+                              title: 'Success!',
+                              message: 'Product Out Of stock     ',
+                            },{
+                              element: 'body',
+                              position: null,
+                              type: "success",
+                              allow_dismiss: true,
+                              newest_on_top: false,
+                              showProgressbar: true,
+                              placement: {
+                                from: "top",
+                                align: "right"
+                              },
+                              offset: 90,
+                              spacing: 10,
+                              z_index: 999999999999,
+                              delay: 50000,
+                              animate: {
+                                enter: 'animated fadeInDown',
+                                exit: 'animated fadeOutUp'
+                              },
+                              icon_type: 'class',
+                              template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert " style="color:#842029 !important;background-color:#f8d7da !important;border-color:#f5c2c7 !important; width: 215px !important;" role="alert">' +
+                                '<button type="button" aria-hidden="true" class="btn-close" data-notify="dismiss"></button>' +
+                                '<span style="color:#842029 !important;" data-notify="message">{2}</span>' +
+                                '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                                '</div>'
+                            });
+                      }
+                      else{
+                          alert('Product Out Of stock');
+                          window.location.href = "/user/gocart/";
+                      }
+                  }
+                  else if(data.another < 0){
+
+                      alert('See Available Product in Cart Page');
+                      window.location.href = "/user/gocart/";
+                  }
+                  else if(data.another > 0){
+                      $.notify({
+                        //   icon: 'fa fa-check',
+                          message: 'available only : '+data.another,
+                        },{
+                          element: 'body',
+                          position: null,
+                          type: "success",
+                          allow_dismiss: true,
+                          newest_on_top: false,
+                          showProgressbar: true,
+                          placement: {
+                            from: "top",
+                            align: "right"
+                          },
+                          offset: 90,
+                          spacing: 10,
+                          z_index: 99999999999999,
+                          delay: 50000,
+                          animate: {
+                            enter: 'animated fadeInDown',
+                            exit: 'animated fadeOutUp'
+                          },
+                          icon_type: 'class',
+                          template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert " style="color:#842029 !important;background-color:#f8d7da !important;border-color:#f5c2c7 !important; width: 215px !important;" role="alert">' +
+                            '<button type="button" aria-hidden="true" class="btn-close" data-notify="dismiss"></button>' +
+                            '<span style="color:#842029 !important;" data-notify="message">{2}</span>' +
+                            '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                            '</div>'
+                        });
+                      $('#ccartquntity').val(data.another);
+                      $('#qty-adj').val(data.another);
+
+                  }
+                }
+
+            },
+            error: function () {
+
+            },
+        });
+    };
+  </script>
+
+<script>
+  gb = 1;
+  function sassa(){
+      alert("hello");
+  }
+
+
+  function minus(id) {
+
+      var cartquntity = $("#cartquntity-"+id).val();
+      if (cartquntity == 1 ){
+          deletee(id);
+      }
+      else{
+          var total_quantity = parseInt(cartquntity) - parseInt(gb)
+          $(".cartquntityss"+id).val(total_quantity);
+          update(id);
+
+      }
+  };
+
+
+  function plus(id) {
+    var cartquntity = $("#cartquntity-"+id).val();
+    var total_quantity = parseInt(cartquntity) + parseInt(gb)
+    $(".cartquntityss"+id).val(total_quantity);
+    update(id);
+  };
+
+
+  function inpp(id){
+    var qty_adj = $("#qty-adj-"+id).val();
+    $(".demo1"+id ).val(qty_adj);
+    $(".demoo"+id ).html(qty_adj);
+    $(".cartquntityss"+id).val(qty_adj);
+    var  default1= $("#cartquntity-"+id).val();
+    if(default1 == ''){
+      $(".cartquntityss"+id).val(1);
+      $(".demo1"+id ).val(1);
+      $(".demoo"+id ).html(1);
+    }
+    if(qty_adj < 1){
+      $(".cartquntityss"+id).val(1);
+      $(".demo1"+id ).val(1);
+      $(".demoo"+id ).html(1);
+    }
+    if(qty_adj == 0){
+      deletee(id);
+    }
+    update(id);
+  };
+  function inppp(id){
+      var qty_adj = $("#qty-adj"+id).val();
+      $(".demo1"+id ).val(qty_adj);
+      $(".demoo"+id ).html(qty_adj);
+      $(".cartquntityss"+id).val(qty_adj);
+      var  default1= $("#cartquntity-"+id).val();
+      if(default1 == ''){
+        $(".cartquntityss"+id).val(1);
+        $(".demo1"+id ).val(1);
+        $(".demoo"+id ).html(1);
+      }
+      if(qty_adj < 1){
+        $(".cartquntityss"+id).val(1);
+        $(".demo1"+id ).val(1);
+        $(".demoo"+id ).html(1);
+      }
+      if(qty_adj == 0){
+        deletee(id);
+      }
+      update(id);
+  };
+
+
+  function update(id){
+      var cartquntity = $("#cartquntity-"+id).val();
+      var cartt = $('#ok'+id).val();
+      var subbtotal = parseInt(cartquntity) * parseInt(cartt)
+
+      $.ajax({
+          url: '/user/gocart/',
+          data: {csrfmiddlewaretoken:"{{csrf_token}}", 'id': id,'var':'3','cartquntity':cartquntity},
+          dataType: 'JSON',
+          method: 'POST',
+          success: function (data) {
+
+              if (data.status == true) {
+
+                  $(".demo1"+id ).val(cartquntity);
+                  $(".demoo"+id ).html(cartquntity);
+
+                  // perticular product subtotal
+                  $('.cart_subtotal-'+id).html('<i class="fa fa-inr" aria-hidden="true"></i> ' + subbtotal + '.00');
+
+                  //all cart page
+                  $('.cart_ttotal').html('<i class="fa fa-inr" aria-hidden="true"></i> ' + data.amountd + '.00 ');
+
+                  //subtotal
+                  $('.toatl_aa').html('₹ ' + data.total_amount_update + '.00 ');
+                  $('.toatl_aa').val('₹ ' + data.total_amount_update + '.00 ');
+
+              }
+
+              else if (data.status == false) {
+                var kk = $('#dont'+id).val();
+
+                if( kk == 0 ){
+                    $.notify({
+                        //   icon: 'fa fa-check',
+                          message: 'Product Out Of stock',
+                        },{
+                          element: 'body',
+                          position: null,
+                          type: "success",
+                          allow_dismiss: true,
+                          newest_on_top: false,
+                          showProgressbar: true,
+                          placement: {
+                            from: "top",
+                            align: "right"
+                          },
+                          offset: 90,
+                          spacing: 10,
+                          z_index: 99999999999999999,
+                          delay: 50000,
+                          animate: {
+                            enter: 'animated fadeInDown',
+                            exit: 'animated fadeOutUp'
+                          },
+                          icon_type: 'class',
+                          template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert " style=" color:#842029 !important;background-color:#f8d7da !important;border-color:#f5c2c7 !important; width: 215px !important;" role="alert">' +
+                            '<button type="button" aria-hidden="true" class="btn-close" data-notify="dismiss"></button>' +
+                            '<span style="color:#842029 !important;" data-notify="message">{2}</span>' +
+                            '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                            '</div>'
+                        });
+                }
+                else{
+                    $.notify({
+                        //   icon: 'fa fa-check',
+                          message: 'available only : '+kk,
+                        },{
+                          element: 'body',
+                          position: null,
+                          type: "success",
+                          allow_dismiss: true,
+                          newest_on_top: false,
+                          showProgressbar: true,
+                          placement: {
+                            from: "top",
+                            align: "right"
+                          },
+                          offset: 90,
+                          spacing: 10,
+                          z_index: 99999999999999999,
+                          delay: 50000,
+                          animate: {
+                            enter: 'animated fadeInDown',
+                            exit: 'animated fadeOutUp'
+                          },
+                          icon_type: 'class',
+                          template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert " style=" color:#842029 !important;background-color:#f8d7da !important;border-color:#f5c2c7 !important; width: 215px !important;" role="alert">' +
+                            '<button type="button" aria-hidden="true" class="btn-close" data-notify="dismiss"></button>' +
+                            '<span style="color:#842029 !important;" data-notify="message">{2}</span>' +
+                            '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                            '</div>'
+                        });
+                    $(".demo1"+id ).val(kk);
+                    $(".demoo"+id ).html(kk);
+                    $(".cartquntityss"+id ).val(kk);
+                    update(id);
+                }
+
+              }
+
+          },
+          error: function () {
+
+          },
+      });
+
+
+  };
+
+
+
+  function deletee(id){
+      let confirmAction = confirm("You want to delete Product form Cart?");
+      if (confirmAction) {
+          $.ajax({
+          url: '/user/cart/',
+          data: {'id': id,'var':'2'},
+          dataType: 'JSON',
+          method: 'POST',
+          success: function (data)
+          {
+              if (data.status == true) {
+                $.notify({
+                  icon: 'fa fa-check',
+                  title: 'Success!',
+                  message: 'Item Deleted Successfully! ✔'
+                },{
+                  element: 'body',
+                  position: null,
+                  type: "info",
+                  allow_dismiss: true,
+                  newest_on_top: true,
+                  showProgressbar: true,
+                  placement: {
+                    from: "top",
+                    align: "right"
+                  },
+                  offset: 20,
+                  spacing: 10,
+                  z_index: 999999999999999,
+                  delay: 3700,
+                  animate: {
+                    enter: 'animated fadeInDown',
+                    exit: 'animated fadeOutUp'
+                  },
+                  icon_type: 'class',
+                  template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
+                    '<button type="button" aria-hidden="true" class="btn-close" data-notify="dismiss"></button>' +
+                    '<span data-notify="icon"></span> ' +
+                    '<span data-notify="message">{2}</span>' +
+                    '<div class="progress" data-notify="progressbar">' +
+                    '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+                    '</div>' +
+                    '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                    '</div>'
+                });
+                setTimeout(function() {
+                        history.go();
+                }, 4000);
+              }
+          },
+          error: function ()
+          {
+
+          },
+          });
+      }
+      else {
+
+      }
+
+  };
+</script>
+
+<script>
+  function seereview(){
+      $('#review_form').css('display', 'none');
+      $('#view_review').css('display', 'block');
+      $('#viewvisible').css('display', 'flex');
+      $('#write_review').css('display', 'none');
+
+  }
+  function abcd(){
+      $('#review_form').css('display', 'block');
+      $('#view_review').css('display', 'none');
+      $('#viewvisible').css('display', 'none');
+      $('#write_review').css('display', 'block');
+
+  }
+
+  function rating(id){
+    if(id == 1){
+      $('#starr-1').addClass('staradd')
+      $('#starr-2').removeClass('staradd')
+      $('#starr-3').removeClass('staradd')
+      $('#starr-4').removeClass('staradd')
+      $('#starr-5').removeClass('staradd')
+    }
+    else if(id == 2){
+      $('#starr-1').addClass('staradd')
+      $('#starr-2').addClass('staradd')
+      $('#starr-3').removeClass('staradd')
+      $('#starr-4').removeClass('staradd')
+      $('#starr-5').removeClass('staradd')
+    }
+    else if(id == 3){
+      $('#starr-1').addClass('staradd')
+      $('#starr-2').addClass('staradd')
+      $('#starr-3').addClass('staradd')
+      $('#starr-4').removeClass('staradd')
+      $('#starr-5').removeClass('staradd')
+    }
+    else if(id == 4){
+      $('#starr-1').addClass('staradd')
+      $('#starr-2').addClass('staradd')
+      $('#starr-3').addClass('staradd')
+      $('#starr-4').addClass('staradd')
+      $('#starr-5').removeClass('staradd')
+    }
+    else if(id == 5){
+      $('#starr-1').addClass('staradd')
+      $('#starr-2').addClass('staradd')
+      $('#starr-3').addClass('staradd')
+      $('#starr-4').addClass('staradd')
+      $('#starr-5').addClass('staradd')
+    }
+    $('#ratingstar').val(id);
+  }
+
+     function checkrequired(){
+      if( $("#ratingstar").val() == '0' || $("#userr_name").val() == '' || $("#user_email").val() == '' || $("#review_subject").val() == '' || $("#review_disc").val() == '' ){
+        $('#rating_submit').attr('disabled', true)
+      }
+      else{
+        $('#rating_submit').attr('disabled', false)
+      }
+    }
+
+
+
+</script>
+
+<script>
+    gb = 1;
+
+    function minuss() {
+
+      var qty_adj = $('#qty-adj').val();
+      var total_quantity = parseInt(qty_adj) - parseInt(gb)
+      if(total_quantity < 1){
+        $('#qty-adj').val(1);
+        $('#ccartquntity').val(1);
+      }
+      else{
+        $('#qty-adj').val(total_quantity);
+        $('#ccartquntity').val(total_quantity);
+      }
+
+
+    };
+
+    function pluss() {
+      var qty_adj = $('#qty-adj').val();
+      var total_quantity = parseInt(qty_adj) + parseInt(gb)
+      $('#qty-adj').val(total_quantity);
+      $('#ccartquntity').val(total_quantity);
+
+    };
+
+    function ins(){
+      var qty_adj = $("#qty-adj").val();
+      $("#ccartquntity").val(qty_adj);
+      var  default1= $("#ccartquntity").val();
+      if(default1 == ''){
+        $(".ccartquntity").val(1);
+      }
+      if(qty_adj < 1){
+        $('#qty-adj').val(1);
+        $('#ccartquntity').val(1);
+      }
+  };
+
+</script>
+
+
+    <script>
+        function cat(id){
+            {% for item in pro %}
+                if(id == {{item.id}}){
+                    {% for items in pro %}
+                        {% if item.id == items.id %}
+                            $('#catt-{{items.id}}').removeClass('dipa-none')
+                        {% else %}
+                            $('#catt-{{items.id}}').addClass('dipa-none')
+                        {% endif %}
+                    {% endfor %}
+                }
+            {% endfor %}
+
+            if(id == 0){
+                {% for ite in pro %}
+                    $('#catt-{{ite.id}}').removeClass('dipa-none')
+                {% endfor %}
+            }
+        }
+    </script>
+
+
+</body>
+
+</html>

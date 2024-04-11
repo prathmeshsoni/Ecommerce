@@ -1,0 +1,139 @@
+{% extends 'user/index.html' %}
+{% load static %}
+{% block title %} Shop   {% endblock %}
+{% block content %}
+
+<div class="breadcrumb-main ">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="breadcrumb-contain">
+                    <div>
+                        <h2>category</h2>
+                        <ul>
+                            <li><a href="index-2.html">home</a></li>
+                            <li><i class="fa fa-angle-double-right"></i></li>
+                            <li><a href="javascript:void(0)">{{cat_obj.cat_name}}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="section-big-pt-space ratio_asos b-g-light">
+    <div class="collection-wrapper">
+        <div class="custom-container">
+            <div class="row">
+                <div class="collection-content col">
+                    <div class="page-main-content">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="collection-product-wrapper">
+                                    <div class="product-top-filter">
+                                        <div class="container-fluid p-0">
+                                          <div class="row">
+                                            <div class="col-xl-12">
+                                                <div class="filter-main-btn ">
+                                                  <span class="filter-btn ">
+                                                    <i class="fa fa-filter" aria-hidden="true"></i> Filter
+                                                  </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                            <div class="row">
+                                                <div class="col-12 position-relative">
+                                                    <div class="product-filter-content horizontal-filter-mian ">
+                                                        
+                                                        <div class="collection-view">
+                                                            <ul>
+                                                                <li><i class="fa fa-th grid-layout-view"></i></li>
+                                                                <li><i class="fa fa-list-ul list-layout-view"></i></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="product-page-per-view">
+                                                            <select>
+                                                                <option value="High to low">24 Products Par Page</option>
+                                                                <option value="Low to High">50 Products Par Page</option>
+                                                                <option value="Low to High">100 Products Par Page</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="product-page-filter ">
+                                                            <select>
+                                                                <option value="High to low">Sorting items</option>
+                                                                <option value="Low to High">50 Products</option>
+                                                                <option value="Low to High">100 Products</option>
+                                                            </select>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-wrapper-grid product" style="padding-bottom: 45px;">
+                                        <div class="row">
+                                          {% for i in pro_list %}
+                                                {% if i.pro_image %}
+                                                  <div class="col-md-2 col-grid-box" >
+                                                    <div class="product-box">
+                                                      <div class="product-imgbox">
+                                                        <div class="product-front  pt-3 ">
+                                                          <a href="/user/product/{{i.id}}"> 
+                                                            {% if i.pro_image %}
+                                                              <img src="{{i.pro_image.url}}" class="img-fluid  " alt="product">
+                                                            {% endif %}
+                                                          </a>
+                                                        </div>
+                                                        <div class="product-back  pt-3">
+                                                          <a href="/user/product/{{i.id}}"> 
+                                                            {% if i.pro_image %}
+                                                              <img src="{{i.pro_image.url}}" class="img-fluid  " alt="product">
+                                                            {% endif %}
+                                                          </a>
+                                                        </div>
+                                                      </div>
+                                                      <div class="product-detail detail-center detail-inverse">
+                                                        <div class="detail-title">
+                                                          <div class="detail-left">
+                                                            <div class="rating-star"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
+                                                            <p>{{i.pro_description}}</p>
+                                                            <a href="/user/product/{{i.id}}">
+                                                              <h6 class="price-title">
+                                                                {{i.productname}}
+                                                              </h6> </a>
+                                                          </div>
+                                                          <div class="detail-right">
+                                                            <div class="check-price"><i class="fa fa-inr" aria-hidden="true"></i> {{i.strike_price}}.00 </div>
+                                                            <div class="price">
+                                                              <div class="price"><i class="fa fa-inr" aria-hidden="true"></i> {{i.pro_price}}.00 </div>
+                                                            </div>
+                                                          </div>
+                                                        </div>
+                                                        <div class="icon-detail">
+                                                         <button  onclick="openquickk({{i.id}},0)" class="tooltip-top" data-tippy-content="Add to cart" >
+                                                <i  data-feather="shopping-cart"></i>
+                                                        </button>
+                                                          <a href="javascript:void(0)"  onclick="openquick({{i.id}})" class="tooltip-top"> <i  data-feather="eye"></i> </a>
+                                                          
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                {% endif %}
+                                          {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

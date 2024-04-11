@@ -1,0 +1,145 @@
+{% extends 'admin/masterpage/index-1.html' %}
+{% block title3 %} Manage Slider {% endblock %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+  <div class="cal_ content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="row">
+            <div class="col-md-4">
+                <h5 class="card-title">Manage SLIDER</h5>
+            </div>
+            <div class="col-md-2" >
+                {% if messages %}
+
+                        {% for message in messages %}
+                            <!--<div class="alert alert-info">-->
+                                <p style="color: red; margin-top: 10px !important;" >    
+                                {{ message }}
+                                </p>
+                            <!--</div>-->
+                        {% endfor %}
+                
+                    {% endif %}
+            </div>
+            <div class="col-md-3">
+                <div style="text-align-last: center; padding-top:12px; " >
+                    <button type="button" onclick="openModel()" class="btn btn-sm btn-light" style="
+                    color: blue; border: blue solid 1.7px; padding: 6px 17px;" ><i class="fa fa-plus" style="font-weight: bolder;" ></i> ADD SLIDER</button>
+                </div>            
+            </div>
+            <div class="col-md-3" style=" padding-top:12px; " >
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/admin/"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Gallery</a></li>
+                <li class="breadcrumb-item active">Slider</li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+        <div class="row">
+            {% for i in show_data %}
+		    <div class="col-12 col-lg-6 col-xl-4">
+    		    <div class="box">
+                    <div class="box-body">
+    				    <div class="product-img">
+        					<img src="{{i.slider_img.url}}" style="height: 85px;margin: 35px 0;" alt="">
+        					<div class="pro-img-overlay">
+        					    <a href="javascript:void(0)" onclick="updateModel({{i.id}})" class="bg-info" style="margin-top: 55px;" >Edit</a>
+        					    <a href="javascript:void(0)" onclick="Delete({{i.id}})"  class="bg-danger" style="margin-top: 55px;" >Delete</a>
+    					    </div>
+    				    </div>
+                    </div>
+                </div>
+    	    </div>
+    	    {% endfor %}
+        </div>
+
+    </section>
+    <!-- /.content -->
+  </div>
+  
+
+<div class="modal center-modal fade" id="sliderModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="categoryModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="add_slider">ADD SLIDER</h5>
+        <h5 class="modal-title" id="edit_slider">EDIT SLIDER</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" id="Addslider" enctype="multipart/form-data">
+          <input type="hidden" name="hid" id="hid" value="" /> 
+          <div class="row">
+            <div class="form-group col-md-6 mb-3">
+              {{ form_obj.slider_img|as_crispy_field }}
+            </div>
+            {% csrf_token %}
+          </div>
+          <button type="submit" class="btn btn-primary float-right">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+
+  function openModel() {
+    $("#Addslider")[0].reset();
+    $("#add_slider").css('display','block');
+    $("#edit_slider").css('display','none');
+    $('#sliderModal').modal();
+  };
+
+
+  function updateModel(id) {
+    $.ajax({
+      url: '/admin/slider/updateSlider/',
+      method: 'POST',
+      data: { 'id': id, csrfmiddlewaretoken: '{{csrf_token}}' },
+      dataType: 'JSON',
+
+      success: function (data) {
+        $('#hid').val(data.id);
+        $('#id_slider_img').val(data.slider_img.url);
+        $("#add_slider").css('display','none');
+        $("#edit_slider").css('display','block');
+        $('#sliderModal').modal();
+
+      },
+
+      error: function () {
+        alert('Something is Wrong');
+      }
+    });
+  }
+    
+    function Delete(id){
+        let confirmAction = confirm("You want to delete State?")
+        if (confirmAction){
+            window.location.href = "/admin/slider/remove_slider/" + id + "";
+        }
+        else{
+                    
+        }
+            
+    }
+
+</script>
+
+
+  
+  
+  
+{% endblock %}

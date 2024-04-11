@@ -1,0 +1,50 @@
+{% extends 'user/profile.html' %}
+{% block title %} Dashboard   {% endblock %}
+{% block titall %} Dashboard {% endblock %}
+{% block contentt %}
+
+
+<div class="col-lg-9" style="box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%) !important;" >
+    <div class="dashboard-right" style="background-color: #ffffff00 !important;" >
+        <div class="dashboard">
+            <div class="page-title">
+                <input type="hidden" name="cart_scroll" id="cart_scroll" value="{{cartc}}" />
+                <h2>My Dashboard</h2></div>
+            <div class="welcome-msg">
+                {% if request.session.username %}
+                <p>Heyy🙋 {{request.session.username}} ! 😊 </p>
+                {% endif %}
+                <p>From your My Account Dashboard you have the ability to view a snapshot of your recent account activity and update your account information. Select a link below to view or edit information.</p>
+            </div>
+            <div class="box-account box-info">
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="box">
+                            <div class="box-title">
+                                <h3>Contact Information</h3></div>
+                            <div class="box-content">
+                                {% if request.session.username %}
+                                    <h6 style="text-transform: uppercase;" >NAME :: {{request.session.username}}</h6>
+                                {% endif %}
+                                <h6>EMAIL :: {{email.email}}</h6>
+                                <h6><a href="/user/change-password/">Change Password</a></h6></div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="box">
+                        <div class="box-title">
+                            <h3>Address Book</h3><a href="/user/address/">Manage Addresses</a></div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h6>Default Shipping Address</h6><address>You have not set a default shipping address.<br><a href="/user/address/">Edit Address</a></address></div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
