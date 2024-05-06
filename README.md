@@ -1,16 +1,16 @@
 <p id="top" align="center">
-  <a href="https://music-club.prathmeshsoni.works/">
+  <a href="https://music-club.prathmeshsoni.works" target="_blank">
     <img src="static/admin/folder/images/logo-music-club.png" alt="Logo" width="300" height="100">
   </a>
 </p>
 
 <h1 align="center" class="dotted">
-    <a href="https://music-club.prathmeshsoni.works/">Music Club eCommerce</a>
+    <a href="https://music-club.prathmeshsoni.works" target="_blank">Music Club eCommerce</a>
 </h1>
-  
-<p align="center">
 
-<br>
+<be>
+
+<p align="center">
   
 <img src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white&style=for-the-badge" />
 <img src="https://img.shields.io/badge/Django-092E20?logo=django&logoColor=white&style=for-the-badge" />
@@ -33,7 +33,7 @@ This Django-built Music Instruments E-commerce system facilitates product additi
 
 # Live Demo 👇:
 
-[https://music-club.prathmeshsoni.works](https://music-club.prathmeshsoni.works)
+<a href="https://music-club.prathmeshsoni.works" target="_blank">music-club.prathmeshsoni.works</a>
 
 <br>
 
@@ -49,11 +49,13 @@ This Django-built Music Instruments E-commerce system facilitates product additi
 * [Screenshots, Demo Video](#Screenshots)
 * [Connect Me](#Connect-with-me-at)
 
+
 ## About The Project
 
 ![Screen Shot](/static/admin/folder/images/pretty-snap-25-09-2023.png)
 
 This project is a full-stack Music Instruments E-commerce website developed using Python and the Django framework. It incorporates essential features for an online store, including user authentication, a shopping cart, and integration with the Razorpay payment gateway.
+
 
 ## Technologies Used
 
@@ -68,16 +70,18 @@ This project is a full-stack Music Instruments E-commerce website developed usin
 - Shopping Cart: Efficient cart management for adding, updating, and removing products.
 - Razorpay Integration: Seamless payment transactions through the Razorpay payment gateway.
 
+
 ## Getting Started
 
 This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
+
 Install Python 3.7 or above
 
-*  [Python](https://python.org/downloads/)
-
+* <a href="https://python.org/downloads/" target="_blank">Python</a>
+ 
 ### Installation
 
 > 👉 **Step 1** - Download the code from the GH repository (using `GIT`):
@@ -144,7 +148,7 @@ razorpay_key_secret = ''
 
 > 👉 **Step 7** - Integrate the Razorpay payment gateway for transactions.
 
-Documentation: [Razorpay Integration](https://razorpay.com/docs/payments/server-integration/python/install/)
+Documentation: <a href="https://razorpay.com/docs/payments/server-integration/python/install/" target="_blank">Razorpay Integration</a>
 
 **IMPORTANT**: Make sure your Razorpay account is running in `TEST Mode` and Use the Test token provided by Razorpay:
 
@@ -164,9 +168,10 @@ Documentation: [Razorpay Integration](https://razorpay.com/docs/payments/server-
   - Username: admin
   - Password: admin@123
 
+
 ## Screenshots
 
-Visit our [Screenshots Page](https://private-app.prathmeshsoni.works/view/113) for a visual walkthrough of the Music Club E-Commerce Website.
+Visit our <a href="https://private-app.prathmeshsoni.works/view/113" target="_blank"> Screenshots Page </a> for a visual walkthrough of the Music Club E-Commerce Website.
 
 Demo Video 👇:
 
@@ -176,19 +181,19 @@ https://github.com/prathmeshsoni/Ecommerce/assets/78293392/77c6be7a-d6a2-4e27-9c
 
 The repository is a starting point for most of my professional projects; for this, I'm using it as a part of my portfolio, feel free to use it wherever you want. I'll be happy if you provide any feedback code improvements or suggestions.
 
+
 ## Connect with me at
 
 <p align='center'>
-    
-  <a href="https://www.linkedin.com/in/PrathmeshSoni/">
+  <a href="https://www.linkedin.com/in/PrathmeshSoni/" target="_blank">
     <img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" />
   </a>
-  
 </p>
 
 <p align='center'>
   📫 How to reach me: <a href='mailto:connect.prathmeshsoni@gmail.com'>connect.prathmeshsoni@gmail.com</a>
 </p>
+
 
 ## All Set :)
 
@@ -196,11 +201,10 @@ The repository is a starting point for most of my professional projects; for thi
   <a href="#top">Back To Top</a>
 </p>
 
-
 <p style="text-align:right;" align="right">
-  <a href="https://github.com/prathmeshsoni/Ecommerce">Back To Repository</a>
+  <a href="https://github.com/PrathmeshSoni/Ecommerce" target="_blank">Back To Repository</a>
 </p>
 
 
 ---
-**[Music Club](https://github.com/PrathmeshSoni/Ecommerce) eCommerce** - Provided by **[Prathmesh Soni](https://prathmeshsoni.works/)**
+**<a href="https://music-club.prathmeshsoni.works" target="_blank">Music Club</a> eCommerce** - Provided by **<a href="https://prathmeshsoni.works" target="_blank">Prathmesh Soni</a>**
