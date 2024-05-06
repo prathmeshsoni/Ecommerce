@@ -6,6 +6,7 @@
 
 <h1 align="center" class="dotted">
     <a href="https://music-club.prathmeshsoni.works/">Music Club eCommerce</a>
+</h1>
   
 <p align="center">
 
@@ -32,7 +33,7 @@ This Django-built Music Instruments E-commerce system facilitates product additi
 
 # Live Demo 👇:
 
-https://music-club.prathmeshsoni.works/
+[https://music-club.prathmeshsoni.works](https://music-club.prathmeshsoni.works)
 
 <br>
 
@@ -63,7 +64,7 @@ This project is a full-stack Music Instruments E-commerce website developed usin
 
 ## Features
 
-- User Authentication : Secure login and registration for a personalized shopping experience.
+- User Authentication: Secure login and registration for a personalized shopping experience.
 - Shopping Cart: Efficient cart management for adding, updating, and removing products.
 - Razorpay Integration: Seamless payment transactions through the Razorpay payment gateway.
 
@@ -127,7 +128,7 @@ Visit [`http://127.0.0.1:8000`](http://localhost:8000) in your browser. The app 
 > 👉 **Step 6** - Go `config.py` Not Necessary:
 
 
-Go to `config.py` file on Ecommerce folder (`/music_club/config.py`) setting all requirements after "=". 
+Go to the `config.py` file on the Ecommerce folder (`/music_club/config.py`) setting all requirements after "=". 
 
 ```
 # For sending email to users during registration or password recovery
@@ -145,7 +146,7 @@ razorpay_key_secret = ''
 
 Documentation: [Razorpay Integration](https://razorpay.com/docs/payments/server-integration/python/install/)
 
-**IMPORTANT**: Make sure your Razorpay account is running in `TEST Mode` and Use Test token provided by razorpay:
+**IMPORTANT**: Make sure your Razorpay account is running in `TEST Mode` and Use the Test token provided by Razorpay:
 
 <br />
 
@@ -173,7 +174,7 @@ https://github.com/prathmeshsoni/Ecommerce/assets/78293392/77c6be7a-d6a2-4e27-9c
 
 <br />
 
-The repository is a start point for most of my professional projects; for this, I'm using as a part of my portfolio, feel free to use wherever you want. I'll be happy if you provide any feedback or code improvements or suggestions.
+The repository is a starting point for most of my professional projects; for this, I'm using it as a part of my portfolio, feel free to use it wherever you want. I'll be happy if you provide any feedback code improvements or suggestions.
 
 ## Connect with me at
 
@@ -191,8 +192,15 @@ The repository is a start point for most of my professional projects; for this, 
 
 ## All Set :)
 
-<p><a href="#top">Back to Top</a></p>
+<p style="float:left;" align="left">
+  <a href="#top">Back To Top</a>
+</p>
+
+
+<p style="text-align:right;" align="right">
+  <a href="https://github.com/prathmeshsoni/Ecommerce">Back To Repository</a>
+</p>
 
 
 ---
-**[Music Club](https://music-club.prathmeshsoni.works/) eCommerce** - Provided by **[Prathmesh Soni](https://prathmeshsoni.works/)**
+**[Music Club](https://github.com/PrathmeshSoni/Ecommerce) eCommerce** - Provided by **[Prathmesh Soni](https://prathmeshsoni.works/)**
