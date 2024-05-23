@@ -26,8 +26,6 @@
 
 </p>
 
-</h1>
-
 
 This Django-built Music Instruments E-commerce system facilitates product addition and integrates Razorpay for seamless payments.
 
