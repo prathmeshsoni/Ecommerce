@@ -2,11 +2,13 @@ from django.shortcuts import render, redirect
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
+from Admin.views import admin_login_required
 from Admin.filter.forms import colourForm
 from Admin.filter.models import colourModel
 from .serializer import colourSerialize
 
 
+@admin_login_required
 def colour(request):
     if request.method == "POST":
         try:
@@ -26,6 +28,7 @@ def colour(request):
         return render(request, 'admin/colour.html', colour_dict)
 
 
+@admin_login_required
 @api_view(['POST'])
 def update_colour(request):
     id = request.POST.get('id')
@@ -34,6 +37,7 @@ def update_colour(request):
     return Response(serializer.data)
 
 
+@admin_login_required
 def remove_colour(request, hid):
     obj = colourModel.objects.get(id=hid)
     obj.delete()

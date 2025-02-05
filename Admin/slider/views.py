@@ -2,11 +2,13 @@ from django.shortcuts import render, redirect
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
+from Admin.views import admin_login_required
 from Admin.slider.forms import GalleryForm
 from Admin.slider.models import GalleryModel
 from Admin.slider.serializer import sliderSerialize
 
 
+@admin_login_required
 def slider(request):
     if request.method == "POST":
         try:
@@ -26,6 +28,7 @@ def slider(request):
         return render(request, 'admin/slider-1.html', g_dict)
 
 
+@admin_login_required
 @api_view(['POST'])
 def updateSlider(request):
     id = request.POST.get('id')
@@ -34,6 +37,7 @@ def updateSlider(request):
     return Response(serializer.data)
 
 
+@admin_login_required
 def remove_slider(request, hid):
     obj = GalleryModel.objects.get(id=hid)
     obj.delete()

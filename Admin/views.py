@@ -16,6 +16,18 @@ from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 
 
+# Create wraper for admin login
+# Create wraper for admin login
+def admin_login_required(func):
+    def wrap(request, *args, **kwargs):
+        if 'adminuser' in request.session:
+            return func(request, *args, **kwargs)
+
+        return redirect('/admin/accounts/login/')
+
+    return wrap
+
+
 def passwardd(request):
     if request.method == 'POST':
         password_form = PasswordResetForm(request.POST)
@@ -84,6 +96,7 @@ def some_view(request):
         return redirect('/admin/')
 
 
+@admin_login_required
 def dashboard(request):
     items = {
         'titless': 'Dashboard',

@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
+from Admin.views import admin_login_required
 from Admin.category.models import categoryModel
 from Admin.filter.models import colourModel
 from Admin.product.models import productModel
@@ -12,6 +13,7 @@ from User.models import add_to_cart, Sub_bayModel
 from .serializer import proSerialize
 
 
+@admin_login_required
 def index(request):
     if request.method == 'POST':
 
@@ -64,6 +66,7 @@ def index(request):
         return render(request, "admin/product-1.html", m)
 
 
+@admin_login_required
 def getdata(request):
     if request.method == 'POST':
         hid = request.POST.get('hidden_id')
@@ -124,6 +127,7 @@ def getdata(request):
         return redirect('/admin/product/')
 
 
+@admin_login_required
 @api_view(['POST'])
 def updatepro(request):
     id = request.POST.get('id')
@@ -132,6 +136,7 @@ def updatepro(request):
     return Response(serializer.data)
 
 
+@admin_login_required
 def remove_pro(request, hid):
     if request.user.is_authenticated:
         try:

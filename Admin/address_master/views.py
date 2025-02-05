@@ -3,12 +3,14 @@ from django.shortcuts import render, redirect
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
+from Admin.views import admin_login_required
 from Admin.address_master.forms import stateForm
 from Admin.address_master.models import stateModel
 from Admin.address_master.serializer import stateSerialize
 from User.models import addressModel
 
 
+@admin_login_required
 def state(request):
     if request.method == 'POST':
         try:
@@ -29,6 +31,7 @@ def state(request):
         return render(request, 'admin/state-1.html', x)
 
 
+@admin_login_required
 @api_view(['POST'])
 def updateState(request):
     id = request.POST.get('id')
@@ -37,6 +40,7 @@ def updateState(request):
     return Response(serializer.data)
 
 
+@admin_login_required
 def remove_state(request, hid):
     state_obj = addressModel.objects.filter(state=hid)
     state_count = state_obj.count()

@@ -3,12 +3,14 @@ from django.shortcuts import render, redirect
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
+from Admin.views import admin_login_required
 from Admin.product.models import productModel
 from .forms import brandForm
 from .models import brandModel
 from .serializer import brandSerializer
 
 
+@admin_login_required
 def brand_page(request):
     if request.method == 'POST':
         try:
@@ -28,6 +30,7 @@ def brand_page(request):
         return render(request, "admin/brand-1.html", m)
 
 
+@admin_login_required
 @api_view(['POST'])
 def updatebrand(request):
     id = request.POST.get('id')
@@ -36,6 +39,7 @@ def updatebrand(request):
     return Response(serializer.data)
 
 
+@admin_login_required
 def remove_brand(request, hid):
     brand_obj = productModel.objects.filter(brand=hid)
     brand_count = brand_obj.count()
