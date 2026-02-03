@@ -1,5 +1,6 @@
 import random
 import uuid
+import requests
 from datetime import date, timedelta, datetime
 
 import razorpay
@@ -17,7 +18,7 @@ from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.views.decorators.csrf import csrf_exempt
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, parser_classes
 from rest_framework.response import Response
 
 from Admin.category.models import categoryModel
@@ -25,8 +26,69 @@ from Admin.slider.models import GalleryModel
 from .models import *
 from .serializer import address_Serialize, prooSerialize
 
+import os
+
+from rest_framework.parsers import MultiPartParser, FormParser
+from rest_framework import status
+
 
 site_name = '127.0.0.1:8000'
+
+
+def classify_image(request):
+    return render(request, 'user/classify_image.html')
+
+
+@api_view(['POST'])
+@parser_classes([MultiPartParser, FormParser])
+def classify_image_api(request):
+    """
+        API endpoint to classify image files into categories. -> Live demo: https://music-club.mrsoni.in/user/classify-image/
+        Accepts: image file upload
+        Returns: { "category": "GUITAR" }
+    """
+    if 'image' not in request.FILES:
+        return Response(
+            {"error": "No image file provided"},
+            status=status.HTTP_400_BAD_REQUEST
+        )
+
+    image_file = request.FILES['image']
+
+    valid_extensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.tiff', '.webp']
+    file_ext = os.path.splitext(image_file.name)[1].lower()
+
+    if file_ext not in valid_extensions:
+        return Response(
+            {"error": "Invalid file format. Supported: JPG, JPEG, PNG, GIF, BMP, TIFF, WEBP"},
+            status=status.HTTP_400_BAD_REQUEST
+        )
+    try:
+        response = requests.post('https://music-club.mrsoni.in/user/api/classify-image/', files={'image': image_file}).json()
+        response_category = (response.get("category_name") or "").strip().lower()
+        if  response_category:
+            cat_objs = categoryModel.objects.filter(cat_name__icontains=response_category)
+            if cat_objs.exists():
+                return Response(
+                    {"category_id": cat_objs.first().id, "category_name": cat_objs.first().cat_name},
+                    status=status.HTTP_200_OK
+                )
+            else:
+                return Response(
+                    {"category_id": None, "category_name": response_category},
+                    status=status.HTTP_200_OK
+                )
+
+        return Response(
+            {"category_id": None, "category_name": None},
+            status=status.HTTP_200_OK
+        )
+
+    except Exception as e:
+        return Response(
+            {"error": f"Processing failed: {str(e)}"},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
 
 
 # 404 Page Not Found

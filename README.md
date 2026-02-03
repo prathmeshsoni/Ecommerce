@@ -1,11 +1,11 @@
 <p id="top" align="center">
-  <a href="https://music-club.prathmeshsoni.works" target="_blank">
+  <a href="https://music-club.mrsoni.in" target="_blank">
     <img src="static/admin/folder/images/logo-music-club.png" alt="Logo" width="300" height="100">
   </a>
 </p>
 
 <h1 align="center" class="dotted">
-    <a href="https://music-club.prathmeshsoni.works" target="_blank">Music Club eCommerce</a>
+    <a href="https://music-club.mrsoni.in" target="_blank">Music Club eCommerce</a>
 </h1>
 
 <br>
@@ -20,10 +20,10 @@
 <img src="https://img.shields.io/badge/Css3-1572B6?logo=css3&logoColor=white&style=for-the-badge" />
 <img src="https://img.shields.io/badge/Bootstrap-563D7C?logo=bootstrap&logoColor=white&style=for-the-badge" />
 <img src="https://img.shields.io/badge/Github-181717?logo=github&logoColor=white&style=for-the-badge" />
+<img src="https://img.shields.io/badge/AI--Powered-Image%20Search-purple?style=for-the-badge" />
 <a href="https://github.com/PrathmeshSoni">
-<img src="https://badges.pufler.dev/visits/prathmeshsoni/Ecommerce?label=VISITOR&style=for-the-badge&logoColor=FFFFFF&color=purple&labelColor=640464&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9IndoaXRlIiB2ZXJzaW9uPSIxLjEiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2IiBjbGFzcz0ib2N0aWNvbiBvY3RpY29uLWV5ZSIgYXJpYS1oaWRkZW49InRydWUiPjxwYXRoIGQ9Ik04IDJjMS45ODEgMCAzLjY3MS45OTIgNC45MzMgMi4wNzggMS4yNyAxLjA5MSAyLjE4NyAyLjM0NSAyLjYzNyAzLjAyM2ExLjYyIDEuNjIgMCAwIDEgMCAxLjc5OGMtLjQ1LjY3OC0xLjM2NyAxLjkzMi0yLjYzNyAzLjAyM0MxMS42NyAxMy4wMDggOS45ODEgMTQgOCAxNGMtMS45ODEgMC0zLjY3MS0uOTkyLTQuOTMzLTIuMDc4QzEuNzk3IDEwLjgzLjg4IDkuNTc2LjQzIDguODk4YTEuNjIgMS42MiAwIDAgMSAwLTEuNzk4Yy40NS0uNjc3IDEuMzY3LTEuOTMxIDIuNjM3LTMuMDIyQzQuMzMgMi45OTIgNi4wMTkgMiA4IDJaTTEuNjc5IDcuOTMyYS4xMi4xMiAwIDAgMCAwIC4xMzZjLjQxMS42MjIgMS4yNDEgMS43NSAyLjM2NiAyLjcxN0M1LjE3NiAxMS43NTggNi41MjcgMTIuNSA4IDEyLjVjMS40NzMgMCAyLjgyNS0uNzQyIDMuOTU1LTEuNzE1IDEuMTI0LS45NjcgMS45NTQtMi4wOTYgMi4zNjYtMi43MTdhLjEyLjEyIDAgMCAwIDAtLjEzNmMtLjQxMi0uNjIxLTEuMjQyLTEuNzUtMi4zNjYtMi43MTdDMTAuODI0IDQuMjQyIDkuNDczIDMuNSA4IDMuNWMtMS40NzMgMC0yLjgyNS43NDItMy45NTUgMS43MTUtMS4xMjQuOTY3LTEuOTU0IDIuMDk2LTIuMzY2IDIuNzE3Wk04IDEwYTIgMiAwIDEgMS0uMDAxLTMuOTk5QTIgMiAwIDAgMSA4IDEwWiI+PC9wYXRoPjwvc3ZnPg==">
-</a> 
-
+  <img src="https://custom-icons-badges.vercel.app/github/visitors/?username=Ecommerce">
+</a>
 </p>
 
 
@@ -31,7 +31,7 @@ This Django-built Music Instruments E-commerce system facilitates product additi
 
 # Live Demo 👇:
 
-<a href="https://music-club.prathmeshsoni.works" target="_blank">music-club.prathmeshsoni.works</a>
+<a href="https://music-club.mrsoni.in" target="_blank">music-club.mrsoni.in</a>
 
 <br>
 
@@ -67,6 +67,45 @@ This project is a full-stack Music Instruments E-commerce website developed usin
 - User Authentication: Secure login and registration for a personalized shopping experience.
 - Shopping Cart: Efficient cart management for adding, updating, and removing products.
 - Razorpay Integration: Seamless payment transactions through the Razorpay payment gateway.
+- **AI-Based Product Search (Image Upload):**
+  - Users can upload an image of a musical instrument.
+  - AI analyzes the image and predicts the instrument category.
+  - Relevant products from the database are displayed automatically based on the predicted category.
+
+
+## AI-Based Product Search (Image Upload)
+
+This feature enhances the shopping experience by allowing users to search for products using images instead of text.
+
+### How It Works
+
+1. The user uploads an image of a musical instrument (e.g., guitar, piano, drum).
+2. The image is sent to the backend API.
+3. An AI/ML model processes the image and predicts the instrument category.
+4. The predicted category is matched against the product categories stored in the database.
+5. All related products are fetched and displayed to the user in real time.
+
+### Supported Instrument Categories
+
+- Guitar
+- Piano
+- Keyboard
+- Drum
+- Tabla
+- Flute
+- Sitar
+- Violin
+
+### Benefits
+
+- Faster and smarter product discovery
+- No need to know exact product names
+- Ideal for beginners who recognize instruments visually
+
+
+### Preview At 👇:
+
+<a href="https://music-club.mrsoni.in/user/classify-image/" target="_blank">music-club.mrsoni.in/user/classify-image/</a>
 
 
 ## Getting Started
@@ -169,7 +208,7 @@ Documentation: <a href="https://razorpay.com/docs/payments/server-integration/py
 
 ## Screenshots
 
-Visit our <a href="https://private-app.prathmeshsoni.works/view/113" target="_blank"> Screenshots Page </a> for a visual walkthrough of the Music Club E-Commerce Website.
+Visit our <a href="https://private-app.mrsoni.in/view/113" target="_blank"> Screenshots Page </a> for a visual walkthrough of the Music Club E-Commerce Website.
 
 Demo Video 👇:
 
@@ -205,4 +244,4 @@ The repository is a starting point for most of my professional projects; for thi
 
 
 ---
-**<a href="https://music-club.prathmeshsoni.works" target="_blank">Music Club</a> eCommerce** - Provided by **<a href="https://prathmeshsoni.works" target="_blank">Prathmesh Soni</a>**
+**<a href="https://music-club.mrsoni.in" target="_blank">Music Club</a> eCommerce** - Provided by **<a href="https://soniprathmesh.com" target="_blank">Prathmesh Soni</a>**

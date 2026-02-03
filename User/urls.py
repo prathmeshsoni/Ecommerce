@@ -4,6 +4,9 @@ from django.urls import path
 from .views import *
 
 urlpatterns = [
+    path('classify-image/', classify_image, name='classify-image'),
+    path('api/classify-image/', classify_image_api, name='classify-image-api'),
+
     path('', home, name="home"),
     path('tracker/', tracker, name='tracker'),
     path('change-password/', change_password, name='change_passwordd'),

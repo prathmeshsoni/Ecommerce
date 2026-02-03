@@ -1,0 +1,503 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="{% static 'admin/folder/images/logo-mini-music-club.png' %}">
+    <link rel="icon" href="{% static 'admin/folder/images/logo-mini-music-club.png' %}" type="image/x-icon">
+
+    <title>Music Club | Search Product Using AI</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: rgba(30, 30, 30, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #aaa;
+            font-size: 0.95rem;
+        }
+
+        .upload-area {
+            border: 2px dashed rgba(102, 126, 234, 0.5);
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(20, 20, 20, 0.5);
+            margin-bottom: 30px;
+        }
+
+        .upload-area:hover {
+            border-color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .upload-area.dragover {
+            border-color: #764ba2;
+            background: rgba(118, 75, 162, 0.2);
+            transform: scale(1.02);
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            opacity: 0.7;
+        }
+
+        .upload-text {
+            color: #ccc;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .upload-subtext {
+            color: #888;
+            font-size: 0.85rem;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .preview-container {
+            display: none;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .preview-container.active {
+            display: block;
+        }
+
+        .preview-image {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .file-info {
+            color: #aaa;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            padding: 14px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover:not(:disabled) {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .result-container {
+            display: none;
+            margin-top: 30px;
+            padding: 25px;
+            border-radius: 15px;
+            background: rgba(20, 20, 20, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .result-container.active {
+            display: block;
+            animation: slideIn 0.4s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result-success {
+            border-left: 4px solid #10b981;
+        }
+
+        .result-error {
+            border-left: 4px solid #ef4444;
+        }
+
+        .result-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .result-content {
+            display: grid;
+            gap: 10px;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+        }
+
+        .result-label {
+            color: #aaa;
+        }
+
+        .result-value {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .loading.active {
+            display: block;
+        }
+
+        .spinner {
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            color: #ef4444;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .error-message.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px;
+            }
+
+            .header h1 {
+                font-size: 1.6rem;
+            }
+
+            .upload-area {
+                padding: 30px 20px;
+            }
+
+            .btn {
+                width: 100%;
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎸 Music Club - Search Products Using AI</h1>
+            <p>Upload an image to identify musical instruments</p>
+        </div>
+
+        <div class="upload-area" id="uploadArea">
+            <div class="upload-icon">📸</div>
+            <div class="upload-text">Click to upload or drag and drop</div>
+            <div class="upload-subtext">Supported: JPG, JPEG, PNG, GIF, BMP, TIFF, WEBP</div>
+            <input type="file" id="fileInput" accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff,.webp">
+        </div>
+
+        <div class="preview-container" id="previewContainer">
+            <img id="previewImage" class="preview-image" alt="Preview">
+            <div class="file-info" id="fileInfo"></div>
+            <div>
+                <button class="btn btn-primary" id="classifyBtn">
+                    🔍 Search Products
+                </button>
+                <button class="btn btn-secondary" id="clearBtn">
+                    🗑️ Clear
+                </button>
+            </div>
+        </div>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Analyzing image...</p>
+        </div>
+
+        <div class="result-container" id="resultContainer">
+            <div class="result-title" id="resultTitle">
+                <span id="resultIcon">✅</span>
+                <span id="resultTitleText">Classification Result</span>
+            </div>
+            <div class="result-content" id="resultContent"></div>
+        </div>
+
+        <div class="error-message" id="errorMessage"></div>
+    </div>
+
+    <script>
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const previewContainer = document.getElementById('previewContainer');
+        const previewImage = document.getElementById('previewImage');
+        const fileInfo = document.getElementById('fileInfo');
+        const classifyBtn = document.getElementById('classifyBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const loading = document.getElementById('loading');
+        const resultContainer = document.getElementById('resultContainer');
+        const resultContent = document.getElementById('resultContent');
+        const resultTitle = document.getElementById('resultTitle');
+        const resultIcon = document.getElementById('resultIcon');
+        const resultTitleText = document.getElementById('resultTitleText');
+        const errorMessage = document.getElementById('errorMessage');
+
+        let selectedFile = null;
+
+        uploadArea.addEventListener('click', () => fileInput.click());
+
+        fileInput.addEventListener('change', (e) => {
+            handleFile(e.target.files[0]);
+        });
+
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            handleFile(e.dataTransfer.files[0]);
+        });
+
+        function handleFile(file) {
+            if (!file) return;
+
+            const validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/bmp', 'image/tiff', 'image/webp'];
+
+            if (!validTypes.includes(file.type)) {
+                showError('Invalid file format. Please upload a valid image file.');
+                return;
+            }
+
+            selectedFile = file;
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                previewImage.src = e.target.result;
+                previewContainer.classList.add('active');
+                uploadArea.style.display = 'none';
+
+                const fileSize = (file.size / 1024).toFixed(2);
+                fileInfo.textContent = `${file.name} (${fileSize} KB)`;
+
+                resultContainer.classList.remove('active');
+                errorMessage.classList.remove('active');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        clearBtn.addEventListener('click', () => {
+            selectedFile = null;
+            fileInput.value = '';
+            previewContainer.classList.remove('active');
+            resultContainer.classList.remove('active');
+            uploadArea.style.display = 'block';
+            errorMessage.classList.remove('active');
+        });
+
+        classifyBtn.addEventListener('click', async () => {
+            if (!selectedFile) return;
+
+            loading.classList.add('active');
+            classifyBtn.disabled = true;
+            clearBtn.disabled = true;
+            resultContainer.classList.remove('active');
+            errorMessage.classList.remove('active');
+
+            const formData = new FormData();
+            formData.append('image', selectedFile);
+
+            try {
+                const response = await fetch('/user/api/classify-image/', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-CSRFToken': getCookie('csrftoken')
+                    }
+                });
+
+                const data = await response.json();
+
+                loading.classList.remove('active');
+                classifyBtn.disabled = false;
+                clearBtn.disabled = false;
+
+                if (response.ok) {
+                    displayResult(data);
+                } else {
+                    showError(data.error || 'Classification failed. Please try again.');
+                }
+            } catch (error) {
+                loading.classList.remove('active');
+                classifyBtn.disabled = false;
+                clearBtn.disabled = false;
+                showError('Network error. Please check your connection and try again.');
+                console.error('Error:', error);
+            }
+        });
+
+        function displayResult(data) {
+            resultContainer.classList.add('active');
+
+            if (data.category_name) {
+                resultContainer.classList.remove('result-error');
+                resultContainer.classList.add('result-success');
+                resultIcon.textContent = '✅';
+                resultTitleText.textContent = 'Classification Successful';
+
+                resultContent.innerHTML = `
+                    <div class="result-item">
+                        <span class="result-label">Category:</span>
+                        <span class="result-value">${data.category_name}</span>
+                    </div>
+                    ${data.category_id ? `
+                    <div class="result-item">
+                        <span class="result-label">Category ID:</span>
+                        <span class="result-value">${data.category_id}</span>
+                    </div>
+                    <div class="result-item">
+                        <a href="/user/category/${data.category_id}" target="_blank" class="btn">View Products</a>
+                    </div>
+                    ` : ''}
+                `;
+            } else {
+                resultContainer.classList.remove('result-success');
+                resultContainer.classList.add('result-error');
+                resultIcon.textContent = '⚠️';
+                resultTitleText.textContent = 'No Match Found';
+
+                resultContent.innerHTML = `
+                    <div class="result-item">
+                        <span class="result-label">Status:</span>
+                        <span class="result-value">Unable to process image</span>
+                    </div>
+                `;
+            }
+        }
+
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.classList.add('active');
+        }
+
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+    </script>
+</body>
+</html>
